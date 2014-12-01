@@ -1,0 +1,957 @@
+{
+  "type": "module",
+  "name": "storage",
+  "version": "4.8.5",
+  "revision": "10267",
+  "path": "application\/modules\/Storage",
+  "repository": null,
+  "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+  "title": "Storage",
+  "description": "Storage",
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "changeLog": {
+    "4.8.5": {
+      "Api\/Storage.php": "Fixed wrong parameter names in Storage_Api_Storage::create()",
+      "Service\/S3.php": "Fixed a paramether in Storage_Service_S3::write()",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "settings\/changelog.php": "Incremented version"
+    },
+    "4.8.2": {
+      "Service\/Abstract.php": "Corrected a sprintf",
+      "settings\/my.sql": "Incremented version",
+      "settings\/manifest.php": "Incremented version"
+    },
+    "4.7.0": {
+      "Model\/File.php": "Fixed a warning",
+      "settings\/my.sql": "Incremented version",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version"
+    },
+    "4.5.0": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.3.0": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/upload\/upload.tpl": "Removed usage of action helper to prevent issues"
+    },
+    "4.2.3": {
+      "Model\/File.php": "Incremented version",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/admin-services\/index.tpl": "Added support links in admin panel"
+    },
+    "4.2.0": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.8p1": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/upload\/upload.tpl": "Added cross domain policy file for CDN support"
+    },
+    "4.1.8": {
+      "externals\/.htaccess": "Updated with far-future expires headers for static resources",
+      "Form\/Admin\/Service\/Local.php": "Added baseUrl parameter",
+      "Form\/Admin\/Service\/S3.php": "Improved description; Added trim to options",
+      "Form\/Admin\/Service\/Vfs.php": "Added trim to options",
+      "Service\/Local.php": "Added baseUrl parameter",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/install.php": "Code formatting",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/admin-services\/delete.tpl": "Added svn:keywords",
+      "views\/scripts\/admin-services\/index.tpl": "Added static base URL for CDN support; Added link to KB",
+      "views\/scripts\/upload\/upload.tpl": "Added static base URL for CDN support, Sets the FancyUpload timeLimit directive to 0"
+    },
+    "4.1.7": {
+      "Plugin\/Job\/Transfer.php": "An error will no longer stop the transfer process, instead will log into messages column",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.6p3": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/install.php": "Adjusted incorrect query order",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.6p2": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.1.4-4.1.6.sql": "Removed",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.6p1": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade.4.1.4-4.1.6.sql": "Removed",
+      "settings\/my-upgrade-4.1.4-4.1.6.sql": "Added",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.6": {
+      "controllers\/AdminServices.php": "Improved help messages",
+      "externals\/images\/admin\/add.png": "Added",
+      "Form\/Admin\/Manage\/Filter.php": "Adjusted options",
+      "Form\/Admin\/Service\/Create.php": "Adjusted options",
+      "Form\/Admin\/Service\/S3.php": "Fixed issue with checking if bucket already exists",
+      "Form\/Admin\/Service\/Vfs.php": "Improved help messages",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/my-upgrade.4.1.4-4.1.6.sql": "Added",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/admin-manage\/index.tpl": "Style adjustment",
+      "views\/scripts\/admin-services\/create.tpl": "Added docblock",
+      "views\/scripts\/admin-services\/delete.tpl": "Added",
+      "views\/scripts\/admin-services\/edit.tpl": "Added docblock",
+      "views\/scripts\/admin-services\/index.tpl": "Added delete link",
+      "views\/scripts\/admin-services\/transfer.tpl": "Added"
+    },
+    "4.1.4": {
+      "Service\/S3.php": "Fixed issue with pulling remote file to local temporary file",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.3": {
+      "Service\/S3.php": "Fixed issue with pulling remote file to local temporary file",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.2p1": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.1.0-4.1.1.sql": "Fixed issue when upgrading from <= 4.1.0",
+      "settings\/my-upgrade-4.1.1-4.1.2.sql": "Fixed issue when upgrading from <= 4.1.0",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.2": {
+      "controllers\/AdminServicesController.php": "Added file count to services",
+      "controllers\/IndexController.php": "Added expires headers to file server",
+      "Form\/Admin\/Service\/Local.php": "Removed",
+      "Form\/Admin\/Service\/S3.php": "Added CloudFront support",
+      "Model\/DbTable\/Files.php": "Fixed typo in lookupFile method; added temporary and system file support",
+      "Model\/DbTable\/Mirrors.php": "Added",
+      "Model\/File.php": "Added temporary and system file support; fixed issues with deleting files when updating with newer copy; added ability to update file path",
+      "Plugin\/Job\/Cleanup.php": "Added path updating and temporary file support",
+      "Service\/Abstract.php": "Removed deprecated code; changed default naming scheme; fixed issue with checking file before storing",
+      "Service\/Mirrored.php": "Added",
+      "Service\/RoundRobin.php": "Added",
+      "Service\/S3.php": "Added CloudFront support",
+      "Service\/Scheme\/Dynamic.php": "Added",
+      "Service\/Vfs.php": "Added",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.1.0-4.1.1.sql": "B\/c",
+      "settings\/my-upgrade-4.1.1-4.1.2.sql": "Added",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/admin-services\/index.tpl": "Added file count to services"
+    },
+    "4.1.1": {
+      "Api\/Core.php": "Removed deprecated code, forwards to files table",
+      "Api\/Storage.php": "Removed deprecated code, forwards to files table",
+      "controllers\/AdminManageController.php": "Added",
+      "controllers\/AdminServicesController.php": "Added",
+      "externals\/.htaccess": "Added",
+      "Form\/Admin\/Manage\/Filter.php": "Added",
+      "Form\/Admin\/Service\/Create.php": "Added",
+      "Form\/Admin\/Service\/Db.php": "Added",
+      "Form\/Admin\/Service\/Generic.php": "Added",
+      "Form\/Admin\/Service\/Local.php": "Added",
+      "Form\/Admin\/Service\/S3.php": "Added",
+      "Model\/DbTable\/Files.php": "Main storage file code exists here now",
+      "Model\/DbTable\/Services.php": "Added",
+      "Model\/DbTable\/ServiceTypes.php": "Added",
+      "Model\/File.php": "Implemented new storage service handling for S3 adapter",
+      "Plugin\/Job\/Cleanup.php": "Added",
+      "Plugin\/Job\/Transfer.php": "Added",
+      "Service\/Abstract.php": "Implemented new storage service handling for S3 adapter",
+      "Service\/Db.php": "Implemented new storage service handling for S3 adapter",
+      "Service\/Interface.php": "Implemented new storage service handling for S3 adapter",
+      "Service\/Local.php": "Implemented new storage service handling for S3 adapter",
+      "Service\/S3.php": "Added",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.1.0-4.1.1.sql": "Added",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/admin-manage\/index.tpl": "Added",
+      "views\/scripts\/admin-manage\/view.tpl": "Added",
+      "views\/scripts\/admin-services\/create.tpl": "Added",
+      "views\/scripts\/admin-services\/edit.tpl": "Added",
+      "views\/scripts\/admin-services\/index.tpl": "Added"
+    },
+    "4.1.0": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/upload\/upload.tpl": "Added translation"
+    },
+    "4.0.4": {
+      "Form\/Upload.php": "Added missing .jpeg extension to allowed extensions",
+      "Plugin\/Core.php": "Added error suppression to item delete hook",
+      "Service\/Abstract.php": "Fixed issues caused by umask",
+      "settings\/changelog.php": "Added",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.0.3": {
+      "Api\/Storage\/php": "Fixed bug with quota handling",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.0.2": {
+      "Api\/Storage.php": "Typecasting storage quota values",
+      "Service\/Abstract.php": "Silencing notices in chmod",
+      "settings\/manifest.php": "Incremented version"
+    },
+    "4.0.1": {
+      "Api\/Storage.php": "Storage quotas are now configured by member level",
+      "settings\/manifest.php": "Incremented version",
+      "views\/scripts\/upload\/upload.tpl": "Fixed IE JS bug"
+    }
+  },
+  "meta": {
+    "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+    "title": "Storage",
+    "description": "Storage",
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    "install",
+    "upgrade",
+    "refresh"
+  ],
+  "callback": {
+    "path": "application\/modules\/Storage\/settings\/install.php",
+    "class": "Storage_Installer",
+    "priority": 5000
+  },
+  "dependencies": {
+    "module-core": {
+      "type": "module",
+      "name": "core",
+      "guid": "module-core",
+      "minVersion": "4.2.0",
+      "maxVersion": null,
+      "excludeExcept": null
+    }
+  },
+  "tests": [
+    {
+      "type": "PhpExtension",
+      "name": "FTP",
+      "extension": "ftp",
+      "defaultErrorType": 1,
+      "messages": {
+        "noExtension": "The FTP extension is recommend for CDNs that use FTP. An emulation layer will be used in the absence of this extension."
+      }
+    },
+    {
+      "type": "PhpExtension",
+      "name": "SSH2",
+      "extension": "ssh2",
+      "defaultErrorType": 1,
+      "messages": {
+        "noExtension": "The SSH2 extension is required for CDNs that use SSH or SCP."
+      }
+    },
+    {
+      "type": "Multi",
+      "name": "Hash",
+      "allForOne": true,
+      "defaultErrorType": 1,
+      "messages": {
+        "allTestsFailed": "HMAC Encryption Support for Amazon S3 requires either the hash or mhash PHP extension."
+      },
+      "tests": [
+        {
+          "type": "PhpExtension",
+          "extension": "hash"
+        },
+        {
+          "type": "PhpExtension",
+          "extension": "mhash"
+        }
+      ]
+    }
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "application\/modules\/Storage": {
+      "type": "directory",
+      "path": "application\/modules\/Storage",
+      "structure": [
+        {
+          "path": "Form",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Form\/Admin",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Form\/Admin\/Service",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Form\/Admin\/Service\/Mirrored.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2338,
+          "sha1": "6d2b602cdaa58e3f99e5bc99edeec9b20ce6f665"
+        },
+        {
+          "path": "Form\/Admin\/Service\/S3.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 3699,
+          "sha1": "dcc6832575be580ddf1dcdbf452666f204dc60fa"
+        },
+        {
+          "path": "Form\/Admin\/Service\/Db.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2697,
+          "sha1": "64707f2fbdfde0791e44ea3b64d5ad597c55ceea"
+        },
+        {
+          "path": "Form\/Admin\/Service\/Vfs.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2710,
+          "sha1": "be40bb98e4dfa9ee8d1492ff69e3ba480c31d197"
+        },
+        {
+          "path": "Form\/Admin\/Service\/RoundRobin.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1966,
+          "sha1": "8648bf93ccd0102641f2b258a80e3e9fec9519a7"
+        },
+        {
+          "path": "Form\/Admin\/Service\/Generic.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1743,
+          "sha1": "2c33021aab90339762f725dd478ed6ec35c6a7e8"
+        },
+        {
+          "path": "Form\/Admin\/Service\/Create.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2208,
+          "sha1": "cfced005522cf29756a26f249d0090e82fa35edc"
+        },
+        {
+          "path": "Form\/Admin\/Service\/Local.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1184,
+          "sha1": "0ff4b281b170653b0708ef544a27118894005f21"
+        },
+        {
+          "path": "Form\/Admin\/Manage",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Form\/Admin\/Manage\/Filter.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 5006,
+          "sha1": "a4d4beeed6b4d64c964b383d0bcc8a4a7e6dff7f"
+        },
+        {
+          "path": "Form\/Upload.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2196,
+          "sha1": "e8019a7fbb4d8a00b01596857405bc070634d756"
+        },
+        {
+          "path": "Service",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Service\/Mirrored.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 7549,
+          "sha1": "7eac7c8ea941e97e3e7270887539cabb7b21e065"
+        },
+        {
+          "path": "Service\/Exception.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 536,
+          "sha1": "305081dd72e91b5e715bb8add310c118941f7186"
+        },
+        {
+          "path": "Service\/Interface.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2637,
+          "sha1": "4cbf9ce5f3673ce4663ef5696f920b6aa2c50d6e"
+        },
+        {
+          "path": "Service\/S3.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6338,
+          "sha1": "25f1236540d2710b0d6dc85025574042a5e8f1ba"
+        },
+        {
+          "path": "Service\/Scheme",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Service\/Scheme\/Interface.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 566,
+          "sha1": "f5212164a88090cf6f8d5c0fd3fceaf97d80fc36"
+        },
+        {
+          "path": "Service\/Scheme\/Extended.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1577,
+          "sha1": "3a4b105adb71aab0ad5b290bcebc152881056327"
+        },
+        {
+          "path": "Service\/Scheme\/Dynamic.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1454,
+          "sha1": "fc1930c261ba5c9e613f3ff607fad786c18bdb9d"
+        },
+        {
+          "path": "Service\/Scheme\/Standard.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1460,
+          "sha1": "6cbd655379e9e82dc84666b0bae6aacd00140352"
+        },
+        {
+          "path": "Service\/Db.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6148,
+          "sha1": "01188472071d55cbcbbf9602232dcd2a8f22c9f9"
+        },
+        {
+          "path": "Service\/Vfs.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 3891,
+          "sha1": "87adc7af21c0cdf8497429fb693509328626f9b9"
+        },
+        {
+          "path": "Service\/Abstract.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6905,
+          "sha1": "10ec4e8707e70a0861135d19579fc8bf7d732606"
+        },
+        {
+          "path": "Service\/RoundRobin.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6045,
+          "sha1": "b6a58b7ac941d952defaaf56c97fe399a039bd38"
+        },
+        {
+          "path": "Service\/Local.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2987,
+          "sha1": "d5a11f49f379baf122cce1eb2428b7e14a5599bb"
+        },
+        {
+          "path": "Plugin",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Plugin\/Job",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Plugin\/Job\/Transfer.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2662,
+          "sha1": "571c9013904758b1351380224b847779c5720e22"
+        },
+        {
+          "path": "Plugin\/Job\/Cleanup.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 3627,
+          "sha1": "09e2fa9d699963b36908e0c8b6e30a7aeafd221c"
+        },
+        {
+          "path": "Plugin\/Core.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1167,
+          "sha1": "5c30b70ab509b32ecf5d8fe3325b3bfb4a692058"
+        },
+        {
+          "path": "controllers",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "controllers\/IndexController.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1554,
+          "sha1": "e1a9496c30c3fcfd2601433021b8072719528b02"
+        },
+        {
+          "path": "controllers\/UploadController.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2459,
+          "sha1": "9474a7cec8a787afc0cfae022254cbd1583cc88a"
+        },
+        {
+          "path": "controllers\/AdminServicesController.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 9942,
+          "sha1": "1b5f63ecca4842efc01ed12ec200bd2b45f6adf5"
+        },
+        {
+          "path": "controllers\/AdminManageController.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 4081,
+          "sha1": "875aa50a08b841fbdf2c67383cd90dd75ada2ce5"
+        },
+        {
+          "path": "externals",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/images",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/images\/admin",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/images\/admin\/add.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 940,
+          "sha1": "f758695229b2edd273e3692a10fda583feeced63"
+        },
+        {
+          "path": "externals\/.htaccess",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1042,
+          "sha1": "6c835f103d253edf70bfd5ba2430ebe3fa8cacdd"
+        },
+        {
+          "path": "Api",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Api\/Core.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1315,
+          "sha1": "5a8cf5d81a20ab16756e46bb248dddb97e35ec56"
+        },
+        {
+          "path": "Api\/Storage.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1328,
+          "sha1": "d06af8cafe7834d08ebf23802fbfdcc68056baa5"
+        },
+        {
+          "path": "settings",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "settings\/my.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6392,
+          "sha1": "ae1cde24ae3ba893a52a8c3590962cc67fca559a"
+        },
+        {
+          "path": "settings\/manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 3258,
+          "sha1": "fe991e3be3a97335b705fd61b2f0adf9a5a4245e"
+        },
+        {
+          "path": "settings\/changelog.php~",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 10553,
+          "sha1": "3ac8ecde1ae6b126a73537c7c58f00d47409cc84"
+        },
+        {
+          "path": "settings\/install.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2124,
+          "sha1": "9e7fd66347c9a1ae56fec14ea153320a5e3259ad"
+        },
+        {
+          "path": "settings\/my-upgrade-4.1.1-4.1.2.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1766,
+          "sha1": "b88172940cf808b92a2bff9147e249d51e11a887"
+        },
+        {
+          "path": "settings\/manifest.php~",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 3262,
+          "sha1": "41b3b84bdd9cb450605a4e2c33ab6dbd6568bbad"
+        },
+        {
+          "path": "settings\/my-upgrade-4.1.0-4.1.1.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2468,
+          "sha1": "e6a24bb1f5c45455e07ac9322ec05a29a0c03cfe"
+        },
+        {
+          "path": "settings\/changelog.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 10604,
+          "sha1": "c244110e909ec092f46fc5339062cf1a1fe7dd93"
+        },
+        {
+          "path": "settings\/my.sql~",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6396,
+          "sha1": "862213a4c886654bcc1151730ea848dc503ffe67"
+        },
+        {
+          "path": "views",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/admin-manage",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/admin-manage\/view.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 424,
+          "sha1": "00ef69b16b2402edf474b48b4fbd5aea00e4c15d"
+        },
+        {
+          "path": "views\/scripts\/admin-manage\/index.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 4588,
+          "sha1": "0cd7268639dad3e66cef9cbef7e7ee52fff4149c"
+        },
+        {
+          "path": "views\/scripts\/admin-services",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/admin-services\/create.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 379,
+          "sha1": "4366b34efa8154d569849af4db16910d06455532"
+        },
+        {
+          "path": "views\/scripts\/admin-services\/index.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 5690,
+          "sha1": "9eaab8923ff513e164d0a9a45a6a340bfa6512d8"
+        },
+        {
+          "path": "views\/scripts\/admin-services\/delete.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 379,
+          "sha1": "7f61fb28b247a469b8ec2a0a3a5d53c0601952ef"
+        },
+        {
+          "path": "views\/scripts\/admin-services\/transfer.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 74,
+          "sha1": "78f53c579d0472bb6a545a2624a8c2727cdb9cff"
+        },
+        {
+          "path": "views\/scripts\/admin-services\/edit.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 377,
+          "sha1": "a3e4da12d3820313433ab62f0e4da182845d269b"
+        },
+        {
+          "path": "views\/scripts\/upload",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/upload\/upload.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 9969,
+          "sha1": "89dac6400dc972aa3889d392934431e97915faf5"
+        },
+        {
+          "path": "Model",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Model\/Exception.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 534,
+          "sha1": "d940f8a9040af4ebaeca414e76a1348d333eb5b7"
+        },
+        {
+          "path": "Model\/DbTable",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Model\/DbTable\/Services.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 3073,
+          "sha1": "57571472b01379edf604e2ea3bcf571fc032d9a9"
+        },
+        {
+          "path": "Model\/DbTable\/Mirrors.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 539,
+          "sha1": "9c0ec86cf02946143bd5c1d63d638ae41266dc28"
+        },
+        {
+          "path": "Model\/DbTable\/Files.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 4860,
+          "sha1": "240ae17e8742ce11e326b832cb7a4a3cb77cd123"
+        },
+        {
+          "path": "Model\/DbTable\/Chunks.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 539,
+          "sha1": "92ee549607d3e8ca37b5229ad01939cea57f9fad"
+        },
+        {
+          "path": "Model\/DbTable\/ServiceTypes.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 549,
+          "sha1": "1961748e516bab044d14b3840dd30a38b402931a"
+        },
+        {
+          "path": "Model\/File.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 8037,
+          "sha1": "ccde9744b1c407707c6179658dac98359d68185b"
+        },
+        {
+          "path": "Bootstrap.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 531,
+          "sha1": "30dc342569de31bf0b731a908cc992e188de1263"
+        }
+      ]
+    },
+    "application\/languages\/en\/storage.csv": {
+      "type": "file",
+      "path": "application\/languages\/en\/storage.csv",
+      "structure": {
+        "path": "storage.csv",
+        "dir": false,
+        "file": true,
+        "perms": "0644",
+        "size": 1573,
+        "sha1": "4f94f038473e545824c18484dde04c876b7f6a6a"
+      }
+    }
+  }
+}

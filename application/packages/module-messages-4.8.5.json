@@ -1,0 +1,838 @@
+{
+  "type": "module",
+  "name": "messages",
+  "version": "4.8.5",
+  "revision": "10267",
+  "path": "application\/modules\/Messages",
+  "repository": null,
+  "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+  "title": "Messages",
+  "description": "Messages",
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "changeLog": {
+    "4.8.5": {
+      "controllers\/MessagesController.php": "Added media attachments to messages",
+      "Form\/Compose.php": "Added media attachments to messages",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/upload-photo.tpl": "Added media attachments to messages",
+      "settings\/changelog.php": "Incremented version"
+    },
+    "4.8.3": {
+      "views\/scripts\/messages\/compose.tpl": "Fixed a bug where autosuggest would only ever suggest friends.",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.8.1": {
+      "Api\/Core.php": "Fixed a bug where some DBs do not treat an empty string as NULL",
+      "Model\/DbTable\/Conversations.php": "Fixed a bug where some DBs do not treat an empty string as NULL",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.8.0": {
+      "Api\/Core.php": "Breakage after disabling modules",
+      "Model\/DbTable\/Conversations.php": "Breakage after disabling modules",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.7.0": {
+      "\/application\/languages\/en\/messages.csv": "Added phrases",
+      "views\/scripts\/messages\/compose.tpl": "Minimized Autocompleter.js",
+      "views\/scripts\/messages\/inbox.tpl": "Added a missing translation",
+      "settings\/my.sql": "Incremented version",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version"
+    },
+    "4.6.0": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/compose.tpl": "Fixed incorrect URL for autocomplete javascript"
+    },
+    "4.5.0": {
+      "controllers\/MessagesController.php": "Fixed duplicate threads in search results",
+      "Model\/Conversation.php": "Fixed duplicate threads in search results",
+      "Model\/Message.php": "Fixed duplicate threads in search results",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/inbox.tpl": "Fixed duplicate threads in search results",
+      "views\/scripts\/messages\/search.tpl": "Fixed duplicate threads in search results"
+    },
+    "4.3.0p1": {
+      "views\/scripts\/messages\/inbox.tpl": "Compatibility issue for PHP version less than 5.3",
+      "views\/scripts\/messages\/search.tpl": "Compatibility issue for PHP version less than 5.3"
+    },
+    "4.3.0": {
+      "controllers\/MessagesController.php": "Added new pages to layout editor; added ability to search messages",
+      "externals\/styles\/main.css": "Profile compose message now uses modal",
+      "Plugin\/Menus.php": "Profile compose message now uses modal",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/install.php": "Added new pages to layout editor",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/compose.tpl": "Added new pages to layout editor",
+      "views\/scripts\/messages\/inbox.tpl": "Added ability to search messages",
+      "views\/scripts\/messages\/search.tpl": "Added",
+      "views\/scripts\/messages\/view.tpl": "Added new pages to layout editor"
+    },
+    "4.2.9": {
+      "externals\/styles\/main.css": "Add TinyMCE to Compose Message",
+      "Form\/Compose.php": "Add TinyMCE to Compose Message",
+      "Form\/Reply.php": "Add TinyMCE to Compose Message",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.2.8-4.2.9.sql": "Added",
+      "settings\/my.sql": "Add TinyMCE to Compose Message",
+      "views\/scripts\/messages\/compose.tpl": "Add TinyMCE to Compose Message",
+      "views\/scripts\/messages\/view.tpl": "Add TinyMCE to Compose Message"
+    },
+    "4.2.8": {
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/inbox.tpl": "Messages with no subject mess up message view"
+    },
+    "4.2.5": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.2.4": {
+      "settings\/content.php": "Move Messages Menu under Messages in Layout Blocks",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.2.0": {
+      "controllers\/MessagesController.php": "Fixed issue with being able to send messages to members that are not your friend when disallowed by the admin",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/inbox.tpl": "Fixed issue with messages from deleted members",
+      "views\/scripts\/messages\/outbox.tpl": "Fixed issue with messages from deleted members",
+      "views\/scripts\/messages\/view.tpl": "Fixed nesting error"
+    },
+    "4.1.8": {
+      "Api\/Core.php": "Removed deprecated code",
+      "controllers\/MessagesController.php": "Added pages to the layout editor",
+      "externals\/.htaccess": "Updated with far-future expires headers for static resources",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/content.php": "Added pages to the layout editor",
+      "settings\/install.php": "Added",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/compose.tpl": "Added static base URL for CDN support",
+      "views\/scripts\/messages\/inbox.tpl": "Added pages to the layout editor",
+      "views\/scripts\/messages\/outbox.tpl": "Added pages to the layout editor",
+      "views\/scripts\/messages\/view.tpl": "Added static base URL for CDN support",
+      "widgets\/menu\/Controller.php": "Added",
+      "widgets\/menu\/index.tpl": "Added"
+    },
+    "4.1.7": {
+      "controllers\/MessagesController.php": "Fixed issue with page not redirecting properly when deleting messages",
+      "Plugin\/Menus.php": "Fixed issue where a link to send a message would be displayed when not allowed by level settings",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version; updated routes",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/delete.tpl": "Fixed issue with page not redirecting properly when deleting messages",
+      "views\/scripts\/messages\/inbox.tpl": "Fixed issue with page not redirecting properly when deleting messages",
+      "views\/scripts\/messages\/outbox.tpl": "Fixed issue with page not redirecting properly when deleting messages",
+      "views\/scripts\/messages\/view.tpl": "Fixed issue with page not redirecting properly when deleting messages"
+    },
+    "4.1.6": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/inbox.tpl": "Fixed errors on missing subject",
+      "views\/scripts\/messages\/outbox.tpl": "Fixed errors on missing subject"
+    },
+    "4.1.5": {
+      "controllers\/MessagesController.php": "Fixed issue with page not redirecting properly when deleting messages; Fixed issue with members being able to send messages to blocked user",
+      "Plugin\/Menus.php": "Fixes menu issue with pending friend requests",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/view.tpl": "Fixed issue for Opera 11; Prevent members from sending messages to members they blocked"
+    },
+    "4.1.4": {
+      "controllers\/MessagesController.php": "Fixed issue with input being hidden with invalid username; added delete link to message view",
+      "externals\/images\/delete.png": "Added",
+      "externals\/styles\/main.css": "Added styles for delete link",
+      "externals\/styles\/mobile.css": "Added",
+      "Form\/Compose.php": "Improved error message when to recipient specified",
+      "Plugin\/Menus.php": "Fixed issues with showing send message option when messaging is only allowed between friends",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/compose.tpl": "Fixed overtext issues",
+      "views\/scripts\/messages\/view.tpl": "Added delete link"
+    },
+    "4.1.3": {
+      "externals\/styles\/main.css": "Added styles for messages widget",
+      "Plugin\/Menus.php": "Fixed permission issues with sending messages to friends only, fixed menu-item showing when Messages disabled.",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/content.php": "Added",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/compose.tpl": "Fixed issues member name not being escaped properly",
+      "views\/scripts\/messages\/inbox.tpl": "Fixed issues with undefine variable notices",
+      "views\/scripts\/messages\/outbox.tpl": "Fixed issues with undefine variable notices",
+      "widgets\/home-messages\/Controller.php": "Added",
+      "widgets\/home-messages\/index.tpl": "Added"
+    },
+    "4.1.2": {
+      "\/application\/languages\/en\/messages.csv": "Added phrases",
+      "controllers\/MessagesController.php": "Fixed issues with messaging all group\/event members",
+      "Model\/Conversation.php": "Fixed issues with messaging all group\/event members",
+      "Model\/DbTable\/Conversations.php": "Fixed issues with messaging all group\/event members",
+      "Plugin\/Menus.php": "Fixed issues with messaging all group\/event members",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.1.1-4.1.2.sql": "Added",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/compose.tpl": "Fixed issues with messaging all group\/event members",
+      "views\/scripts\/messages\/inbox.tpl": "Fixed issues with messaging all group\/event members",
+      "views\/scripts\/messages\/outbox.tpl": "Fixed issues with messaging all group\/event members",
+      "views\/scripts\/messages\/view.tpl": "Fixed issues with messaging all group\/event members"
+    },
+    "4.1.1": {
+      "externals\/.htaccess": "Added keywords; removed deprecated code",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.0": {
+      "\/application\/languages\/en\/messages.csv": "Added phrases",
+      "controllers\/MessagesController.php": "Removed hard limit on messaging multiple users; fixed UI issue with smoothboxes",
+      "externals\/styles\/main.css": "Added RTL styles",
+      "Model\/Conversation.php": "Removed nl2br",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/compose.tpl": "Fixed issue preventing usage by mobile devices, such as the iPad and iPhone",
+      "views\/scripts\/messages\/delete.tpl": "Fixed UI issue with smoothboxes",
+      "views\/scripts\/messages\/view.tpl": "Fixed issue preventing usage by mobile devices, such as the iPad and iPhone"
+    },
+    "4.0.5": {
+      "controllers\/MessagesController.php": "Removed deprecated code",
+      "Model\/Conversation.php": "Different",
+      "Model\/Message.php": "Compat for search indexing changes",
+      "settings\/changelog.php": "Added",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "\/application\/languages\/en\/messages.csv": "Added missing phrases"
+    },
+    "4.0.4": {
+      "controllers\/MessagesController.php": "Removed deprecated code",
+      "externals\/styles\/main.css": "Improved RTL support",
+      "Model\/DbTable\/Conversations.php": "Added title and user identity",
+      "Model\/Conversation.php": "Removed title from replies for now (it's not being used for replies and the auto \"Re:\" was not getting translated)",
+      "views\/scripts\/messages\/compose.tpl": "Improved RTL support",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.0.3-4.0.4.sql": "Added",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/messages\/inbox.tpl": "Added missing translation; fixed conversation title",
+      "views\/scripts\/messages\/outbox.tpl": "Added missing translation; fixed conversation title",
+      "views\/scripts\/messages\/view.tpl": "Added missing translation; fixed conversation title",
+      "\/application\/languages\/en\/messages.csv": "Added phrases"
+    },
+    "4.0.3": {
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.0.2-4.0.3.sql": "Added",
+      "settings\/my.sql": "Incremented version; added email notification template for new message",
+      "\/application\/languages\/en\/messages.csv": "Added phrases"
+    },
+    "4.0.2": {
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.0.1-4.0.2.sql": "Added",
+      "settings\/my.sql": "Various level settings fixes and enhancements",
+      "views\/scripts\/messages\/inbox.tpl": "Delete Selected is now translated"
+    },
+    "4.0.1": {
+      "controllers\/AdminSettingsController.php": "Fixed problem in level select",
+      "controllers\/MessagesController.php": "Changed json_encode to Zend_Json::encode",
+      "settings\/manifest.php": "Incremented version"
+    }
+  },
+  "meta": {
+    "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+    "title": "Messages",
+    "description": "Messages",
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    "install",
+    "upgrade",
+    "refresh"
+  ],
+  "callback": {
+    "path": "application\/modules\/Messages\/settings\/install.php",
+    "class": "Messages_Installer",
+    "priority": 100
+  },
+  "dependencies": {
+    "module-core": {
+      "type": "module",
+      "name": "core",
+      "guid": "module-core",
+      "minVersion": "4.2.0",
+      "maxVersion": null,
+      "excludeExcept": null
+    }
+  },
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "application\/modules\/Messages": {
+      "type": "directory",
+      "path": "application\/modules\/Messages",
+      "structure": [
+        {
+          "path": "Form",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Form\/Compose.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 3708,
+          "sha1": "3b013584cc6eeba1b48b1e1deb047a91eb394b4f"
+        },
+        {
+          "path": "Form\/Admin",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Form\/Admin\/Level.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1904,
+          "sha1": "c94d7d49da685347a460f6cc4c14a30db49c1bab"
+        },
+        {
+          "path": "Form\/Reply.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2105,
+          "sha1": "fcde12614c56f96a26fd62c42d8becba08a333a6"
+        },
+        {
+          "path": "Plugin",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Plugin\/Menus.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2870,
+          "sha1": "0beca5a90a31e99e6a608de7b9a11514381e2d78"
+        },
+        {
+          "path": "controllers",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "controllers\/MessagesController.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 20731,
+          "sha1": "478dd75744093275bed1b3ca6df8d6fd09d11a60"
+        },
+        {
+          "path": "controllers\/AdminSettingsController.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1241,
+          "sha1": "e2f037f7187466a1337e19df01dc320551e8272a"
+        },
+        {
+          "path": "widgets",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "widgets\/home-messages",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "widgets\/home-messages\/Controller.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1506,
+          "sha1": "7788b3f6cba80301799f8e363aff92dd18b401e5"
+        },
+        {
+          "path": "widgets\/home-messages\/index.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2342,
+          "sha1": "064b6d016014e3def4e76434b55de40cfc9d52f1"
+        },
+        {
+          "path": "widgets\/menu",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "widgets\/menu\/Controller.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 731,
+          "sha1": "0dda03c48c477a87087194e7e45a9a55964516c5"
+        },
+        {
+          "path": "widgets\/menu\/index.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 583,
+          "sha1": "7dc823ffdc11041f41bf13c9effda30217fc4229"
+        },
+        {
+          "path": "externals",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/images",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/images\/delete.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 756,
+          "sha1": "0d95c67d4a255e153a78c19d2ce7fd69509e6c85"
+        },
+        {
+          "path": "externals\/images\/send.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 3305,
+          "sha1": "d66e7354fcfe133d9d00f86757170a1cccc733d2"
+        },
+        {
+          "path": "externals\/images\/attachment.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 391,
+          "sha1": "fa205706241698058266262c2b420d9c4336ba27"
+        },
+        {
+          "path": "externals\/.htaccess",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1042,
+          "sha1": "6c835f103d253edf70bfd5ba2430ebe3fa8cacdd"
+        },
+        {
+          "path": "externals\/styles",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/styles\/mobile.css",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 10448,
+          "sha1": "b7ca1f126d6fc97ccbb070ee58c8b43109158b37"
+        },
+        {
+          "path": "externals\/styles\/main.css",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 9254,
+          "sha1": "7d5db3555ef25109e365d089ed7bd1391c487d41"
+        },
+        {
+          "path": "Api",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Api\/Core.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1576,
+          "sha1": "f43306fa2a5f140041c9aa40a1b748f5f26b9473"
+        },
+        {
+          "path": "settings",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "settings\/content.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 994,
+          "sha1": "6df629a2da31db722d1ad25680d7fee5336c23e3"
+        },
+        {
+          "path": "settings\/my-upgrade-4.0.2-4.0.3.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 160,
+          "sha1": "dfc4989748122538511fa3c463b748d7dc841fef"
+        },
+        {
+          "path": "settings\/my.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6074,
+          "sha1": "4dfc3bbc0598a726a7f96e93db70185daf737c30"
+        },
+        {
+          "path": "settings\/manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1950,
+          "sha1": "a53361746ab43baf8e2807364b73001fa5929dfa"
+        },
+        {
+          "path": "settings\/my-upgrade-4.0.1-4.0.2.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 279,
+          "sha1": "2537a542ecefa9c1f91c50355a7554db4dec0a73"
+        },
+        {
+          "path": "settings\/changelog.php~",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 14354,
+          "sha1": "adf499539b5ea9800361bdb2fd09595330dd3f50"
+        },
+        {
+          "path": "settings\/my-upgrade-4.2.8-4.2.9.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 263,
+          "sha1": "3576ffb59c5ecd34f0b1821ddbc0051ae4c49d5e"
+        },
+        {
+          "path": "settings\/install.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 9255,
+          "sha1": "d8942de28c2a3ab424116dab5664828afe63782c"
+        },
+        {
+          "path": "settings\/my-upgrade-4.1.1-4.1.2.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1151,
+          "sha1": "519d4fca2c81b50f13535a2dc9179cab2d5591fd"
+        },
+        {
+          "path": "settings\/manifest.php~",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1954,
+          "sha1": "f1198051196c75ae69ad7d239c99bcdcbd458aa3"
+        },
+        {
+          "path": "settings\/my-upgrade-4.0.3-4.0.4.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1663,
+          "sha1": "d3da32376bf27bf7853498fd3c9f4ea15517af52"
+        },
+        {
+          "path": "settings\/changelog.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 14405,
+          "sha1": "49eeb508afc9572d5646af3b49d2302e82182294"
+        },
+        {
+          "path": "settings\/my.sql~",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6076,
+          "sha1": "5971cb09946170e8d76eca27bac1f11c32bc228b"
+        },
+        {
+          "path": "views",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/admin-settings",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/admin-settings\/level.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 546,
+          "sha1": "fd748ed681ade2f4e2121cff9093bb76fa085864"
+        },
+        {
+          "path": "views\/scripts\/messages",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/messages\/view.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6435,
+          "sha1": "2e03131fe575b21163f8d0d6e41af921f8d53a28"
+        },
+        {
+          "path": "views\/scripts\/messages\/search.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 5105,
+          "sha1": "25285fa2d0d866fb3449c3b36909f8601f02ee1e"
+        },
+        {
+          "path": "views\/scripts\/messages\/outbox.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 4650,
+          "sha1": "a9b9b15048547b7bf64e8a1bf78967e44efd273f"
+        },
+        {
+          "path": "views\/scripts\/messages\/success.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 373,
+          "sha1": "f60a2f5f391f3c292db97edf296b83c27ada3cff"
+        },
+        {
+          "path": "views\/scripts\/messages\/delete.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1108,
+          "sha1": "64ecff51d6817851078def908af3f15fafa77c6a"
+        },
+        {
+          "path": "views\/scripts\/messages\/compose.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6924,
+          "sha1": "4276db2e7959901af1c5d641a11614d996fad11b"
+        },
+        {
+          "path": "views\/scripts\/messages\/inbox.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 5497,
+          "sha1": "28cf1dba67fb5cf38402df3a11fd2b0a2c4ee508"
+        },
+        {
+          "path": "views\/scripts\/messages\/upload-photo.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1022,
+          "sha1": "1195e3c674bf94a065d81f433caec39641e0c1b8"
+        },
+        {
+          "path": "Model",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Model\/Message.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1867,
+          "sha1": "eceb3e5315a22e16f85fb3ed4aeb36ba91dd15cd"
+        },
+        {
+          "path": "Model\/Exception.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 515,
+          "sha1": "e461e3890f82b3ddc440cc025806d0e851b5eec1"
+        },
+        {
+          "path": "Model\/DbTable",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Model\/DbTable\/Conversations.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 7228,
+          "sha1": "a01591dbda91156017b43cd6484259b755ff4682"
+        },
+        {
+          "path": "Model\/DbTable\/Recipients.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 578,
+          "sha1": "84e656ff696fbb48a12e08f86ec8e8a49e6aa75d"
+        },
+        {
+          "path": "Model\/DbTable\/Messages.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 572,
+          "sha1": "9ebbbd745cfdd2d60a04ae7c982617797b1435c1"
+        },
+        {
+          "path": "Model\/Recipient.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 520,
+          "sha1": "f8a3afd98ba37d174e0d30fa7fd5a6fe400f1e9d"
+        },
+        {
+          "path": "Model\/Conversation.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6559,
+          "sha1": "d88938d402902d5a65c1f666cd33f0afe40433ef"
+        },
+        {
+          "path": "Bootstrap.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 534,
+          "sha1": "a822639abe2d2f49b0425fcfcd15fc7adac37382"
+        }
+      ]
+    },
+    "application\/languages\/en\/messages.csv": {
+      "type": "file",
+      "path": "application\/languages\/en\/messages.csv",
+      "structure": {
+        "path": "messages.csv",
+        "dir": false,
+        "file": true,
+        "perms": "0644",
+        "size": 2944,
+        "sha1": "35c90d941061ec8c24dee7536782f73298e2cf02"
+      }
+    }
+  }
+}

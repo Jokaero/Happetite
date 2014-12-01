@@ -1,0 +1,460 @@
+{
+  "type": "module",
+  "name": "invite",
+  "version": "4.8.2",
+  "revision": "10194",
+  "path": "application\/modules\/Invite",
+  "repository": null,
+  "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+  "title": "Invite",
+  "description": "Invite",
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "changeLog": {
+    "4.8.2": {
+      "controllers\/IndexController.php": "Added option to automatically friend request invited members",
+      "Form\/Invite.php": "Added option to automatically friend request invited members",
+      "Model\/DbTable\/Invites.php": "Added option to automatically friend request invited members",
+      "Plugin\/Signup.php": "Send friend request if option has been set",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.8.1-4.8.2.sql": "Added option to automatically friend request invited members",
+      "settings\/my-upgrade-4.8.1-4.8.2.sql~": "Added",
+      "settings\/my.sql": "Incremented version",
+      "settings\/my.sql~": "Added",
+      "views\/scripts\/index\/sent.tpl": "Added option to automatically friend request invited members"
+    },
+    "4.5.0": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.2.0": {
+      "Form\/Invite.php": "Added ReCaptcha support",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.8p1": {
+      "\/application\/languages\/en\/invite.csv": "Adjusted email links",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.8": {
+      "\/application\/languages\/en\/invite.csv": "Added phrases",
+      "controllers\/IndexController.php": "Added pages to the layout editor",
+      "externals\/.htaccess": "Updated with far-future expires headers for static resources",
+      "Model\/DbTable\/Invites.php": "Fixed issue with incorrect URL in invite emails",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/install.php": "Added",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.3": {
+      "Plugin\/Signup.php": "Friendship requests now considers network friendship settings",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.2": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/index\/sent.tpl": "Fixed incorrect profile URL"
+    },
+    "4.1.1": {
+      "externals\/.htaccess": "Added keywords; removed deprecated code",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.0": {
+      "\/application\/languages\/en\/invite.csv": "Fixed phrases with stray double-quotes",
+      "controllers\/AdminController.php": "Removed",
+      "Form\/AdminSettings.php": "Removed",
+      "Form\/Invite.php": "Added missing translation; removed deprecated code",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.0.3": {
+      "controllers\/IndexController.php": "Added missing beginTransaction",
+      "Plugin\/Signup.php": "Friendship requests are not sent if friendships are disabled",
+      "settings\/changelog.php": "Added",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "\/application\/languages\/en\/invite.csv": "Added missing phrases"
+    },
+    "4.0.2": {
+      "Api\/Core.php": "Removed deprecated code",
+      "controllers\/IndexController.php": "Uses common method",
+      "controllers\/SignupController.php": "Refactored and improved",
+      "Form\/Invite.php": "Updated email params",
+      "Model\/DbTable\/Invites.php": "Added common sendInvites method; fixes incorrect link in invite message",
+      "Plugin\/Signup.php": "Refactored and improved",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.0.1-4.0.2.sql": "Added",
+      "settings\/my.sql": "Incremented version",
+      "\/application\/languages\/en\/invite.csv": "Added missing phrases"
+    },
+    "4.0.1": {
+      "controllers\/IndexController.php": "Users could send invites even if disabled",
+      "settings\/manifest.php": "Incremented version"
+    }
+  },
+  "meta": {
+    "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+    "title": "Invite",
+    "description": "Invite",
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    "install",
+    "upgrade",
+    "refresh"
+  ],
+  "callback": {
+    "path": "application\/modules\/Invite\/settings\/install.php",
+    "class": "Invite_Installer",
+    "priority": 100
+  },
+  "dependencies": {
+    "module-core": {
+      "type": "module",
+      "name": "core",
+      "guid": "module-core",
+      "minVersion": "4.2.0",
+      "maxVersion": null,
+      "excludeExcept": null
+    }
+  },
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "application\/modules\/Invite": {
+      "type": "directory",
+      "path": "application\/modules\/Invite",
+      "structure": [
+        {
+          "path": "Form",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Form\/Invite.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 3243,
+          "sha1": "158438444a52c2f1d1e4aebe1fab4b3037362f59"
+        },
+        {
+          "path": "Plugin",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Plugin\/Menus.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 845,
+          "sha1": "5a6f7f478b1463526149df7c11b136ac240122ff"
+        },
+        {
+          "path": "Plugin\/Signup.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 5192,
+          "sha1": "f6bdb8facbbfdac0930458e44467eac38cab63e6"
+        },
+        {
+          "path": "controllers",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "controllers\/IndexController.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2101,
+          "sha1": "c884cfa297f335b2d6de9347fcb5f9617e416759"
+        },
+        {
+          "path": "controllers\/SignupController.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2164,
+          "sha1": "08287ebc674489a9042c825d81ddac5a37f8da63"
+        },
+        {
+          "path": "externals",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/images",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/images\/invite.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 3305,
+          "sha1": "d66e7354fcfe133d9d00f86757170a1cccc733d2"
+        },
+        {
+          "path": "externals\/.htaccess",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1042,
+          "sha1": "6c835f103d253edf70bfd5ba2430ebe3fa8cacdd"
+        },
+        {
+          "path": "Api",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Api\/Core.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 509,
+          "sha1": "ee045429aa2057f84b4a77dc85bd39bf1b265f21"
+        },
+        {
+          "path": "settings",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "settings\/my.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2853,
+          "sha1": "e9ec95a0d7030096b5f82cb814d847df4d5787cb"
+        },
+        {
+          "path": "settings\/manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1708,
+          "sha1": "9767edf63201917c9c7b5e19087d6103bfa336a6"
+        },
+        {
+          "path": "settings\/my-upgrade-4.0.1-4.0.2.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1188,
+          "sha1": "c1a42cef942515def4c84f2bb10698840d7e3985"
+        },
+        {
+          "path": "settings\/install.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 836,
+          "sha1": "ed79556d82f5eefbf0e318c8294cd24cadd00426"
+        },
+        {
+          "path": "settings\/my-upgrade-4.8.1-4.8.2.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 81,
+          "sha1": "6a84a75a5afb2480d9e68d09be775a45f87ce99b"
+        },
+        {
+          "path": "settings\/changelog.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 4746,
+          "sha1": "ef91620101eec1c08c0d827bb96ccf6bfeda5435"
+        },
+        {
+          "path": "settings\/my.sql~",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2843,
+          "sha1": "89bee8273807b2ff2a9a843a20a160857c51a66b"
+        },
+        {
+          "path": "settings\/my-upgrade-4.8.1-4.8.2.sql~",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1188,
+          "sha1": "c1a42cef942515def4c84f2bb10698840d7e3985"
+        },
+        {
+          "path": "views",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/helpers",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/admin",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/admin\/settings.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 631,
+          "sha1": "63b236da595b0825f7cf8bf9dae30fa26bf3c933"
+        },
+        {
+          "path": "views\/scripts\/admin\/stats.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2562,
+          "sha1": "1f033f1225fcbf564e4fdf94502239bf9e3c5b30"
+        },
+        {
+          "path": "views\/scripts\/index",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/index\/index.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 361,
+          "sha1": "bf3d8e103833440b9f4dd682654bd22a7776ce13"
+        },
+        {
+          "path": "views\/scripts\/index\/sent.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1605,
+          "sha1": "9c218c41009ad2a9a3e2471c2b67068e6f159502"
+        },
+        {
+          "path": "Model",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Model\/DbTable",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Model\/DbTable\/Users.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 547,
+          "sha1": "263396117bd3237a09963c47a1dd8c383c1c03fb"
+        },
+        {
+          "path": "Model\/DbTable\/Invites.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 4074,
+          "sha1": "dc6d9f5f4588a084e09a45672c817830a2a9a024"
+        },
+        {
+          "path": "Bootstrap.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 535,
+          "sha1": "7bb6c5f17f23d2f8d814918b8ae10f652a463198"
+        }
+      ]
+    },
+    "application\/languages\/en\/invite.csv": {
+      "type": "file",
+      "path": "application\/languages\/en\/invite.csv",
+      "structure": {
+        "path": "invite.csv",
+        "dir": false,
+        "file": true,
+        "perms": "0644",
+        "size": 4108,
+        "sha1": "9ca852b1eb20d63de66de83086cfdd129c4393df"
+      }
+    }
+  }
+}

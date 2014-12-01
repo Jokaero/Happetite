@@ -1,0 +1,218 @@
+{
+  "type": "external",
+  "name": "fancyupload",
+  "version": "4.8.1",
+  "revision": "10171",
+  "path": "externals\/fancyupload",
+  "repository": null,
+  "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+  "title": "Fancy Upload",
+  "description": null,
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "changeLog": {
+    "4.8.1": {
+      "Swiff.Uploader.js": "Fixed bug where adding padding\/margin to site would cause FancyUploader to break",
+      "manifest.php": "Incremented version"
+    },
+    "4.7.0": {
+      "progress-bar\/*": "Optimized images",
+      "manifest.php": "Incremented version"
+    },
+    "4.1.8": {
+      "manifest.php": "Incremented version",
+      "Swiff.Uploader.js": "Fixed RTL support issue"
+    },
+    "4.1.0": {
+      "fancyupload.css": "Improved RTL support",
+      "FancyUpload2.js": "Improved language support",
+      "manifest.php": "Incremented version",
+      "Swiff.Uploader.js": "Fixed RTL support issue; updated to address issue caused by Adobe Flash update",
+      "Swiff.Uploader.swf": "Updated to address issue caused by Adobe Flash update"
+    }
+  },
+  "meta": {
+    "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+    "title": "Fancy Upload",
+    "description": null,
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    
+  ],
+  "callback": null,
+  "dependencies": null,
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "externals\/fancyupload": {
+      "type": "directory",
+      "path": "externals\/fancyupload",
+      "structure": [
+        {
+          "path": "Swiff.Uploader.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 12651,
+          "sha1": "467f7d256d6fe0b7093295423bd6017cb40e384a"
+        },
+        {
+          "path": "fancyupload.css",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2614,
+          "sha1": "5f31a489f8b8baa14f1e1aac79876dd3b1dc2111"
+        },
+        {
+          "path": "FancyUpload2.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 8550,
+          "sha1": "482b45a4ca2b6027e1aeb8293bfdae39c6641db3"
+        },
+        {
+          "path": "Swiff.Uploader.js~",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 12677,
+          "sha1": "3cb6ec06383c97df06035146a8749e5cc0b8ea51"
+        },
+        {
+          "path": "manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1283,
+          "sha1": "56100caf543574da5574dec5bc73f2e7d0ae9c23"
+        },
+        {
+          "path": "Swiff.Uploader.swf",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 10238,
+          "sha1": "66dc59ecf8454005f20435aace31cbc20470a649"
+        },
+        {
+          "path": "assets",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "assets\/failed.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1365,
+          "sha1": "1c5b7332832835f3a023eba81c4256582e27e54c"
+        },
+        {
+          "path": "assets\/success.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1855,
+          "sha1": "38cf44a390b739cbbe32ca1500681f923a8a140a"
+        },
+        {
+          "path": "assets\/loading.gif",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 878,
+          "sha1": "54fc32753d51a95f7c61b10f0b8a0bfa1b2a2e57"
+        },
+        {
+          "path": "assets\/progress-bar",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "assets\/progress-bar\/progress.gif",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1113,
+          "sha1": "bdcfcacf43527493946496d7887bfefe13eb4dcc"
+        },
+        {
+          "path": "assets\/progress-bar\/bar.gif",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 163,
+          "sha1": "ae1931c8c1ef50618b987bda63d73eb28fa33f39"
+        },
+        {
+          "path": "assets\/uploading.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1172,
+          "sha1": "25bd0578a4d4827f86217219ad3b5628666dffd7"
+        },
+        {
+          "path": "assets\/waiting.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 408,
+          "sha1": "04186cef6204389cf4ee5f7c8fea229af6a09a24"
+        },
+        {
+          "path": "assets\/file.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1008,
+          "sha1": "5c583293789d6a951c16b62b9dd7bcdb79dba05f"
+        },
+        {
+          "path": "assets\/finished.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 516,
+          "sha1": "d7d5903cca7649f70e98e5d8ed27df5ae1095883"
+        },
+        {
+          "path": "assets\/error.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 666,
+          "sha1": "3855754e8fc9331c67dd2d0789d9f2d6e7daae8b"
+        },
+        {
+          "path": "Fx.ProgressBar.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1585,
+          "sha1": "e572c1c144b45296e8effa4b11f2d16a1c5443fe"
+        }
+      ]
+    }
+  }
+}

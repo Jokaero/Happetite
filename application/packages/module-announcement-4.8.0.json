@@ -1,0 +1,583 @@
+{
+  "type": "module",
+  "name": "announcement",
+  "version": "4.8.0",
+  "revision": "10150",
+  "path": "application\/modules\/Announcement",
+  "repository": null,
+  "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+  "title": "Announcements",
+  "description": "Announcements",
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "changeLog": {
+    "4.8.0": {
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "widgets\/list-announcements\/Controller.php": "Fixed duplicate announcements"
+    },
+    "4.7.0": {
+      "externals\/images\/*": "Optimized images",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "widgets\/list-announcements\/Controller.php": "Fixed some warnings"
+    },
+    "4.6.0": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/admin-manage\/index.tpl": "Fixed issue with displaying announcement to correct set of members",
+      "widgets\/list-announcements\/Controller.php": "Fixed issue with displaying announcement to correct set of members"
+    },
+    "4.5.0": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.3.0": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "widgets\/list-announcements\/Controller.php": "Fixed exception"
+    },
+    "4.2.9p1": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "widgets\/list-announcements\/Controller.php": "Fixed issue where announcements would not be displayed to anonymous visitor"
+    },
+    "4.2.9": {
+      "controllers\/AdminManageController.php": "Added ability to target announcements",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.2.8-4.2.9.sql": "Added",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/admin-manage\/index.tpl": "Added support links in admin panel",
+      "widgets\/list-announcements\/Controller.php": "Added ability to target announcements",
+      "form\/admin\/create.php": "Added ability to target announcements",
+      "form\/admin\/edit.php": "Added ability to target announcements"
+    },
+    "4.2.3": {
+      "controllers\/AdminManageController.php": "Different",
+      "Form\/Admin\/Create.php": "Allow TinyMCE",
+      "Form\/Admin\/Edit.php": "Allow TinyMCE",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my-upgrade-4.2.8-4.2.9.sql": "Added",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/admin-manage\/index.tpl": "Added support links in admin panel",
+      "widgets\/list-announcements\/Controller.php": "Different"
+    },
+    "4.2.2": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/admin-manage\/index.tpl": "MooTools 1.4 compatibility"
+    },
+    "4.2.0": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.8": {
+      "Api\/Core.php": "Refactored deprecated method calls",
+      "externals\/.htaccess": "Updated with far-future expires headers for static resources",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "views\/scripts\/admin-manage\/index.tpl": "Added static base URL for CDN support"
+    },
+    "4.1.7": {
+      "controllers\/AdminManageController.php": "Removing deprecated usage of $this->_helper->api()",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.4": {
+      "externals\/styles\/main.css": "Removed constants include",
+      "externals\/styles\/mobile.css": "Added",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.2": {
+      "settings\/changelog.php": "Incremented version",
+      "settings\/content.php": "Added preliminary layout enhancements",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.1": {
+      "externals\/.htaccess": "Added keywords; removed deprecated code",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.1.0": {
+      "Model\/Announcement.php": "Fixed incorrect getHref() method",
+      "settings\/changelog.php": "Incremented version",
+      "settings\/content.php": "Added pagination\/item count limits to widgets",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "widgets\/list-announcements\/Controller.php": "Added pagination\/item count limit"
+    },
+    "4.0.3": {
+      "Model\/Announcement.php": "Removed redundant code",
+      "settings\/changelog.php": "Added",
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version"
+    },
+    "4.0.2": {
+      "settings\/manifest.php": "Incremented version",
+      "settings\/my.sql": "Incremented version",
+      "\/application\/languages\/en\/announcement.csv": "Added phrases"
+    },
+    "4.0.1": {
+      "settings\/manifest.php": "Incremented version",
+      "widgets\/list-announcements\/index.tpl": "Switched array to paginator"
+    }
+  },
+  "meta": {
+    "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+    "title": "Announcements",
+    "description": "Announcements",
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    "install",
+    "upgrade",
+    "refresh"
+  ],
+  "callback": {
+    "path": null,
+    "class": "Engine_Package_Installer_Module",
+    "priority": 100
+  },
+  "dependencies": {
+    "module-core": {
+      "type": "module",
+      "name": "core",
+      "guid": "module-core",
+      "minVersion": "4.2.0",
+      "maxVersion": null,
+      "excludeExcept": null
+    }
+  },
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "application\/modules\/Announcement": {
+      "type": "directory",
+      "path": "application\/modules\/Announcement",
+      "structure": [
+        {
+          "path": "Form",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Form\/Admin",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Form\/Admin\/Edit.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 3916,
+          "sha1": "42ec04369b66f9432241b9e9d2bcf3f2f9ff8444"
+        },
+        {
+          "path": "Form\/Admin\/Filter.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 836,
+          "sha1": "6a494e441d96c2a6379db14fd03a4731af7e3173"
+        },
+        {
+          "path": "Form\/Admin\/Create.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 3987,
+          "sha1": "9c61828fba12693564215ac5dcb6cec7106ffc2d"
+        },
+        {
+          "path": "Form\/Admin\/Delete.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 983,
+          "sha1": "200dd3b37e6b66a19d43bd0aa651b02c761340c1"
+        },
+        {
+          "path": "Plugin",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Plugin\/Core.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 927,
+          "sha1": "ecd1c8ec18b1f6905d785231e1d2d63e724cbc93"
+        },
+        {
+          "path": "controllers",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "controllers\/AdminManageController.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 4579,
+          "sha1": "ba2b87ed5066942451607500c0ece4ff67842a03"
+        },
+        {
+          "path": "controllers\/AnnouncementController.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 610,
+          "sha1": "ba423dfdb470c4025ebda56fdf39c7cf9c6bbfc0"
+        },
+        {
+          "path": "widgets",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "widgets\/list-announcements",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "widgets\/list-announcements\/Controller.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 4656,
+          "sha1": "716b1c7971bb29c93be4dd03c43b46157d310799"
+        },
+        {
+          "path": "widgets\/list-announcements\/index.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 965,
+          "sha1": "b17c1c2207490305687750cc23ed96ef9893d5fc"
+        },
+        {
+          "path": "externals",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/images",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/images\/admin",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/images\/admin\/add.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 444,
+          "sha1": "3bed7d7fef488eb238a052b5afe174847d109b8d"
+        },
+        {
+          "path": "externals\/images\/types",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/images\/types\/announcement.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 671,
+          "sha1": "a61caa118a73cfe312f97a7e738386f69dbb3dca"
+        },
+        {
+          "path": "externals\/images\/add.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 444,
+          "sha1": "3bed7d7fef488eb238a052b5afe174847d109b8d"
+        },
+        {
+          "path": "externals\/.htaccess",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1042,
+          "sha1": "6c835f103d253edf70bfd5ba2430ebe3fa8cacdd"
+        },
+        {
+          "path": "externals\/styles",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/styles\/mobile.css",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 369,
+          "sha1": "eb8ebbbcba7cedb6e3840b6b38f04eb138928911"
+        },
+        {
+          "path": "externals\/styles\/main.css",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 367,
+          "sha1": "9516ab09ecaff834045eef29a0f32ff695cb3334"
+        },
+        {
+          "path": "Api",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Api\/Core.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 971,
+          "sha1": "fadb8f6623e9fc9121d2a652070428413a935879"
+        },
+        {
+          "path": "settings",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "settings\/content.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 658,
+          "sha1": "3b5737da460c35d4cdae0d39be48d5fb08eb6415"
+        },
+        {
+          "path": "settings\/my.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2969,
+          "sha1": "f9f61cb11f2fc9780a62fe394383bfa157ef8d3f"
+        },
+        {
+          "path": "settings\/manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1710,
+          "sha1": "466cb43c07a2c17d7e199042f1af0a704d567e44"
+        },
+        {
+          "path": "settings\/my-upgrade-4.0.1-4.0.2.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1337,
+          "sha1": "ba9c13c81a24c65182a4453d90a23ba3650484b0"
+        },
+        {
+          "path": "settings\/my-upgrade-4.2.8-4.2.9.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 293,
+          "sha1": "5632e4c74b9aa792510427aa5c7f658361329e42"
+        },
+        {
+          "path": "settings\/changelog.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6109,
+          "sha1": "e0a8c6f8be3d7f4cfcf3abcf0dfde84da79d6d9e"
+        },
+        {
+          "path": "views",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/admin-manage",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/admin-manage\/create.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 360,
+          "sha1": "2548cc5068a8934459eb88a0e3323c99e0be3140"
+        },
+        {
+          "path": "views\/scripts\/admin-manage\/deleteselected.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1555,
+          "sha1": "fba3161d52df9d7a537bd49917469ef3a360636f"
+        },
+        {
+          "path": "views\/scripts\/admin-manage\/index.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 4975,
+          "sha1": "b5c834418f9fb8cd3cc9dc74b0fb3f28f1936658"
+        },
+        {
+          "path": "views\/scripts\/admin-manage\/delete.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1149,
+          "sha1": "19ad6453b53f5a6ce1ad6252bad10289edb8c420"
+        },
+        {
+          "path": "views\/scripts\/admin-manage\/edit.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 358,
+          "sha1": "9f1f3acad2ce98cc1b103b40e4579602f5d64b99"
+        },
+        {
+          "path": "Model",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Model\/DbTable",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Model\/DbTable\/Announcements.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 603,
+          "sha1": "2165e2dafeeae0dd966b3ff2664f734860b5f6a6"
+        },
+        {
+          "path": "Model\/Announcement.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 836,
+          "sha1": "5862ecd79e660d2b9f6ab964f5bc9bc4f18617e6"
+        },
+        {
+          "path": "Bootstrap.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 552,
+          "sha1": "247c067a9736f587c0f63dfa465fb1e311459b3f"
+        }
+      ]
+    },
+    "application\/languages\/en\/announcement.csv": {
+      "type": "file",
+      "path": "application\/languages\/en\/announcement.csv",
+      "structure": {
+        "path": "announcement.csv",
+        "dir": false,
+        "file": true,
+        "perms": "0644",
+        "size": 1735,
+        "sha1": "ec587a247cc68209e7e936e535db9afdf6fff280"
+      }
+    }
+  }
+}

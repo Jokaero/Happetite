@@ -1,0 +1,107 @@
+{
+  "type": "external",
+  "name": "autocompleter",
+  "version": "4.7.0",
+  "revision": "10111",
+  "path": "externals\/autocompleter",
+  "repository": null,
+  "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+  "title": "Autocompleter",
+  "description": null,
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "changeLog": {
+    "4.7.0": {
+      "Autocompleter.min.js": "Combined and minified",
+      "manifest.php": "Incremented version"
+    },
+    "4.1.4": {
+      "Autocompleter.js": "Added option to ignore the overlay fix",
+      "manifest.php": "Incremented version"
+    },
+    "4.1.0": {
+      "Autocompleter.js": "Resolved select\/hover bug with Google Chrome; fixed tagging issues with Internet Explorer",
+      "manifest.php": "Incremented version"
+    }
+  },
+  "meta": {
+    "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+    "title": "Autocompleter",
+    "description": null,
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    
+  ],
+  "callback": null,
+  "dependencies": null,
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "externals\/autocompleter": {
+      "type": "directory",
+      "path": "externals\/autocompleter",
+      "structure": [
+        {
+          "path": "Autocompleter.Local.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 491,
+          "sha1": "55fd971327e153e39450d77e102499115ee034a5"
+        },
+        {
+          "path": "manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 928,
+          "sha1": "0a67acfdac58d1a32af1ede24d68313a89832465"
+        },
+        {
+          "path": "Autocompleter.min.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 15462,
+          "sha1": "1e3b9418921d0f8bbe45b8f3dd45a15b3bb273b5"
+        },
+        {
+          "path": "Autocompleter.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 23734,
+          "sha1": "49d1c5f0e1b9caa08ff2009bf6dc7dd4515b76be"
+        },
+        {
+          "path": "Autocompleter.Request.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2622,
+          "sha1": "fa8ac0058fc6d85a216e5ba172be17ba4acd43bd"
+        },
+        {
+          "path": "Observer.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1521,
+          "sha1": "759e3dd2508c24ba9b65cfa9ffbe3af66cf34a78"
+        }
+      ]
+    }
+  }
+}

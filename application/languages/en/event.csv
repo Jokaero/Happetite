@@ -1,0 +1,620 @@
+"Event";"Class"
+"Events";"Classes"
+"Event Photos";"Class Photos"
+"Past Events";"Past Classes"
+"My Events";"My Classes"
+"view";"view"
+"Photo";"Photo"
+"of";"of"
+"Prev";"Prev"
+"Next";"Next"
+"By";"By"
+"View All Events";"View All Classes"
+
+# Guest statuses in class
+"EVENT_MEMBER_STATUS_";"Error Status"
+"EVENT_MEMBER_STATUS_0";"Applied"
+"EVENT_MEMBER_STATUS_1";"Accepted"
+"EVENT_MEMBER_STATUS_2";"Accepted"
+"EVENT_MEMBER_STATUS_3";"Paid"
+"EVENT_MEMBER_STATUS_4";"Refund"
+"EVENT_MEMBER_STATUS_5";"Refunded"
+"EVENT_MEMBER_STATUS_10";"Host"
+
+"ADMIN_FORM_PAY_HOST_INFO %1$s %2$s %3$s %4$s %5$s";"<b>Banking Information:</b>
+IBAN: %1$s
+BIC: %2$s
+Name: %3$s
+Address: %4$s
+Country of Beneficiary: %5$s"
+
+# PM Messages
+"EVENT_HOST_CANCELED_MEMBER_SUBJECT";"The Class has been cancelled"
+"Host has cancelled the Event. You have recently applied for the class %1$s. Unfortunately %2$s has cancelled the class. There are several reasons why this might have happened. We hope you are able to enjoy another class with Happetite.%3$s";"Host has cancelled the Event. You have recently applied for the class %1$s. Unfortunately %2$s has cancelled the class. There are several reasons why this might have happened. We hope you are able to enjoy another class with Happetite.
+%3$s"
+
+"EVENT_HOST_CANCELED_ADMIN_SUBJECT";"The Class has been cancelled"
+"The Class %1$s has been cancelled. Please start the refund process.";"The Class %1$s has been cancelled. Please start the refund process."
+
+"EVENT_USER_CANCELED_HOST_SUBJECT";""
+"You have recently accepted %1$s to attend the class %2$s. He has cancelled his attendance.%3$s";"You have recently accepted %1$s to attend the class %2$s. He has cancelled his attendance.
+%3$s"
+
+"EVENT_USER_CANCELED_HOST_LESS48_SUBJECT";""
+"Guest has paid but cancelled late. You have recently accepted %1$s to the class %2$s. Unfortunately %3$s has cancelled his attendance. Since he cancelled in such a short notice, you will still receive your money.%4$s";"Guest has paid but cancelled late. You have recently accepted %1$s to the class %2$s. Unfortunately %3$s has cancelled his attendance. Since he cancelled in such a short notice, you will still receive your money.
+%4$s"
+
+"EVENT_USER_CANCELED_ADMIN_LESS48_SUBJECT";""
+"Guest has paid for class %1$s but cancelled and gets refunded. Please go to the admin panel (%2$s) to refund his money.%3$s";"Guest has paid for class %1$s but cancelled and gets refunded. Please go to the admin panel (%2$s) to refund his money.
+Bank Account Information: %3$s"
+
+"EVENT_USER_CANCELED_USER_LESS48_SUBJECT";""
+"Your cancellation was late. You have recently booked the class %1$s. Unfortunately your cancellation was on short notice and your money will be paid to the host nevertheless.";"Your cancellation was late. You have recently booked the class %1$s. Unfortunately your cancellation was on short notice and your money will be paid to the host nevertheless."
+
+"EVENT_USER_CANCELED_HOST_MORE48_SUBJECT";""
+"Guest has paid but cancelled early. You have recently accepted %1$s to the class %2$s. %1$s has cancelled his attendance. Since he cancelled early enough, we will refund his money and you’re free to accept another guest instead.%3$s";"Guest has paid but cancelled early. You have recently accepted %1$s to the class %2$s. %1$s has cancelled his attendance. Since he cancelled early enough, we will refund his money and you’re free to accept another guest instead.
+%3$s"
+
+"EVENT_HOST_FINISH_SUBJECT";""
+"You have just recently held the Class %1$s. Please confirm that the class has successfully taken place by clicking the button below.%2$s";"You have just recently held the Class %1$s. Please confirm that the class has successfully taken place by clicking the button below.
+%2$s"
+
+"EVENT_SYSTEM_USER_TIMEOUT_SUBJECT";""
+"You have recently applied to the class %1$s. Unfortunately %2$s was not able to react to your application within 24 hours, you are most welcome to try and apply again to this class or choose any other class you desire to join.";"You have recently applied to the class %1$s.
+Unfortunately %2$s was not able to react to your application within 24 hours, you are most welcome to try and apply again to this class or choose any other class you desire to join."
+
+"EVENT_HOST_USER_REJECT_SUBJECT";""
+"You have recently applied to the class %1$s. Unfortunately %2$s could not accept you for this class, there can be multiple reasons for that, mostly because the class is already fully booked or you would not fit into the group %2$s is trying to invite. But don’t be discouraged, there are many more classes out there for you to join.%3$s";"You have recently applied to the class %1$s.
+Unfortunately %2$s could not accept you for this class, there can be multiple reasons for that, mostly because the class is already fully booked or you would not fit into the group %2$s is trying to invite. But don’t be discouraged, there are many more classes out there for you to join.
+%3$s"
+
+"EVENT_HOST_USER_ACCEPT_SUBJECT";""
+"You have recently applied to the class %1$s. %2$s has accepted your request and would be happy to welcoming you to his event. All that is left is the payment. Please click the link below in order to pay the full amount of %3$s. %4$s";"You have recently applied to the class %1$s.
+%2$s has accepted your request and would be happy to welcoming you to his event.
+All that is left is the payment. Please click the link below in order to pay the full amount of %3$s. %4$s"
+
+"EVENT_SYSTEM_USER_ABOUT_TIMEOUT_SUBJECT";""
+"Dear %1$s, you were accepted for the class %2$s. We would like to kindly remind you to pay the class fee of %3$s by %4$s.";"Dear %1$s, you were accepted for the class %2$s. We would like to kindly remind you to pay the class fee of %3$s by %4$s."
+
+"EVENT_SYSTEM_USER_PAID_TIMEOUT_SUBJECT";""
+"Dear %1$s, you were accepted for the class %2$s. Unfortunately we have not received the payment of the class fee so far. If you still would like to join the class, you will have to apply again. You are most welcome to apply for any other class you desire to join.";"Dear %1$s, you were accepted for the class %2$s.
+Unfortunately we have not received the payment of the class fee so far. If you still would like to join the class, you will have to apply again. You are most welcome to apply for any other class you desire to join."
+
+"EVENT_SYSTEM_HOST_PAID_TIMEOUT_SUBJECT";""
+"You have recently accepted %1$s to the class %2$s. Unfortunately %1$s has not paid within the given timeframe of three days. He was notified that he has not paid and that he has to apply for the class again if he still wants to join.";"You have recently accepted %1$s to the class %2$s.
+Unfortunately %1$s has not paid within the given timeframe of three days. He was notified that he has not paid and that he has to apply for the class again if he still wants to join."
+
+"EVENT_HOST_ADMIN_VERIFIED_SUBJECT";""
+"The class %1$s led by %2$s has successfully ended and has been verified by the host. Please go to the admin panel (%3$s) and pay the host.";"The class %1$s led by %2$s has successfully ended and has been verified by the host. Please go to the admin panel (%3$s) and pay the host."
+
+"EVENT_USER_HOST_REQUEST_SUBJECT";""
+"You have a new applicant for your Class %1$s. Please go to the %2$s and approve/reject the applicant within the next 24 hours, i.e. until %3$s.";"You have a new applicant for your Class %1$s. Please go to the %2$s and approve/reject the applicant within the next 24 hours, i.e. until %3$s."
+
+"EVENT_USER_USER_PAID_SUBJECT";""
+"Thank you for your payment. You are now fully approved for the class %s.";"Thank you for your payment. You are now fully approved for the class %s."
+
+"CANCEL_REASON_GUEST_";""
+"CANCEL_REASON_GUEST_1";"Reason 1"
+"CANCEL_REASON_GUEST_2";"Reason 2"
+"CANCEL_REASON_GUEST_3";"Reason 3"
+"CANCEL_REASON_ADMIN_";""
+"CANCEL_REASON_ADMIN_1";"Reason 1"
+"CANCEL_REASON_ADMIN_2";"Reason 2"
+"CANCEL_REASON_ADMIN_3";"Reason 3"
+"CANCEL_REASON_HOST_";""
+"CANCEL_REASON_HOST_1";"Reason 1"
+"CANCEL_REASON_HOST_2";"Reason 2"
+"CANCEL_REASON_HOST_3";"Reason 3"
+
+"EVENT_VIEWS_SCRIPTS_ADMINMANAGE_COURSES_USERS_DESCRIPTION";"Description"
+
+"Delete Event:";"Delete Class:"
+"Create New Event";"Create New Class"
+"Edit Event";"Edit Class"
+"Join Event";"Join Class"
+"Delete Event";"Delete Class"
+"Leave Event";"Leave Class"
+"led by";"led by"
+"Upload Photos";"Upload Photos"
+
+"Nobody has created an class yet.";"Nobody has created an class yet."
+"Be the first to %1$screate%2$s one!";"Be the first to %1$screate%2$s one!"
+"Tip: %1$sClick here%2$s to create a class or %3$sbrowse%2$s for classes to join!";"Tip: %1$sClick here%2$s to create a class or %3$sbrowse%2$s for classes to join!"
+
+"event";"class";"classes"
+"%s event";"%s class";"%s classes"
+"%s event invite";"%s class invite";"%s class invites"
+"%s guest";"%s guest";"%s guests"
+"%s member";"%s member";"%s members"
+
+"Close";"Close"
+
+"&#187; Photos";"&#187; Photos"
+"&#187;";"&#187;"
+"Photos";"Photos"
+
+
+"Type a tag or select a name from the list.";"Type a tag or select a name from the list."
+"Tagged:";"Tagged:"
+
+"Added";"Added"
+"ADD TAG";"ADD TAG"
+"Add Tag";"Add Tag"
+"Edit";"Edit"
+"Delete";"Delete"
+"Share";"Share"
+"Report";"Report"
+"Make Profile Photo";"Make Profile Photo"
+"Quote";"Quote"
+
+"&#187; Discussions";"&#187; Discussions"
+"Discussions";"Discussions"
+
+"Back to Event";"Back to Class"
+"Post New Topic";"Post New Topic"
+"reply";"reply";"replies"
+"Last Post";"Last Post"
+
+"Back to Topics";"Back to Topics"
+"Post Reply";"Post Reply"
+"Make Sticky";"Make Sticky"
+"Remove Sticky";"Remove Sticky"
+"Open";"Open"
+"Rename";"Rename"
+"This topic has been closed.";"This topic has been closed."
+
+"Starts:";"Starts:"
+"Ends:";"Ends:"
+"Hosted by";"Hosted by"
+"Location:";"Location:"
+
+"Event Details";"Class Details"
+"Edit Event Details";"Edit Class Details"
+"Edit Event Style";"Edit Class Style"
+"Share This Event";"Share This Class"
+"Invite Guests";"Invite Guests"
+"Message Members";"Message Members"
+"Guests";"Guests"
+"Photos";"Photos"
+"Discussions";"Discussions"
+
+"Date";"Date"
+"Time";"Time"
+"Where";"Where"
+"Host";"Host"
+"Led by";"Led by"
+"RSVPs";"RSVPs"
+"Map";"Map"
+
+"%s person";"%s person";"%s people"
+"attending";"attending"
+"maybe attending";"maybe attending"
+"not attending";"not attending"
+"Attending";"Attending"
+"Maybe Attending";"Maybe Attending"
+"Not Attending";"Not Attending"
+
+"Your RSVP";"Your RSVP"
+
+"Upcoming Events";"Upcoming Classes"
+
+"Search Guests";"Search Guests"
+
+"View All Photos";"View All Photos"
+"No photos have been uploaded to this event yet.";"No photos have been uploaded to this class yet."
+"The image you selected was too large.";"The image you selected was too large."
+
+"Event left";"You are no longer a member of this class."
+"Members invited";"Members invited"
+"Event joined";"You have successfully RSVPed to this class."
+
+"Your changes have been saved.";"Your changes have been saved."
+"Your invite request has been sent.";" Your request to join the class has been sent to the host. You will get notified within 24h."
+"Your invite request has been cancelled.";"Your invite request has been cancelled."
+
+"Event invite accepted";"Class invite accepted"
+"Event invite rejected";"Class invite rejected"
+"Event member removed.";"The selected member has been removed from this class."
+"Event request approved";"Class request approved"
+
+"Changes saved";"Your changes have been saved."
+"Photo deleted";"Photo deleted"
+
+"Max file size limit exceeded (probably).";"Max file size limit exceeded (probably)."
+"Invalid request method";"Invalid request method"
+"No file";"No file"
+"Invalid Upload";"Invalid Upload"
+"An error occurred.";"An error occurred"
+
+"Post deleted.";"The selected post has been deleted."
+"This has been closed for posting.";"This has been closed for posting."
+"Topic renamed.";"This topic has been successfully renamed."
+"Topic deleted.";"This topic has been deleted."
+
+"Category:";"Category:"
+"All Category";"All Category"
+"View:";"View:"
+
+"Everyone's Groups";"Everyone's Groups"
+"Only My Friends' Groups";"Only My Friends' Groups"
+
+"List By:";"List By:"
+"Search:";"Search:"
+"All My Events";"All My Classes"
+"Only Events I Lead";"Only Classes I Lead"
+
+"Accept Event Invitation";"Accept Class Invitation"
+"Would you like to join this event?";"Would you like to join this class?"
+"Join Event";"Join Class"
+
+"Approve Invite Request";"Approve Invite Request"
+"Would you like to approve this invite request?";"Would you like to approve this invite request?"
+"Approve Request";"Approve Request"
+
+"Cancel Invite Request";"Cancel My Attendance"
+"Would you like to cancel your request for an invite to this event?";"Would you like to cancel your request for an invite to this class?"
+"Cancel Request";"Cancel Request"
+
+"Join Event";"Join Class"
+"Would you like to join this event?";"Would you like to join this class?"
+
+"Leave Event";"Leave Class"
+"Are you sure you want to leave this event?";"Are you sure you want to leave this class?"
+
+"Reject Event Invitation";"Reject Class Invitation"
+"Would you like to reject the invitation to this event?";"Would you like to reject the invitation to this class?"
+"Reject Invitation";"Reject Invitation"
+"Cancel";"Cancel"
+
+"Remove Member";"Remove Member"
+"Are you sure you want to remove this member from the event?";"Are you sure you want to remove this member from the class?"
+
+"Request Event Membership";"Join Class"
+"Would you like to request membership in this Event?";"Are you sure you want to join this class? If you click next, the host will get notified and will get back to you within the next 24 hours."
+"Send Request";"Join Class"
+
+"Delete Event Photo";"Delete Class Photo"
+"Are you sure you want to delete this photo?";"Are you sure you want to delete this photo?"
+"Delete Photo";"Delete Photo"
+
+"Edit Event Photo";"Edit Class Photo"
+"Title";"Title"
+"Description";"Description"
+"Save Changes";"Save Changes"
+
+"Add New Photos";"Add New Photos"
+"Choose photos on your computer to add to this album. (2MB maximum)";"Choose photos on your computer to add to this album. (2MB maximum)"
+"Save Photos";"Save Photos"
+
+"Reply";"Reply"
+"Body";"Body"
+
+"Delete Post";"Delete Post"
+"Are you sure you want to delete this post?";"Are you sure you want to delete this post?"
+
+"Edit Post";"Edit Post"
+"Post Discussion Topic";"Post Discussion Topic"
+"Message";"Message"
+"cancel";"cancel"
+"or";"or"
+
+"Delete Topic";"Delete Topic"
+"Are you sure you want to delete this topic?";"Are you sure you want to delete this topic?"
+
+"Rename Topic";"Rename Topic"
+
+"Event Name";"Class Name"
+"Event Description";"Class Description"
+"Start Time";"Start Time"
+"End Time";"End Time"
+"Main Photo";"Main Photo"
+"Event Category";"Class Category"
+
+"People can search for this event";"People can search for this class"
+"People must be invited to RSVP for this event";"People must be invited to RSVP for this class"
+"Invited guests can invite other people as well";"Invited guests can invite other people as well"
+
+"Everyone";"Everyone"
+"Registered Members";"Registered Members"
+"Members Only";"Members Only"
+
+"Privacy";"Privacy"
+"Who may see this event?";"Who may see this class?"
+
+"Comment Privacy";"Comment Privacy"
+"Who may post comments on this event?";"Who may post comments on this class?"
+
+"Photo Uploads";"Photo Uploads"
+"Who may upload photos to this event?";"Who may upload photos to this class?"
+"All Members";"All Members"
+"Only the Owner";"Only the Owner"
+"Create Event";"Create Class"
+
+"Delete Event";"Delete Class"
+"Are you sure you want to delete this event?";"Are you sure you want to delete this class?"
+
+"Host";"Host"
+
+"Invite Members";"Invite Members"
+"Choose the people you want to invite to this event.";"Choose the people you want to invite to this class."
+"Members";"Members"
+"Choose All Friends";"Choose All Friends"
+"Send Invites";"Send Invites"
+
+"Event Styles";"Class Styles"
+"Custom Event Styles";"Custom Class Styles"
+"You can change the colors, fonts, and styles of your event by adding CSS code below. The contents of the text area below will be output between <style> tags on your event.";"You can change the colors, fonts, and styles of your class by adding CSS code below. The contents of the text area below will be output between <style> tags on your class."
+
+"No topics have been posted in this event yet.";"No topics have been posted in this class yet."
+
+"This event has %1$s guest.";"This event has %1$s guest.";"This class has %1$s guests."
+"This event has %1$s guest that matched the query ""%2$s"".";"This class has %1$s guest that matched the query ""%2$s"".";"This class has %1$s guests that matched the query ""%2$s""."
+
+"See Waiting";"See Waiting"
+"This event has %s member waiting approval or waiting for a invite response.";"This class has %s member waiting approval or waiting for a invite response."
+"This event has %s members waiting approval or waiting for a invite response.";"This class has %s members waiting approval or waiting for a invite response."
+
+"Add Friend";"Add Friend"
+"Remove Friend";"Remove Friend"
+"Remove Member";"Remove Member"
+"Approve Request";"Approve Request"
+"Reject Request";"Reject Request"
+"Cancel Invite";"Cancel Invite"
+
+"Previous";"Previous"
+"Next";"Next"
+
+"Send me notifications when other members reply to this topic.";"Send me notifications when other members reply to this topic."
+
+"ADMIN_ACTIVITY_TYPE_EVENT_CREATE";"When a user (subject) creates a new class (object)."
+"ADMIN_ACTIVITY_TYPE_EVENT_JOIN";"When a user (subject) joins an class (object)."
+"ADMIN_ACTIVITY_TYPE_EVENT_PHOTO_UPLOAD";"When a user (subject) uploads a photo to an class (object)."
+"ADMIN_ACTIVITY_TYPE_EVENT_TOPIC_CREATE";"When a user (subject) creates a new class topic (object)."
+"ADMIN_ACTIVITY_TYPE_EVENT_TOPIC_REPLY";"When a user (subject) replies to an class topic (object)."
+
+"_ACTIVITY_ACTIONTYPE_EVENT_CREATE";"New classes"
+"_ACTIVITY_ACTIONTYPE_EVENT_JOIN";"Joining an class"
+"_ACTIVITY_ACTIONTYPE_EVENT_PHOTO_UPLOAD";"Uploading a photo to an class"
+"_ACTIVITY_ACTIONTYPE_EVENT_TOPIC_CREATE";"Creating an class discussion topic"
+"_ACTIVITY_ACTIONTYPE_EVENT_TOPIC_REPLY";"Replying to an class discussion topic"
+
+"ACTIVITY_TYPE_EVENT_ACCEPTED";"When my request to attend an class is approved."
+"ACTIVITY_TYPE_EVENT_APPROVE";"When someone request to join my class."
+"ACTIVITY_TYPE_EVENT_CREATE";"When a new class is created"
+"ACTIVITY_TYPE_EVENT_DISCUSSION_REPLY";"When people reply to discussion topics that I've replied to."
+"ACTIVITY_TYPE_EVENT_DISCUSSION_RESPONSE";"When people reply to discussion topics that I create."
+"ACTIVITY_TYPE_EVENT_INVITE";"When I'm invited to attend an class."
+"ACTIVITY_TYPE_EVENT_JOIN";"When someone joins an class."
+"ACTIVITY_TYPE_EVENT_PHOTO_UPLOAD";"When someone uploads a photo to an class."
+"ACTIVITY_TYPE_EVENT_TOPIC_CREATE";"When someone creates a new class topic."
+"ACTIVITY_TYPE_EVENT_TOPIC_REPLY";"When someone replies to an class topic."
+
+"Manage Events";"Manage Classes"
+"Event Members";"Class Members"
+"Add Category";"Add Category"
+"Category Name";"Category Name"
+"These settings affect all members in your community.";"These settings affect all members in your community."
+"Edit Category";"Edit Category"
+"EVENT_FORM_ADMIN_LEVEL_DESCRIPTION";"These settings are applied on a per member level basis. Start by selecting the member level you want to modify, then adjust the settings for that level below."
+"Allow Viewing of Events?";"Allow Viewing of Classes?"
+"EVENT_FORM_ADMIN_LEVEL_VIEW_DESCRIPTION";"Do you want to let users view classes? If set to no, some other settings on this page may not apply."
+"No, do not allow photo events to be viewed.";"No, do not allow photo classes to be viewed."
+"Yes, allow viewing and subscription of photo events.";"Yes, allow viewing and subscription of photo classes."
+"Yes, allow members to view all events, even private ones.";"Yes, allow members to view all classes, even private ones."
+
+"Allow Creation of Events?";"Allow Creation of Classes?"
+"EVENT_FORM_ADMIN_LEVEL_CREATE_DESCRIPTION";"Do you want to let users create classes? If set to no, some other settings on this page may not apply. This is useful if you want users to be able to view classes and manage their subscriptions, but only want certain levels to be able to create classes."
+"No, do not allow events to be created.";"No, do not allow classes to be created."
+"Yes, allow creation of events.";"Yes, allow creation of classes."
+
+"Allow Editing of Events?";"Allow Editing of Classes?"
+"Do you want to let users edit and delete events?";"Do you want to let users edit and delete classes?"
+"No, do not allow events to be edited.";"No, do not allow classes to be edited."
+"Yes, allow  members to edit their own events.";"Yes, allow members to edit their own classes."
+
+"Event Privacy";"Class Privacy"
+"EVENT_FORM_ADMIN_LEVEL_AUTHVIEW_DESCRIPTION";"Your users can choose from any of the options checked below when they decide who can see their class. If you do not check any options, settings will default to the last saved configuration. If you select only one option, members of this level will not have a choice."
+
+"Event Posting Options";"Class Posting Options"
+"EVENT_FORM_ADMIN_LEVEL_AUTHCOMMENT_DESCRIPTION";"Your users can choose from any of the options checked below when they decide who can post to their class discussions. If you do not check any options, settings will default to the last saved configuration. If you select only one option, members of this level will not have a choice."
+
+"Photo Upload Options";"Photo Upload Options"
+"EVENT_FORM_ADMIN_LEVEL_AUTHUPHOTO_DESCRIPTION";"Your users can choose from any of the options checked below when they decide who can upload photos to their classes. If you do not check any options, settings will default to the last saved configuration. If you select only one option, members of this level will not have a choice."
+
+"Allow HTML in posts?";"Allow HTML in posts?"
+"EVENT_FORM_ADMIN_LEVEL_CONTENTHTML_DESCRIPTION";"If you have disabled HTML in posts but want to allow specific tags, you can enter them below (separated by commas). If you have enabled HTML in posts, this setting will have no effect.  Example: b, img, a, embed, font"
+
+"List By:";"List By:"
+"Start Time";"Start Time"
+"Recently Created";"Recently Created"
+"Most Popular";"Most Popular"
+
+"Delete Event?";"Delete Class?"
+"Are you sure that you want to delete this event? It will not be recoverable after being deleted.";"Are you sure that you want to delete this class? It will not be recoverable after being deleted."
+
+"EVENT_VIEWS_SCRIPTS_ADMINMANAGE_INDEX_DESCRIPTION";"This page lists all of the class entries your users have posted. You can use this page to monitor these classes and delete offensive material if necessary."
+"There are no events posted by your members yet.";"There are no classes posted by your members yet."
+
+"EVENT_VIEWS_SCRIPTS_ADMINSETTINGS_CATEGORIES_DESCRIPTION";"If you want to allow your users to categorize their classes, create the categories below. This feature is useful if you want to list all your users' class that If you have no categories, your users will not be given the option of assigning a class category."
+"There are currently no categories.";"There are currently no categories."
+
+"EVENT_VIEWS_SCRIPTS_ADMINMANAGE_USERS_DESCRIPTION";"Users Tab Description"
+
+"EVENT_VIEWS_SCRIPTS_ADMINMANAGE_TRANSACTIONS_DESCRIPTION";"Transactions Tab Description"
+
+"Delete Event Category?";"Delete Class Category?"
+"Are you sure that you want to delete this category? It will not be recoverable after being deleted.";"Are you sure that you want to delete this category? It will not be recoverable after being deleted."
+
+"ITEM_TYPE_EVENT";"Classes"
+"ITEM_TYPE_EVENT_ALBUM";"Class Albums"
+"ITEM_TYPE_EVENT_PHOTO";"Class Photos"
+"ITEM_TYPE_EVENT_TOPIC";"Class Discussion Topics"
+"ITEM_TYPE_EVENT_POST";"Class Discussion Posts"
+
+"Events Plugin";"Classes Plugin"
+"Do you want to let members edit and delete events?";"Do you want to let members edit and delete classes?"
+"Allow Deletion of Events?";"Allow Deletion of Classes?"
+"Do you want to let members delete events? If set to no, some other settings on this page may not apply.";"Do you want to let members delete classes? If set to no, some other settings on this page may not apply."
+"Yes, allow members to delete their own events.";"Yes, allow members to delete their own classes."
+"No, do not allow members to delete their events.";"No, do not allow members to delete their classes."
+"Allow Commenting on Events?";"Allow Commenting on Classes?"
+"Do you want to let members of this level comment on events?";"Do you want to let members of this level comment on classes?"
+"Yes, allow members to comment on events.";"Yes, allow members to comment on classes."
+"No, do not allow members to comment on events.";"No, do not allow members to comment on classes."
+"Friends and Networks (user events only)";"Friends and Networks (user classes only)"
+"Friends of Friends (user events only)";"Friends of Friends (user classes only)"
+"Friends Only (user events only)";"Friends Only (user classes only)"
+"Group Members (group events only)";"Group Members (group classes only)"
+"Event Guests Only";"Class Guests Only"
+"All Guests";"All Guests"
+
+"Event Profile Discussions";"Class Profile Discussions"
+"Event Profile Info";"Class Profile Info"
+"Event Profile Members";"Class Profile Members"
+"Event Profile Photo";"Class Profile Photo"
+"Event Profile Photos";"Class Profile Photos"
+"Event Profile RSVP";"Class Profile RSVP"
+"Event Profile Status";"Class Profile Status"
+"Profile Events";"Profile Classes"
+
+"Select a date";"Select a date"
+
+"Please select a time from the dropdown.";"Please select a time from the dropdown."
+"Please select a date from the calendar.";"Please select a date from the calendar."
+
+"%1$s at %2$s";"%1$s at %2$s"
+"Awaiting Reply";"Awaiting Reply"
+"awaiting reply";"awaiting reply"
+
+# global settings
+"Yes, members can use BBCode tags.";"Yes, members can use BBCode tags."
+"No, do not let members use BBCode.";"No, do not let members use BBCode."
+"Enable BBCode";"Enable BBCode"
+"Yes, members can use HTML in their posts.";"Yes, members can use HTML in their posts."
+"No, strip HTML from posts.";"No, strip HTML from posts."
+"Enable HTML";"Enable HTML"
+
+# categories
+"Arts";"Arts"
+"Business";"Business"
+"Conferences";"Conferences"
+"Festivals";"Festivals"
+"Food";"Food"
+"Fundraisers";"Fundraisers"
+"Galleries";"Galleries"
+"Health";"Health"
+"Just For Fun";"Just For Fun"
+"Kids";"Kids"
+"Learning";"Learning"
+"Literary";"Literary"
+"Movies";"Movies"
+"Museums";"Museums"
+"Neighborhood";"Neighborhood"
+"Networking";"Networking"
+"Nightlife";"Nightlife"
+"On Campus";"On Campus"
+"Organizations";"Organizations"
+"Outdoors";"Outdoors"
+"Pets";"Pets"
+"Politics";"Politics"
+"Sales";"Sales"
+"Science";"Science"
+"Spirituality";"Spirituality"
+"Sports";"Sports"
+"Technology";"Technology"
+"Theatre";"Theatre"
+"Other";"Other"
+
+# notification types
+"%1$s has invited you to the event %2$s";"%1$s has invited you to the class %2$s"
+"{item:$subject} has {item:$object:posted} on a {itemParent:$object::event topic} you created.";"{item:$subject} has {item:$object:posted} on a {itemParent:$object::event topic} you created."
+"{item:$subject} has {item:$object:posted} on a {itemParent:$object::event topic} you posted on.";"{item:$subject} has {item:$object:posted} on a {itemParent:$object::event topic} you posted on."
+"{item:$subject} has invited you to the event {item:$object}.";"{item:$subject} has invited you to the class {item:$object}."
+"Your request to join the event {item:$subject} has been approved.";"Your request to join the class {item:$subject} has been approved."
+"{item:$subject} has requested to join the event {item:$object}.";"{item:$subject} has requested to join the class {item:$object}."
+
+# action types
+"{item:$subject} created a new event:";"{item:$subject} created a new class:"
+"{item:$subject} joined the event {item:$object}";"{item:$subject} joined the class {item:$object}"
+"{item:$subject} added {var:$count} photo(s).";"{item:$subject} added {var:$count} photo(s)."
+"{item:$subject} posted a {item:$object:topic} in the event {itemParent:$object:event}: {body:$body}";"{item:$subject} posted a {item:$object:topic} in the class {itemParent:$object:event}: {body:$body}"
+"{item:$subject} replied to a {item:$object:topic} in the event {itemParent:$object:event}: {body:$body}";"{item:$subject} replied to a {item:$object:topic} in the class {itemParent:$object:event}: {body:$body}"
+
+# mail templates
+
+# notify_event_accepted
+"_EMAIL_NOTIFY_EVENT_ACCEPTED_TITLE";"Class Approved"
+"_EMAIL_NOTIFY_EVENT_ACCEPTED_DESCRIPTION";"This email is sent to the member when they are approved to join an class."
+"_EMAIL_NOTIFY_EVENT_ACCEPTED_SUBJECT";"You have been approved to join the class [object_title]"
+"_EMAIL_NOTIFY_EVENT_ACCEPTED_BODY";"[header]
+
+You have been approved to join the class ""[object_title]"". Please click the following link to view it:
+
+http://[host][object_link]
+
+[footer]"
+
+# notify_event_approve
+"_EMAIL_NOTIFY_EVENT_APPROVE_TITLE";"Class Request"
+"_EMAIL_NOTIFY_EVENT_APPROVE_DESCRIPTION";"This email is sent to the member when someone requests to join their class."
+"_EMAIL_NOTIFY_EVENT_APPROVE_SUBJECT";"[sender_title] has requested to join the class [object_title]"
+"_EMAIL_NOTIFY_EVENT_APPROVE_BODY";"[header]
+
+[sender_title] has requested to join the class ""[object_title]"". Please click the following link to view it:
+
+http://[host][object_link]
+
+[footer]"
+
+# notify_event_discussion_reply
+"_EMAIL_NOTIFY_EVENT_DISCUSSION_REPLY_TITLE";"Class Discussion Reply"
+"_EMAIL_NOTIFY_EVENT_DISCUSSION_REPLY_DESCRIPTION";"This email is sent to the member when people reply to discussion topics that the member created."
+"_EMAIL_NOTIFY_EVENT_DISCUSSION_REPLY_SUBJECT";"A member has posted a reply to your topic ""[object_title]"" in the class ""[object_parent_title]"""
+"_EMAIL_NOTIFY_EVENT_DISCUSSION_REPLY_BODY";"[header]
+
+[sender_title] has posted a reply to your topic ""[object_title]"" in the class ""[object_title]"":
+
+""[message]""
+
+Please click the following link to view it:
+
+http://[host][object_link]
+
+[footer]"
+
+# notify_event_discussion_response
+"_EMAIL_NOTIFY_EVENT_DISCUSSION_RESPONSE_TITLE";"Class Discussion Response"
+"_EMAIL_NOTIFY_EVENT_DISCUSSION_RESPONSE_DESCRIPTION";"This email is sent to the member when people reply to discussion topics that the member replied to."
+"_EMAIL_NOTIFY_EVENT_DISCUSSION_RESPONSE_SUBJECT";"A member has posted a reply to the topic ""[object_title]"" you replied to in the class ""[object_parent_title]"""
+"_EMAIL_NOTIFY_EVENT_DISCUSSION_RESPONSE_BODY";"[header]
+
+[sender_title] has posted a reply to the topic ""[object_title]"" you replied to in the class ""[object_parent_title]"":
+
+""[message]""
+
+Please click the following link to view it:
+
+http://[host][object_link]
+
+[footer]"
+
+# notify_event_invite
+"_EMAIL_NOTIFY_EVENT_INVITE_TITLE";"Class Invitation"
+"_EMAIL_NOTIFY_EVENT_INVITE_DESCRIPTION";"This email is sent to someone when they are invited to an class."
+"_EMAIL_NOTIFY_EVENT_INVITE_SUBJECT";"You have been invited to join the class [object_title]"
+"_EMAIL_NOTIFY_EVENT_INVITE_BODY";"[header]
+
+You have been invited to join the class ""[object_title]"". Please click the following link to view it:
+
+http://[host][object_link]
+
+[footer]"
+
+"You have not joined any events yet.";"You have not joined any classes yet."
+"There are no events yet.";"There are no classes yet."
+"Why don't you %1$screate one%2$s?";"Why don't you %1$screate one%2$s?"
+"There are no past events yet.";"There are no past classes yet."
+"Date Created";"Date Created"
+
+"Event doesn't exists or not authorized to delete";"Class doesn't exists or not authorized to delete"
+"The selected event has been deleted.";"The selected class has been deleted."

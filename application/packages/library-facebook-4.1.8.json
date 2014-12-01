@@ -1,0 +1,106 @@
+{
+  "type": "library",
+  "name": "facebook",
+  "version": "4.1.8",
+  "revision": "9747",
+  "path": "application\/libraries\/Facebook",
+  "repository": null,
+  "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+  "title": "Facebook API",
+  "description": null,
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "changeLog": {
+    "4.1.8": {
+      "Base.php": "Upgraded",
+      "manifest.php": "Incremented version"
+    },
+    "4.1.6p1": {
+      "Base.php": "Fixed potential infinite recursion",
+      "manifest.php": "Incremented version"
+    },
+    "4.1.6": {
+      "Api.php": "Updated to latest version",
+      "Base.php": "Updated to latest version",
+      "Exception.php": "Updated to latest version",
+      "manifest.php": "Incremented version"
+    },
+    "4.1.0": {
+      "Api.php": "Updated to latest version",
+      "Exception.php": "Updated to latest version",
+      "manifest.php": "Incremented version"
+    }
+  },
+  "meta": {
+    "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+    "title": "Facebook API",
+    "description": null,
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    
+  ],
+  "callback": null,
+  "dependencies": null,
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "application\/libraries\/Facebook": {
+      "type": "directory",
+      "path": "application\/libraries\/Facebook",
+      "structure": [
+        {
+          "path": "Api.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2879,
+          "sha1": "4a08561b5113cc5bc83102bb520f02267ec0394c"
+        },
+        {
+          "path": "Exception.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2203,
+          "sha1": "105d9d81789b0538afa6468c55517f28ad37b076"
+        },
+        {
+          "path": "manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 1120,
+          "sha1": "a00935d35e329f17254f259005780ed50cc8ca5d"
+        },
+        {
+          "path": "fb_ca_chain_bundle.crt",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 7505,
+          "sha1": "c7d4d8477ed6ac250dc522f155f23aa789922e65"
+        },
+        {
+          "path": "Base.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 31557,
+          "sha1": "aaa52f9ede78b1c4bf22491e278aecde931c4468"
+        }
+      ]
+    }
+  }
+}

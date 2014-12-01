@@ -1,0 +1,110 @@
+{
+  "type": "external",
+  "name": "desktop-notify",
+  "version": "4.7.0",
+  "revision": "10105",
+  "path": "externals\/desktop-notify",
+  "repository": null,
+  "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+  "title": "HTML5 Desktop Notifications",
+  "description": null,
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "changeLog": null,
+  "meta": {
+    "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+    "title": "HTML5 Desktop Notifications",
+    "description": null,
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    
+  ],
+  "callback": null,
+  "dependencies": null,
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "externals\/desktop-notify": {
+      "type": "directory",
+      "path": "externals\/desktop-notify",
+      "structure": [
+        {
+          "path": "NOTES",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 7582,
+          "sha1": "16c2e813bfa5ccb196c040355e04d446c9393c9d"
+        },
+        {
+          "path": "notifications16x16.ico",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 101602,
+          "sha1": "2742839289aa10711d3508efcb700e64caa7d1ae"
+        },
+        {
+          "path": "manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 411,
+          "sha1": "20c8cec8572baf083cbd5dda15b56e4a4a2cae72"
+        },
+        {
+          "path": "README.md",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 10694,
+          "sha1": "9456405d3203bb20f9c03a7fa9ea883ea4e17731"
+        },
+        {
+          "path": "notifications32x32.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 265,
+          "sha1": "5e247574ebbd6a4618cced89d744e127b720e0e1"
+        },
+        {
+          "path": "desktop-notify-min.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2532,
+          "sha1": "6f9728364a47c03fbe20326b91846d8622430cf1"
+        },
+        {
+          "path": "desktop-notify.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 9048,
+          "sha1": "58bcf30accb58b00d7e5f9ca66bc75519b1eab6e"
+        },
+        {
+          "path": "License.txt",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 557,
+          "sha1": "57e560e1c97a5e90ed234441417eae674b6da98c"
+        }
+      ]
+    }
+  }
+}

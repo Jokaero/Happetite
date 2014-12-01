@@ -1,0 +1,64 @@
+{
+  "type": "external",
+  "name": "fancymenu",
+  "version": "4.2.5",
+  "revision": null,
+  "path": "externals\/fancymenu",
+  "repository": null,
+  "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+  "title": "Fancy Menu",
+  "description": "External assets for Fancy Menu Widget",
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Dervelopments"
+  ],
+  "changeLog": null,
+  "meta": {
+    "date": "Tue, 10 Jun 2014 00:59:57 +0000",
+    "title": "Fancy Menu",
+    "description": "External assets for Fancy Menu Widget",
+    "developer": null,
+    "authors": [
+      "Webligo Dervelopments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    "install",
+    "upgrade",
+    "refresh"
+  ],
+  "callback": null,
+  "dependencies": null,
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "externals\/fancymenu": {
+      "type": "directory",
+      "path": "externals\/fancymenu",
+      "structure": [
+        {
+          "path": "manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 504,
+          "sha1": "42dcc5643c1023e11c24c2a80afe6640316a6e1c"
+        },
+        {
+          "path": "fancymenu.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 24598,
+          "sha1": "2c4786fe1ed379f9de6eeef30427da738d754a27"
+        }
+      ]
+    }
+  }
+}
