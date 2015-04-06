@@ -46,12 +46,13 @@ class Event_Widget_HomeUpcomingController extends Engine_Content_Widget_Abstract
     $select
       ->where("`{$eventTableName}`.`endtime` > FROM_UNIXTIME(?)", time())
       //->where("`{$eventTableName}`.`starttime` < FROM_UNIXTIME(?)", time() + (86400 * 14))
-      ->order("starttime ASC");
-
+      ->order("starttime ASC")
+      ->limit(6);
+      
     // Make paginator
     $this->view->paginator = $paginator = Zend_Paginator::factory($select);
     $paginator->setCurrentPageNumber($this->_getParam('page'));
-    $paginator->setItemCountPerPage($this->_getParam('itemCountPerPage', 10));
+    $paginator->setItemCountPerPage($this->_getParam('itemCountPerPage', 6));
 
     // Do not render if nothing to show and not viewer
     if( $paginator->getTotalItemCount() <= 0 ) {
@@ -62,5 +63,10 @@ class Event_Widget_HomeUpcomingController extends Engine_Content_Widget_Abstract
     if( '' == $this->getElement()->getTitle() ) {
       $this->getElement()->setTitle('Upcoming Events');
     }
+    
+    // get allowed events for attend button
+    //$this->view->allowedEventsIds = $allowedEventsIds = Engine_Api::_()->event()->getEventAllowedIds($viewer);
+    
+    
   }
 }

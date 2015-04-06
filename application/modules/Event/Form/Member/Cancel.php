@@ -43,7 +43,7 @@ class Event_Form_Member_Cancel extends Engine_Form
     //$this->addElement('Hash', 'token');
     
     if ($membership and $membership->rsvp == 3 and strtotime($subject->starttime) - 86400 * 2 >= time()) {
-      $this->setDescription('Are you sure u want to withdraw your class participation? We will refund your money (except the service fee). Please provide us your bank account information.');
+      $this->setDescription('Are you sure u want to withdraw your class participation? We will refund your money (except the service fee).');
     } else if ($membership and $membership->rsvp == 3 and strtotime($subject->starttime) - 86400 * 2 < time()) {
       $this->setDescription('Are you sure u want to withdraw your class participation? Since it’s less than 48h before the class, we can’t refund you the money.');
     }
@@ -60,21 +60,21 @@ class Event_Form_Member_Cancel extends Engine_Form
         )
       ));
       
-      if ($membership->rsvp == 3 and strtotime($subject->starttime) - 86400 * 2 >= time()) {
-        $this->addElement('Textarea', 'bank_info', array(
-          'label' => 'Bank Account Information',
-          'allowEmpty' => false,
-          'required' => true,
-          'validators' => array(
-            array('NotEmpty', true),
-            array('StringLength', false, array(1, 255)),
-          ),
-          'filters' => array(
-            'StripTags',
-            new Engine_Filter_Censor(),
-          ),
-        ));
-      }
+      //if ($membership->rsvp == 3 and strtotime($subject->starttime) - 86400 * 2 >= time()) {
+      //  $this->addElement('Textarea', 'bank_info', array(
+      //    'label' => 'Bank Account Information',
+      //    'allowEmpty' => false,
+      //    'required' => true,
+      //    'validators' => array(
+      //      array('NotEmpty', true),
+      //      array('StringLength', false, array(1, 255)),
+      //    ),
+      //    'filters' => array(
+      //      'StripTags',
+      //      new Engine_Filter_Censor(),
+      //    ),
+      //  ));
+      //}
     }
     
 

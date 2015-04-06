@@ -13,6 +13,6 @@
 
 <div id='profile_status'>
   <h2>
-    <?php echo $this->event->getTitle() ?>
+    <?php echo $this->eventTitle; ?>
   </h2>
 </div>

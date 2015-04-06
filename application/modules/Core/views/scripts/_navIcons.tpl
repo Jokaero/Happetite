@@ -18,7 +18,8 @@
         'class' => 'buttonlink' . ( $link->getClass() ? ' ' . $link->getClass() : '' ),
         'style' => 'background-image: url('.$link->get('icon').');',
         'target' => $link->get('target'),
-        'title' => $link->get('title')
+        'title' => $link->get('title'),
+        'onclick' => $link->get('onclick')
       )) ?>
     </li>
   <?php endforeach; ?>

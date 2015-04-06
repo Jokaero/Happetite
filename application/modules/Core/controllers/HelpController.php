@@ -135,5 +135,35 @@ class Core_HelpController extends Core_Controller_Action_Standard
         ->setEnabled()
         ;
   }
+  
+  public function aboutAction()
+  {
+    // to change, edit language variable "_CORE_ABOUT_STATEMENT"
+    // Render
+    $this->_helper->content
+        //->setNoRender()
+        ->setEnabled()
+        ;
+  }
+  
+  public function safetyAction()
+  {
+    // to change, edit language variable "_CORE_SAFETY_STATEMENT"
+    // Render
+    $this->_helper->content
+        //->setNoRender()
+        ->setEnabled()
+        ;
+  }
+  
+  public function faqAction()
+  {
+    // to change, edit language variable "_CORE_FAQ_STATEMENT"
+    // Render
+    $this->_helper->content
+        //->setNoRender()
+        ->setEnabled()
+        ;
+  }
 
 }

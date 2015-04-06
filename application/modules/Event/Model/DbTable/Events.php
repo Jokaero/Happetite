@@ -42,6 +42,11 @@ class Event_Model_DbTable_Events extends Engine_Db_Table
       ->group("$tableName.event_id")
       ;
     
+    // resource_id => membership table event_id 
+    if (!empty($params['resource_id'])) {
+      $select->where("$membershipTableName.resource_id = ?", $params['resource_id']);
+    }
+    
     if (!empty($params['displayname'])) {
       $select->where("$usersTableName.displayname LIKE ?", '%'.$params['displayname'].'%');
     }
@@ -77,9 +82,31 @@ class Event_Model_DbTable_Events extends Engine_Db_Table
       }
     }
     
+    // User joined to class
+    if (isset($params['user_id_joined']) && !empty($params['user_id_joined'])) {
+      $select->where("$membershipTableName.user_id = ?", $params['user_id_joined']);
+    }
+    
+    // user rsvp's
+    if( isset($params['rsvps']) && is_array($params['rsvps']) ) {
+      $rsvps = array();
+      foreach( $params['rsvps'] as $rsvp ) {
+        if( is_int($rsvp) && $rsvp >= 0 ) {
+          $rsvps[] = $rsvp;
+        }
+      }
+      
+      $select->where("$membershipTableName.rsvp IN (?)", $rsvps);
+    }
+    
     // Category
     if( isset($params['category_id']) && !empty($params['category_id']) ) {
       $select->where("$tableName.category_id = ?", $params['category_id']);
+    }
+    
+    // City
+    if( isset($params['city']) && !empty($params['city']) ) {
+      $select->where("$tableName.city LIKE '%{$params['city']}%'");
     }
     
     //Full Text	
@@ -96,11 +123,25 @@ class Event_Model_DbTable_Events extends Engine_Db_Table
       $select->where("$tableName.endtime > FROM_UNIXTIME(?)", time());
     }
     
+    if (isset($params['date']) and !empty($params['date'])) {
+      
+      $select->where("$tableName.starttime >= ?", (string)$params['date']);
+    }
     // Order
     if( isset($params['order']) && !empty($params['order']) ) {
       $select->order($params['order']);
     } else {
-      $select->order('starttime');
+      $select->order('creation_date DESC');
+    }
+    
+    // limit
+    if( isset($params['limit']) && !empty($params['limit']) ) {
+      $select->limit($params['limit']);
+    }
+    
+    // Not in ids
+    if( isset($params['notin']) && !empty($params['notin']) ) {
+      $select->where("$tableName.event_id NOT IN (?)", $params['notin']);
     }
     
     return $select;

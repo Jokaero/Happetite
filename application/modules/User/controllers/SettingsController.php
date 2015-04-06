@@ -492,10 +492,7 @@ class User_SettingsController extends Core_Controller_Action_User
     ), $notificationTypesAssoc));
 
     // Make form
-    $this->view->form = $form = new Engine_Form(array(
-      'title' => 'Notification Settings',
-      'description' => 'Which of the these do you want to receive email alerts about?',
-    ));
+    $this->view->form = $form = new Engine_Form();
 
     foreach( $notificationTypesAssoc as $elementName => $info ) {
       $form->addElement('MultiCheckbox', $elementName, array(

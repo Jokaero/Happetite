@@ -27,7 +27,7 @@ class Event_MemberController extends Core_Controller_Action_Standard
       Engine_Api::_()->core()->setSubject($event);
     }
 
-    $this->_helper->requireUser();
+    //$this->_helper->requireUser();
     $this->_helper->requireSubject('event');
     /*
     $this->_helper->requireAuth()->setAuthParams(
@@ -123,15 +123,41 @@ class Event_MemberController extends Core_Controller_Action_Standard
   {
     // Check resource approval
     $viewer = Engine_Api::_()->user()->getViewer();
-    $subject = Engine_Api::_()->core()->getSubject();          
-
+    $subject = Engine_Api::_()->core()->getSubject();
+    
+    // @deprecated, but super custom auth throw the smoothbox
+    //// check auth
+    //if (!$viewer->getIdentity()) {
+    //  
+    //  $session = new Zend_Session_Namespace('Redirect');
+    //  $session->route = 'default';
+    //  $session->params = array(
+    //    'redirect' => Zend_Controller_Front::getInstance()->getRouter()->assemble(array(
+    //                    'module' => 'event',
+    //                    'controller' => 'member',
+    //                    'action' => 'request',
+    //                    'event_id' => $subject->getIdentity(),
+    //                    'format' => 'smoothbox',
+    //                    'force_refresh' => true,
+    //                  ), 'default', true),
+    //  );
+    //  
+    //  return $this->_helper->redirector->gotoRoute(array('format' => 'smoothbox'), 'user_login', true);
+    //  
+    //}
+    //
+    //// if exist when user press Cancel FORCE refresh page
+    //$this->view->forceRefresh = $forceRefresh = $this->_getParam('force_refresh', false);
+    
     // Check auth
     if( !$this->_helper->requireUser()->isValid() ) return;
     if( !$this->_helper->requireSubject()->isValid() ) return;
     if( !$this->_helper->requireAuth()->setAuthParams($subject, $viewer, 'view')->isValid() ) return;
     
     // Make form
-    $this->view->form = $form = new Event_Form_Member_Request();
+    $this->view->form = $form = new Event_Form_Member_Request(array(
+      'forceRefresh' => $forceRefresh,
+    ));
 
     // Process form
     if( $this->getRequest()->isPost() && $form->isValid($this->getRequest()->getPost()) )
@@ -178,11 +204,11 @@ class Event_MemberController extends Core_Controller_Action_Standard
         $db->rollBack();
         throw $e;
       }
-
+      
       return $this->_forward('success', 'utility', 'core', array(
-        'messages' => array(Zend_Registry::get('Zend_Translate')->_('Your invite request has been sent.')),
+        'messages' => array(Zend_Registry::get('Zend_Translate')->_('Success.')),
         'layout' => 'default-simple',
-        'parentRefresh' => true,
+        'parentRedirect' => Zend_Controller_Front::getInstance()->getRouter()->assemble(array('action' => 'guest-share', 'event_id' => $subject->getIdentity()), 'event_steps', true),
       ));
     }
   }
@@ -297,8 +323,49 @@ class Event_MemberController extends Core_Controller_Action_Standard
             $user, $user, $conversation, 'message_system_new'
           );
           
-          // Remove message
+          // canceled late
+          $row->rsvp = 9;
+          $row->active = false;
+          $row->rsvp_update = date('Y-m-d H:i:s');
+          $row->save();
+          
+        } else if ($row->rsvp == 0) { // user cancelled attendance before approvement
+          // Send message to host
+          $message = Zend_Registry::get('Zend_Translate')->_('Unfortunately %1$s has cancelled his request for attendance in class %2$s before your approvement.');
+          $message = sprintf($message,
+            '<a href="' . $user->getHref() . '">' . $user->getTitle() . '</a>',
+            '<a href="' . $subject->getHref() . '">' . $subject->getTitle() . '</a>'
+          );
+          $conversation = Engine_Api::_()->getDbTable('conversations', 'messages')
+            ->send($subject->getOwner(), $subject->getOwner(), Zend_Registry::get('Zend_Translate')->translate('EVENT_USER_CANCELED_HOST_LESS48_SUBJECT'), $message, null, true);
+          
+          // Send notification to host
+          Engine_Api::_()->getDbtable('notifications', 'activity')->addNotification(
+            $subject->getOwner(), $user, $conversation, 'message_system_new'
+          );
+          
+          // Remove membership
           $subject->membership()->removeMember($user);
+          
+        } else if ($row->rsvp == 1 or $row->rsvp == 2) { // guest cancelled attendance after approve but before he pays
+          // Send message to host
+          $message = Zend_Registry::get('Zend_Translate')->_('Unfortunately %1$s has cancelled his request for attendance in class %2$s before your approvement.');
+          $message = sprintf($message,
+            '<a href="' . $user->getHref() . '">' . $user->getTitle() . '</a>',
+            '<a href="' . $subject->getHref() . '">' . $subject->getTitle() . '</a>'
+          );
+          $conversation = Engine_Api::_()->getDbTable('conversations', 'messages')
+            ->send($subject->getOwner(), $subject->getOwner(), Zend_Registry::get('Zend_Translate')->translate('EVENT_USER_CANCELED_HOST_LESS48_SUBJECT'), $message, null, true);
+          
+          // Send notification to host
+          Engine_Api::_()->getDbtable('notifications', 'activity')->addNotification(
+            $subject->getOwner(), $user, $conversation, 'message_system_new'
+          );
+          
+          // canceled
+          $row->rsvp = 8;
+          $row->rsvp_update = date('Y-m-d H:i:s');
+          $row->save();
           
         } else {
           if ($row->rsvp) {
@@ -557,7 +624,14 @@ class Event_MemberController extends Core_Controller_Action_Standard
       try
       {
         // Remove membership
-        $event->membership()->removeMember($user);
+        //$event->membership()->removeMember($user);
+        
+        // rejected rsvp
+        $membership = $event->membership()->getMemberInfo($user);
+        
+        $membership->rsvp = 7;
+        $membership->rsvp_update = date('Y-m-d H:i:s');
+        $membership->save();
 
         // Remove the notification?
         $notification = Engine_Api::_()->getDbtable('notifications', 'activity')->getNotificationByObjectAndType(
@@ -703,25 +777,65 @@ class Event_MemberController extends Core_Controller_Action_Standard
       return $this->_helper->requireSubject->forward();
     }
     
+    $subject = Engine_Api::_()->core()->getSubject();
+    $viewer = Engine_Api::_()->user()->getViewer();
+    
+    // accepted guest count
+    $guestCount = $subject->getMemberCount(array(1, 2));
+    
+    // check max users count
+    $isUsersMoreThanMax = false;
+    
+    if ($subject->max_users != 0 and $guestCount >= $subject->max_users) {
+      $isUsersMoreThanMax = true;
+    }
+    
+    $params = array(
+      'isUsersMoreThanMax' => $isUsersMoreThanMax,
+    );
+    
     // Make form
-    $this->view->form = $form = new Event_Form_Member_Approve();
+    $this->view->form = $form = new Event_Form_Member_Approve(array(
+      'params' => $params,
+    ));
 
     // Process form
     if( $this->getRequest()->isPost() && $form->isValid($this->getRequest()->getPost()) )
     {
+      // check if pressed reject button
+      if (isset($_POST['reject'])) {
+        $rejectUrl = Zend_Controller_Front::getInstance()->getRouter()
+          ->assemble(array('action' => 'remove', 'event_id' => $subject->getIdentity(), 'user_id' => $user_id, 'format' => 'smoothbox'), 'event_extended');
+          
+        return $this->_forward('success', 'utility', 'core', array(
+          'redirect' => $rejectUrl,
+          'format'=> 'smoothbox',
+          'messages' => array(Zend_Registry::get('Zend_Translate')->_("Redirecting..."))
+        ));
+      }
+      
       $viewer = Engine_Api::_()->user()->getViewer();
-      $subject = Engine_Api::_()->core()->getSubject();      
       $db = $subject->membership()->getReceiver()->getTable()->getAdapter();
       $db->beginTransaction();
 
       try
       {
+        
+        $classStarttime = strtotime($subject->starttime);
+        $approveTime = strtotime(date('Y-m-d H:i:s'));
+        $interval = $classStarttime - $approveTime;
+        
         //@todo after paid$subject->membership()->setResourceApproved($user);
         $row = $subject->membership()
           ->getRow($user);
 
         $row->rsvp = 1;
         $row->rsvp_update = date('Y-m-d H:i:s');
+        
+        if ($interval < 345600) {
+          $row->is_approved_late = 1;
+        }
+        
         $row->save();
 
         //Engine_Api::_()->getDbtable('notifications', 'activity')
@@ -731,18 +845,28 @@ class Event_MemberController extends Core_Controller_Action_Standard
         $admin = Engine_Api::_()->user()->getSuperAdmins()->current();
         
         $sitePercent = Engine_Api::_()->getApi('settings', 'core')->getSetting('event_percent', 10);
-        $sitePercent = $subject->price * (1 + $sitePercent / 100);
+        $sitePercent = ceil($subject->price * (1 + $sitePercent / 100));
+        
+        // if guest was approved less then 4 days to start a class
+        if ($interval < 345600) {
+          $limitDate = new Zend_Date(time() + 86400); // 1 day
+          $message = Zend_Registry::get('Zend_Translate')->_('You have recently applied to the class %1$s. %2$s has accepted your request and would be happy to welcoming you to his event. All that is left is the payment. Please click the link below in order to pay the full amount of %3$s. %4$s. Note, since you applied on a rather short note, you only have until %5$s to pay for the class.');
+        } else {
+          $limitDate = new Zend_Date(time() + 86400 * 4); // 345600 seconds or 4 days
+          $message = Zend_Registry::get('Zend_Translate')->_('You have recently applied to the class %1$s. %2$s has accepted your request and would be happy to welcoming you to his event. All that is left is the payment. Please click the link below in order to pay the full amount of %3$s. %4$s You have time until %5$s');
+        }
         
         // Send message to member
-        $message = Zend_Registry::get('Zend_Translate')->_('You have recently applied to the class %1$s. %2$s has accepted your request and would be happy to welcoming you to his event. All that is left is the payment. Please click the link below in order to pay the full amount of %3$s. %4$s');
+        $limitDate->setTimezone($user->timezone);
         $message = sprintf($message,
           '<a href="' . $subject->getHref() . '">' . $subject->getTitle() . '</a>',
           '<a href="' . $subject->getOwner()->getHref() . '">' . $subject->getOwner()->getTitle() . '</a>',
           $sitePercent . ' ' . $subject->currency,
-          '<a href="' . $this->view->url(array('id' => $subject->getIdentity(), 'format' => 'smoothbox'), 'event_payment', false) . '" class="smoothbox">' . Zend_Registry::get('Zend_Translate')->_('Pay Now') . '</a>'
+          '<a href="' . $this->view->url(array('id' => $subject->getIdentity(), 'format' => 'smoothbox'), 'event_payment', false) . '" class="smoothbox">' . Zend_Registry::get('Zend_Translate')->_('Pay Now') . '</a>',
+          $this->view->locale()->toDateTime($limitDate)
         );
         $conversation = Engine_Api::_()->getItemTable('messages_conversation')
-          ->send($user, $user, Zend_Registry::get('Zend_Translate')->translate('EVENT_HOST_USER_ACCEPT_SUBJECT'), $message, null, true);
+          ->send($user, $user, Zend_Registry::get('Zend_Translate')->translate('EVENT_USER_HOST_ACCEPTED_PAYNOW_SUBJECT'), $message, null, true);
         
         // Send notification
         Engine_Api::_()->getDbtable('notifications', 'activity')->addNotification(

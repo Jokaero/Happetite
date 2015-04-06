@@ -1,0 +1,22 @@
+/* Adv.Menu Mini */
+li.ynadvmenu_MyProfile a div img
+{
+	margin-top: -4px;
+	*margin-top: 2px;
+}
+.ynadvmenu_MyProfile > span > a.new_updates
+{
+	padding-bottom: 0 !important;
+}
+li.ynadvmenu_downservices .pulldown_contents_wrapper
+{
+	margin-top: 24px;
+}
+
+/* Adv.Menu Main */
+li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper
+{
+    background-color: #727272;
+    border: 0 none;
+    margin-left: -1px !important;	
+}

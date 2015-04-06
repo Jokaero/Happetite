@@ -77,27 +77,72 @@ class Event_Plugin_Task_RefreshStatus extends Core_Plugin_Task_Abstract
         );
       }
       
-      $membership->delete();
+      $membership->rsvp = 6;
+      $membership->rsvp_update = date('Y-m-d H:i:s');
+      $membership->save();
     }
     
-    
-    // ~~~ About to time out  ~~~
+    // ~~~ If approved_late guest don't pay in 24 hours ~~~
     $select = $eventMembershipTable->select()
       ->where('rsvp = ?', '1')
-      ->where('datetime <= ?', date('Y-m-d H:i:s', time() - 259200));
+      ->where('rsvp_update <= ?', date('Y-m-d H:i:s', time() - 86400))
+      ->where('is_approved_late = ?', '1');
     
     foreach ($eventMembershipTable->fetchAll($select) as $membership) {
       $event = Engine_Api::_()->getItem('event', $membership->resource_id);
       $user = Engine_Api::_()->getItem('user', $membership->user_id);
       
       // Send message to member
-      $message = Zend_Registry::get('Zend_Translate')->_('Dear %1$s, you were accepted for the class %2$s. We would like to kindly remind you to pay the class fee of %3$s by %4$s.');
+      $message = Zend_Registry::get('Zend_Translate')->_('Dear %1$s, you were accepted for the class %2$s. Unfortunately we have not received the payment of the class fee in 24 hours. If you still would like to join the class, you will have to apply again. You are most welcome to apply for any other class you desire to join.');
+      $message = sprintf($message, $user->getTitle(), '<a href="' . $event->getHref() . '">' . $event->getTitle() . '</a>');
+      $conversation = $conversationTable->send($user, $user, Zend_Registry::get('Zend_Translate')->translate('EVENT_SYSTEM_USER_PAID_TIMEOUT_SUBJECT'), $message, null, true);
+      
+      // Send notification
+      Engine_Api::_()->getDbtable('notifications', 'activity')->addNotification(
+        $user, $admin, $conversation, 'message_system_new'
+      );
+      
+      // Send message to host
+      $message = Zend_Registry::get('Zend_Translate')->_('You have recently accepted %1$s to the class %2$s. Unfortunately %1$s has not paid within the given timeframe of 24 hours. He was notified that he has 24 hours and that he has to apply for the class again if he still wants to join.');
+      $message = sprintf($message, '<a href="' . $user->getHref() . '">' . $user->getTitle() . '</a>', '<a href="' . $event->getHref() . '">' . $event->getTitle() . '</a>');
+      $conversation = $conversationTable->send($event->getOwner(), $event->getOwner(), Zend_Registry::get('Zend_Translate')->translate('EVENT_SYSTEM_USER_PAID_TIMEOUT_SUBJECT'), $message, null, true);
+      
+      // Send notification
+      Engine_Api::_()->getDbtable('notifications', 'activity')->addNotification(
+        $event->getOwner(), $admin, $conversation, 'message_system_new'
+      );
+      
+      // not paid
+      $membership->rsvp = 11;
+      $membership->rsvp_update = date('Y-m-d H:i:s');
+      $membership->save();
+    }
+    
+    // ~~~ About to time out  ~~~
+    $select = $eventMembershipTable->select()
+      ->where('rsvp = ?', '1')
+      ->where('datetime <= ?', date('Y-m-d H:i:s', time() - 259200));
+    
+    $view = Zend_Registry::get('Zend_View');
+    
+    foreach ($eventMembershipTable->fetchAll($select) as $membership) {
+      $event = Engine_Api::_()->getItem('event', $membership->resource_id);
+      $user = Engine_Api::_()->getItem('user', $membership->user_id);
+      
+      // Send message to member
+      $limitDate = new Zend_Date(time() + 86400);
+      $limitDate->setTimezone($user->timezone);
+      $message = Zend_Registry::get('Zend_Translate')->_('Dear %1$s, you were accepted for the class %2$s. We would like to kindly remind you to pay the class fee of %3$s by %4$s. %5$s You have time until %6$s');
+      
       $message = sprintf($message,
         $user->getTitle(),
         '<a href="' . $event->getHref() . '">' . $event->getTitle() . '</a>',
         $event->price . ' ' . $event->currency,
-        date('m.d.Y', time() + 86400)
+        date('m.d.Y', time() + 86400),
+        '<a href="' . $view->url(array('id' => $event->getIdentity(), 'format' => 'smoothbox'), 'event_payment', false) . '" class="smoothbox">' . Zend_Registry::get('Zend_Translate')->_('Pay Now') . '</a>',
+        $view->locale()->toDateTime($limitDate)
       );
+      
       $conversation = $conversationTable->send($user, $user, Zend_Registry::get('Zend_Translate')->translate('EVENT_SYSTEM_USER_ABOUT_TIMEOUT_SUBJECT'), $message, null, true);
       
       // Send notification
@@ -109,7 +154,6 @@ class Event_Plugin_Task_RefreshStatus extends Core_Plugin_Task_Abstract
       $membership->rsvp_update = date('Y-m-d H:i:s');
       $membership->save();
     }
-    
     
     // ~~~ Timed Out ~~~
     $select = $eventMembershipTable->select()
@@ -140,7 +184,10 @@ class Event_Plugin_Task_RefreshStatus extends Core_Plugin_Task_Abstract
         $event->getOwner(), $admin, $conversation, 'message_system_new'
       );
       
-      $membership->delete();
+      // not paid
+      $membership->rsvp = 11;
+      $membership->rsvp_update = date('Y-m-d H:i:s');
+      $membership->save();
     }
   }
 }

@@ -40,6 +40,12 @@ class Event_EventController extends Core_Controller_Action_Standard
       return;
     }
     
+    if ($event->status == 'closed' or $event->status == 'finished' or $event->status == 'canceled' or $event->status == 'verified') {
+      if( !($this->_helper->requireAuth()->setAuthParams(null, null, 'comment')->isValid() || $event->isOwner($viewer)) ) {
+        return;
+      } 
+    }
+    
     // Create form
     $event = Engine_Api::_()->core()->getSubject();
     $this->view->form = $form = new Event_Form_Edit(array('parent_type'=>$event->parent_type, 'parent_id'=>$event->parent_id));
@@ -130,6 +136,7 @@ class Event_EventController extends Core_Controller_Action_Standard
       $start = strtotime($values['starttime']);
       $end = strtotime($values['endtime']);
       date_default_timezone_set($oldTz);
+      $values['currency'] =  'CHF';
       $values['starttime'] = date('Y-m-d H:i:s', $start);
       $values['endtime'] = date('Y-m-d H:i:s', $end);
     }
@@ -147,6 +154,49 @@ class Event_EventController extends Core_Controller_Action_Standard
       $values['host']  = $viewer->getTitle();
     }
     
+    $photo = $form->photo->getFileInfo();
+    
+    if (!empty($photo['photo']['tmp_name'])) {
+      $values['photo_obj'] = $photo['photo'];
+    }
+    
+    $_SESSION['event_values'] = $values;
+   
+    return $this->_helper->redirector->gotoRoute(array('action' => 'edit-bank', 'event_id' => $event->getIdentity()), 'event_specific', true);
+  }
+  
+  public function editBankAction()
+  {
+    $viewer = Engine_Api::_()->user()->getViewer();
+    
+    $event_id = $this->_getParam('event_id', 0);
+    
+    if ($event_id <= 0) {
+      return;
+    }
+    
+    $event = Engine_Api::_()->getItem('event', $event_id);
+    
+    $eventDataArray = array();
+    foreach ($event as $key => $value) {
+      $eventDataArray[$key] = $value;
+    }
+    
+    $values = $_SESSION['event_values'];
+    $form = $this->view->form = new Event_Form_Bank();
+    $form->populate($eventDataArray);
+    
+    if( !$this->getRequest()->isPost() ) {
+      return;
+    }
+
+    if( !$form->isValid($this->getRequest()->getPost()) ) {
+      return;
+    }
+    
+    $bankValue = $form->getValues();
+    $values = array_merge($bankValue, $values);
+    
     // Process
     $db = Engine_Api::_()->getItemTable('event')->getAdapter();
     $db->beginTransaction();
@@ -157,10 +207,9 @@ class Event_EventController extends Core_Controller_Action_Standard
       $event->setFromArray($values);
       $event->save();
 
-      if( !empty($values['photo']) ) {
-        $event->setPhoto($form->photo);
+      if( !empty($values['photo_obj']) ) {
+        $event->setPhoto($values['photo_obj']);
       }
-
 
       // Process privacy
       $auth = Engine_Api::_()->authorization()->context;
@@ -169,6 +218,14 @@ class Event_EventController extends Core_Controller_Action_Standard
         $roles = array('owner', 'member', 'parent_member', 'registered', 'everyone');
       } else {
         $roles = array('owner', 'member', 'owner_member', 'owner_member_member', 'owner_network', 'registered', 'everyone');
+      }
+      
+      if( empty($values['auth_view']) ) {
+        $values['auth_view'] = 'everyone';
+      }
+
+      if( empty($values['auth_comment']) ) {
+        $values['auth_comment'] = 'everyone';
       }
 
       $viewMax = array_search($values['auth_view'], $roles);
@@ -223,7 +280,7 @@ class Event_EventController extends Core_Controller_Action_Standard
       $this->_redirectCustom(array('route' => 'event_general', 'action' => 'manage'));
     }
   }
-
+  
 
   public function inviteAction()
   {

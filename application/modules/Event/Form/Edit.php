@@ -35,8 +35,7 @@ class Event_Form_Edit extends Engine_Form
   public function init()
   {
     $user = Engine_Api::_()->user()->getViewer();
-    $this->setTitle('Edit Event')
-      ->setAttrib('id', 'event_create_form')
+    $this->setAttrib('id', 'event_create_form')
       ->setMethod("POST")
       ->setAction(Zend_Controller_Front::getInstance()->getRouter()->assemble(array()));
       
@@ -56,76 +55,7 @@ class Event_Form_Edit extends Engine_Form
     ));
 
     $title = $this->getElement('title');
-
-    // Description
-    $this->addElement('Textarea', 'description', array(
-      'label' => 'Event Description',
-      'maxlength' => '10000',
-      'filters' => array(
-        new Engine_Filter_Censor(),
-        new Engine_Filter_Html(array('useDefaultLists' => false)),
-        new Engine_Filter_EnableLinks(),
-        new Engine_Filter_StringLength(array('max' => 10000)),
-      ),
-    ));
-
-    // Start time
-    $start = new Engine_Form_Element_CalendarDateTime('starttime');
-    $start->setLabel("Start Time");
-    $start->setAllowEmpty(false);
-    $this->addElement($start);
-
-    // End time
-    //$end = new Engine_Form_Element_CalendarDateTime('endtime');
-    //$end->setLabel("End Time");
-    //$end->setAllowEmpty(false);
-    //$this->addElement($end);
     
-    // Duration
-    $this->addElement('Select', 'duration', array(
-      'label' => 'Estimated class duration',
-      'multiOptions' => array(
-        '' => '',
-        '1' => '1 hour',
-        '1.5' => '1.5 hours',
-        '2' => '2 hours',
-        '2.5' => '2.5 hours',
-        '3' => '3 hours',
-        '3.5' => '3.5 hours',
-        '4' => '4 hours',
-        '4.5' => '4.5 hours',
-        '5' => '5 hours',
-        '5.5' => '5.5 hours',
-        '6' => '6 hours',
-        '6.5' => '6.5 hours',
-        '7' => '7 hours',
-      ),
-      'allowEmpty' => false,
-      'required' => true,
-      'validators' => array(
-        array('NotEmpty', true),
-      ),
-    ));
-    
-    // Location
-    $this->addElement('Text', 'location', array(
-      'label' => 'Location',
-      'allowEmpty' => false,
-      'required' => true,
-      'validators' => array(
-        array('NotEmpty', true),
-      ),
-      'filters' => array(
-        new Engine_Filter_Censor(),
-      )
-    ));
-
-    // Photo
-    $this->addElement('File', 'photo', array(
-      'label' => 'Main Photo'
-    ));
-    $this->photo->addValidator('Extension', false, 'jpg,png,gif,jpeg');
-
     // Category
     $this->addElement('Select', 'category_id', array(
       'label' => 'Event Category',
@@ -139,69 +69,25 @@ class Event_Form_Edit extends Engine_Form
       ),
     ));
     
-    // Max members
-    $this->addElement('Text', 'max_users', array(
-      'label' => '# of Participants',
-      'description' => 'If you leave this field empty, participant will be able to apply for the class until you press the "mark class as fully booked" button in the class profile.',
-      'validators' => array(
-        array('Int', true),
+    // Description
+    $this->addElement('Textarea', 'description', array(
+      'label' => 'Event Description',
+      'required' => true,
+      'maxlength' => '10000',
+      'filters' => array(
+        new Engine_Filter_Censor(),
+        new Engine_Filter_Html(array('useDefaultLists' => false)),
+        new Engine_Filter_EnableLinks(),
+        new Engine_Filter_StringLength(array('max' => 10000)),
       ),
     ));
     
-    // Price
-    $this->addElement('Text', 'price', array(
-      'label' => 'Price*',
-      'allowEmpty' => false,
+    // Takeaways
+    $this->addElement('Textarea', 'class_takeaways', array(
+      'label' => 'Takeaways',
       'required' => true,
       'validators' => array(
-        array('NotEmpty', true),
-        array('Float', true, array('locale' => 'en_US')),
-        array('greaterThan', true, array('min' => 0)),
-        array('stringLength', true, array(1, 12)),
-      ),
-    ));
-    
-    $content = '<span id="service_free"></span>';
-    $content .= '<span id="total_price_percent">0</span>';
-    $content .= "<br />* This is the payment you receive per guest<br />**	Price incl. service fee (price guests pay to attend)";
-    
-    $this->addElement('Dummy', 'price_percent', array(
-      'label' => 'Total Price**',
-      'content' => $content
-    ));
-    
-    // Currency
-    $currenciesOptions = array_merge(
-      array('' => 'Select Currency'),
-      Engine_Api::_()->event()->getCurrencies()
-    );
-    
-    $this->addElement('Select', 'currency', array(
-      'label' => 'Currency',
-      'multiOptions' => $currenciesOptions,
-      'allowEmpty' => false,
-      'required' => true,
-      'validators' => array(
-        array('NotEmpty', true),
-      ),
-    ));
-    
-    // Bank Account Information
-    $this->addElement('Heading', 'bank_info', array(
-      'value' => 'Bank Account Information',
-    ));
-    
-    $this->getElement('bank_info')->removeDecorator('Label')
-          ->removeDecorator('HtmlTag')
-          ->getDecorator('HtmlTag2')->setOption('class', 'form-wrapper-heading');
-    
-    $this->addElement('Text', 'bank_iban', array(
-      'label' => 'IBAN',
-      'allowEmpty' => false,
-      'required' => true,
-      'validators' => array(
-        array('NotEmpty', true),
-        array('StringLength', false, array(1, 64)),
+        array('StringLength', false, array(1, 1024)),
       ),
       'filters' => array(
         'StripTags',
@@ -209,58 +95,18 @@ class Event_Form_Edit extends Engine_Form
       ),
     ));
     
-    $this->addElement('Text', 'bank_bic', array(
-      'label' => 'BIC',
-      'allowEmpty' => false,
-      'required' => true,
-      'validators' => array(
-        array('NotEmpty', true),
-        array('StringLength', false, array(1, 64)),
-      ),
-      'filters' => array(
-        'StripTags',
-        new Engine_Filter_Censor(),
-      ),
+    // meal heading
+    $this->addElement('Dummy', 'meal_heading', array(
+      'content' => '<h2>Meal:</h2>'
     ));
     
-    $this->addElement('Text', 'bank_name', array(
-      'label' => 'Name',
-      'allowEmpty' => false,
-      'required' => true,
-      'validators' => array(
-        array('NotEmpty', true),
-        array('StringLength', false, array(1, 64)),
-      ),
-      'filters' => array(
-        'StripTags',
-        new Engine_Filter_Censor(),
-      ),
+    // under meal heading notice
+    $this->addElement('Dummy', 'meal_notice', array(
+      'content' => sprintf(
+        '<span class="meal_notice notice">%s</span>',
+        Zend_Registry::get('Zend_Translate')->_('At least on course must contain entry!')
+      )
     ));
-    
-    $this->addElement('Text', 'bank_address', array(
-      'label' => 'Address',
-      'allowEmpty' => false,
-      'required' => true,
-      'validators' => array(
-        array('NotEmpty', true),
-        array('StringLength', false, array(1, 255)),
-      ),
-      'filters' => array(
-        'StripTags',
-        new Engine_Filter_Censor(),
-      ),
-    ));
-    
-    $this->addElement(
-      new Fields_Form_Element_Country('bank_country', array(
-        'label' => 'Country of Beneficiary',
-        'allowEmpty' => false,
-        'required' => true,
-        'validators' => array(
-          array('NotEmpty', true),
-        ),
-      ))
-    );
     
     // Courses
     $this->addElement(
@@ -281,11 +127,11 @@ class Event_Form_Edit extends Engine_Form
         //'rows' => 5,
         'style' => 'height: 16px; min-height: 16px;',
         'allowEmpty' => false,
-        'required' => true,
-        'validators' => array(
-          array('NotEmpty', true),
-          array('StringLength', false, array(1, 1024)),
-        ),
+        'required' => false,
+        //'validators' => array(
+        //  array('NotEmpty', true),
+        //  array('StringLength', false, array(1, 1024)),
+        //),
         'filters' => array(
           'StripTags',
           new Engine_Filter_Censor(),
@@ -318,18 +164,294 @@ class Event_Form_Edit extends Engine_Form
       ))
     );
     
-    // Takeaways
-    $this->addElement('Textarea', 'class_takeaways', array(
-      'label' => 'Takeaways',
-      'style' => 'height: 16px; min-height: 16px;',
+    $this->addElement('Dummy', 'class_details', array(
+      'content' => '<h2>' . Zend_Registry::get('Zend_Translate')->_('Class Details') . '</h2>'
+    ));
+    
+    // Start time
+    $start = new Engine_Form_Element_CalendarDateTime('starttime');
+    $start->setLabel("Start Time");
+    $start->setRequired(true);
+    $start->setAllowEmpty(false);
+    $this->addElement($start);
+
+    // End time
+    //$end = new Engine_Form_Element_CalendarDateTime('endtime');
+    //$end->setLabel("End Time");
+    //$end->setAllowEmpty(false);
+    //$this->addElement($end);
+    
+    // Duration
+    $this->addElement('Select', 'duration', array(
+      'label' => 'Approximate duration',
+      'multiOptions' => array(
+        '' => '',
+        '1' => '1 hour',
+        '1.5' => '1.5 hours',
+        '2' => '2 hours',
+        '2.5' => '2.5 hours',
+        '3' => '3 hours',
+        '3.5' => '3.5 hours',
+        '4' => '4 hours',
+        '4.5' => '4.5 hours',
+        '5' => '5 hours',
+        '5.5' => '5.5 hours',
+        '6' => '6 hours',
+        '6.5' => '6.5 hours',
+        '7' => '7 hours',
+      ),
+      'allowEmpty' => false,
+      'required' => true,
       'validators' => array(
-        array('StringLength', false, array(1, 1024)),
+        array('NotEmpty', true),
+      ),
+    ));
+    
+    // Location
+    //$this->addElement('Text', 'location', array(
+    //  'label' => 'Location',
+    //  'allowEmpty' => false,
+    //  'required' => true,
+    //  'validators' => array(
+    //    array('NotEmpty', true),
+    //  ),
+    //  'filters' => array(
+    //    new Engine_Filter_Censor(),
+    //  )
+    //));
+    
+    //$this->addElement('Text', 'country', array(
+    //  'label' => 'Country',
+    //  'allowEmpty' => false,
+    //  'required' => true,
+    //  'validators' => array(
+    //    array('NotEmpty', true),
+    //  ),
+    //  'filters' => array(
+    //    new Engine_Filter_Censor(),
+    //    'StripTags',
+    //  )
+    //));
+    
+    $this->addElement('Text', 'address', array(
+      'label' => 'Address',
+      'allowEmpty' => false,
+      'required' => true,
+      'validators' => array(
+        array('NotEmpty', true),
       ),
       'filters' => array(
         'StripTags',
         new Engine_Filter_Censor(),
+      )
+    ));
+    
+    $this->addElement('Text', 'city', array(
+      'label' => 'City',
+      'allowEmpty' => false,
+      'required' => true,
+      'validators' => array(
+        array('NotEmpty', true),
+      ),
+      'filters' => array(
+        new Engine_Filter_Censor(),
+        'StripTags',
+      )
+    ));
+    
+    $this->addElement('Text', 'zipcode', array(
+      'label' => 'Zipcode',
+      'allowEmpty' => false,
+      'required' => true,
+      'validators' => array(
+        array('NotEmpty', true),
+      ),
+      'filters' => array(
+        new Engine_Filter_Censor(),
+        'StripTags',
+      )
+    ));
+    
+    $this->addElement(
+      new Fields_Form_Element_Country('country', array(
+        'label' => 'Country',
+        'allowEmpty' => false,
+        'required' => true,
+        'validators' => array(
+          array('NotEmpty', true),
+        ),
+        'filters' => array(
+          new Engine_Filter_Censor(),
+          'StripTags',
+        ),
+      ))
+    );
+
+    // Photo
+    $this->addElement('File', 'photo', array(
+      'label' => 'Main Photo',
+      //'required' => true,
+    ));
+    $this->photo->addValidator('Extension', false, 'jpg,png,gif,jpeg');
+    
+    // photo notice
+    $this->addElement('Dummy', 'photo_notice', array(
+      'content' => sprintf(
+        '<span class="photo_notice notice">%s</span>',
+        Zend_Registry::get('Zend_Translate')->_('NOTE: The main picture is the one that will be shown in the previews')
+      )
+    ));
+    
+    // Max members
+    $this->addElement('Text', 'max_users', array(
+      'label' => '# of Participants',      
+      'validators' => array(
+        array('Int', true),
       ),
     ));
+    
+    // participants notice
+    $this->addElement('Dummy', 'participants-notice', array(
+      'content' => sprintf(
+        '<span class="participants-notice notice">%s</span>',
+        Zend_Registry::get('Zend_Translate')->_('Note: If you leave this field empty, participant will be able to apply for the class until you press the "mark class as fully booked" button in the class profile.')
+      ),
+      'required' => false,
+    ));
+    
+    // Currency
+    //$currenciesOptions = array_merge(
+    //  array('' => 'Select Currency'),
+    //  Engine_Api::_()->event()->getCurrencies()
+    //);
+    //
+    //$this->addElement('Select', 'currency', array(
+    //  'label' => 'Currency',
+    //  'multiOptions' => $currenciesOptions,
+    //  'allowEmpty' => false,
+    //  'required' => true,
+    //  'validators' => array(
+    //    array('NotEmpty', true),
+    //  ),
+    //));
+  
+    $this->addElement('Dummy', 'price_chf', array(
+      'label' => 'CHF',
+      //'content' => $content
+    ));
+    
+   
+    // Price
+    $this->addElement('Text', 'price', array(
+      'label' => 'Price',
+      'description' => 'This is the payment you receive per guest',
+      'allowEmpty' => false,
+      'required' => true,
+      'validators' => array(
+        array('NotEmpty', true),
+        array('Float', true, array('locale' => 'en_US')),
+        array('greaterThan', true, array('min' => 0)),
+        array('stringLength', true, array(1, 12)),
+      ),
+    ));
+    $this->price->getDecorator('Description')->setOption('placement', 'APPEND');
+    
+    $this->addDisplayGroup(array('price_chf', 'price'), 'price_group', array(
+    ));
+    
+    $content = '<span id="service_free"></span>';
+    $content .= '<span id="total_price_percent"><span class="total_price">0</span></span>';
+    
+    $this->addElement('Dummy', 'price_percent', array(
+      'label' => 'Total Price:',
+      'content' => $content
+    ));
+    
+    // price_percent notice
+    $this->addElement('Dummy', 'price_percent_notice', array(
+      'content' => sprintf(
+        '<span class="price_percent_notice notice">%s</span>',
+        Zend_Registry::get('Zend_Translate')->_('Price incl. service fee (price guests pay to attend)')
+      ),
+    ));
+    
+    //// Bank Account Information
+    //$this->addElement('Heading', 'bank_info', array(
+    //  'value' => 'Bank Account Information',
+    //));
+    //
+    //$this->getElement('bank_info')->removeDecorator('Label')
+    //      ->removeDecorator('HtmlTag')
+    //      ->getDecorator('HtmlTag2')
+    //      ->setOption('class', 'form-wrapper-heading')
+    //      ->setOption('style', 'clear:both;');
+    //
+    //$this->addElement('Text', 'bank_iban', array(
+    //  'label' => 'IBAN',
+    //  'allowEmpty' => false,
+    //  'required' => true,
+    //  'validators' => array(
+    //    array('NotEmpty', true),
+    //    array('StringLength', false, array(1, 64)),
+    //  ),
+    //  'filters' => array(
+    //    'StripTags',
+    //    new Engine_Filter_Censor(),
+    //  ),
+    //));
+    //
+    //$this->addElement('Text', 'bank_bic', array(
+    //  'label' => 'BIC',
+    //  'allowEmpty' => false,
+    //  'required' => true,
+    //  'validators' => array(
+    //    array('NotEmpty', true),
+    //    array('StringLength', false, array(1, 64)),
+    //  ),
+    //  'filters' => array(
+    //    'StripTags',
+    //    new Engine_Filter_Censor(),
+    //  ),
+    //));
+    //
+    //$this->addElement('Text', 'bank_name', array(
+    //  'label' => 'Name',
+    //  'allowEmpty' => false,
+    //  'required' => true,
+    //  'validators' => array(
+    //    array('NotEmpty', true),
+    //    array('StringLength', false, array(1, 64)),
+    //  ),
+    //  'filters' => array(
+    //    'StripTags',
+    //    new Engine_Filter_Censor(),
+    //  ),
+    //));
+    //
+    //$this->addElement('Text', 'bank_address', array(
+    //  'label' => 'Address',
+    //  'allowEmpty' => false,
+    //  'required' => true,
+    //  'validators' => array(
+    //    array('NotEmpty', true),
+    //    array('StringLength', false, array(1, 255)),
+    //  ),
+    //  'filters' => array(
+    //    'StripTags',
+    //    new Engine_Filter_Censor(),
+    //  ),
+    //));
+    //
+    //$this->addElement(
+    //  new Fields_Form_Element_Country('bank_country', array(
+    //    'label' => 'Country of Beneficiary',
+    //    'allowEmpty' => false,
+    //    'required' => true,
+    //    'validators' => array(
+    //      array('NotEmpty', true),
+    //    ),
+    //  ))
+    //);
     
     // Search
     $this->addElement('Hidden', 'search', array(
@@ -446,7 +568,7 @@ class Event_Form_Edit extends Engine_Form
     $this->addElement('Cancel', 'cancel', array(
       'label' => 'cancel',
       'link' => true,
-      'prependText' => ' or ',
+      'prependText' => '- or -',
       'decorators' => array(
         'ViewHelper',
       ),

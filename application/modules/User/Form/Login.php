@@ -45,8 +45,6 @@ class User_Form_Login extends Engine_Form
     $description= sprintf($description, Zend_Controller_Front::getInstance()->getRouter()->assemble(array(), 'user_signup', true));
 
     // Init form
-    $this->setTitle('Member Sign In');
-    $this->setDescription($description);
     $this->setAttrib('id', 'user_form_login');
     $this->loadDefaultDecorators();
     $this->getDecorator('Description')->setOption('escape', false);

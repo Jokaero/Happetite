@@ -1,0 +1,30 @@
+.layout_social_connect_login_or_signup h4 {
+	text-align: left !important;
+}
+.layout_social_connect_login_or_signup #remember-wrapper input
+{
+	margin-top: 8px;
+}
+#global_page_social-connect-signup-index .generic_layout_container h3,
+#global_page_social-connect-signup-index #import_form_homepage div + div + div
+{
+	margin-left: 5px;
+}
+	
+@media (max-width: 480px)
+{
+	.layout_social_connect_login_or_signup h4 {
+	text-align: left !important;
+	}
+	
+	.layout_social_connect_login_or_signup #user_form_login #submit-element
+	{
+		margin-top: 18px;
+	}	
+	#global_page_social-connect-signup-index #import_form_homepage .logoContact
+	{
+		margin-right: 0%;
+	}
+	
+}
+

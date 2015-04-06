@@ -569,4 +569,56 @@ class Event_AdminManageController extends Core_Controller_Action_Admin
     // Output
     $this->renderScript('admin-manage/delete.tpl');
   }
+  
+  public function sliderAction()
+  {
+    
+    $this->view->navigation = $navigation = Engine_Api::_()->getApi('menus', 'core')
+     ->getNavigation('event_admin_main', array(), 'event_admin_main_manage_slider');
+    
+    $slidesTable = Engine_Api::_()->getDbtable('slides', 'event');
+
+    $this->view->slides = $slides = $slidesTable->fetchAll();
+    $this->view->form = $form = new Event_Form_Admin_Addslide();
+    
+    if (!$this->getRequest()->isPost()) {
+      return;
+    }
+    
+    if (!$form->isValid($this->getRequest()->getPost())) {
+      return;
+    }
+    
+    $values = $form->getValues();
+    $values['photo_obj'] = $form->photo->getFileInfo();
+    $slidesTable->addSlide($values);
+    $this->_redirectCustom(array('route' => 'admin_default', 'module' => 'event', 'controller' => 'manage', 'action' => 'slider'));
+   
+  }
+  
+  public function removeAction()
+  {
+   
+    $this->view->form = $form = new Event_Form_Admin_Remove();
+
+    if (!$this->getRequest()->isPost()) {
+      return;
+    }
+    $slideId = $this->_getParam('id');
+    
+    if (empty($slideId)) {
+      return;
+    }
+    
+    $slide = Engine_Api::_()->getItem('event_slide', $slideId);
+    $slide->delete();
+    
+    $this->_forward('success', 'utility', 'core', array(
+      'smoothboxClose' => true,
+      'parentRefresh' => true,
+      'format'=> 'smoothbox',
+      'messages' => array(Zend_Registry::get('Zend_Translate')->_("Success"))
+    ));
+    
+  }
 }

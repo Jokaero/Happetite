@@ -1,0 +1,61 @@
+"Social Connect";"Social Connect"
+"SOCIAL_CONNECT";"Social Connect"
+"SOCIAL_CONNECT_PROVIDER_DESC";"Social Connect Providers."
+"ACCOUNT_LINK_DESCRIPTION";"Link a user’s multiple social identities to a single account on your site and provides increased login flexibility on future visits."
+"SOCIAL_CONNECT_GLOBAL_DESC";"These settings will be applied for all members on your network!"
+"Sign In or %1$sJoin%2$s";"Sign In or %1$sJoin%2$s"
+"Sign In";"Sign In"
+"Join";"Join"
+"If you already have an account, please enter your details below. If you don't have one yet, please <a href='%s'>sign up</a> first.";"If you already have an account, please enter your details below. If you don't have one yet, please <a href='%s'>sign up</a> first."
+"Email %1s already exists, please enter your details below to login or click %2s to connect 2 accounts or click %3s to create a separate account.";"Email %1s already exists, please enter your details below to login or click %2s to connect 2 accounts or click %3s to create a separate account."
+"Member Sign In";"Member Sign In"
+"Email Address";"Email Address"
+"Password";"Password"
+"Or Sign In Using";"Or Sign In Using"
+"<span><a href='%s'>Forgot Password?</a></span>";"<span><a href='%s'>Forgot Password?</a></span>"
+"Member Sign In";"Member Sign In"
+"Remember Me";"Remember Me"
+"Sign In";"Sign In"
+"Login Using";"Login Using"
+"Sign-Up Using";"Sign-Up Using"
+"Please check mail %s to get verify code and confirm following form to synchronize your account.";"Please check mail %s to get verify code and confirm following form to synchronize your account."
+"Verify Code";"Verify Code"
+"Code";"Code"
+"Please install or enable Social Bridge plugin!";"Please install or enable Social Bridge plugin!"
+"Disconnect";"Disconnect"
+"Connect to %s";"Connect to %s"
+"Your Accounts";"Your Accounts"
+"Account Linking";"Account Linking"
+"Delete Linking";"Delete Linking"
+"Are you sure you want to delete linking?";"Are you sure you want to delete linking?"
+"cancel";"cancel"
+"or ";"or "
+"Delete linking successfully.";"Delete linking successfully."
+"Sign in %s";"Sign in %s"
+"More";"More"
+"Hide";"Hide"
+
+"_SOCIAL_CONNECT_ACCOUNT_DESCRIPTION";"description ..."
+
+# core_welcome
+"_EMAIL_SOCIALCONNECT_AUTOPASSWORD_TITLE";"Social Connect Auto Password Generated!"
+"_EMAIL_SOCIALCONNECT_AUTOPASSWORD_DESCRIPTION";"This is the email that gets sent when a member signs up via Social Connect if random password is created."
+"_EMAIL_SOCIALCONNECT_AUTOPASSWORD_SUBJECT";"An random password is generated!"
+"_EMAIL_SOCIALCONNECT_AUTOPASSWORD_BODY";"[header]
+
+Hello [recipient_title], 
+
+A random password [random_password] is generated and associate with your account. 
+You can changed your password here [object_link]
+
+[footer]"
+
+#verify code
+"_EMAIL_SOCIALCONNECT_VERIFY_CODE_TITLE";"Social Connect Verify Code!"
+"_EMAIL_SOCIALCONNECT_VERIFY_CODE_DESCRIPTION";"This is the email that gets sent when a member signs up via Social Connect if identity exists."
+"_EMAIL_SOCIALCONNECT_VERIFY_CODE_SUBJECT";"Verify code is generated!"
+"_EMAIL_SOCIALCONNECT_VERIFY_CODE_BODY";"[header]
+
+To synchronize your email with your account, please copy the following code: [verify_code]
+
+[footer]"

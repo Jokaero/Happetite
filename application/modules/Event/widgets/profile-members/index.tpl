@@ -75,25 +75,42 @@
   
   function CountBack(myDiv, secs) {
     var DisplayStr;
-    var DisplayFormat = "%%H%%h %%M%%min";//"%%H%%h %%M%%min %%S%%sec";
-    DisplayStr = DisplayFormat.replace(/%%H%%/g, Calcage(secs, 3600, 24));
+    var DisplayFormat = "%%D%%day(s) %%H%%h %%M%%min";//"%%H%%h %%M%%min %%S%%sec";
+    var DisplayDiv;
+    if (secs < 86400) {
+      DisplayFormat = "%%H%%h %%M%%min";
+      DisplayStr = DisplayFormat.replace(/%%H%%/g, Calcage(secs, 3600, 24));
+    } else {
+      DisplayStr = DisplayFormat.replace(/%%D%%/g, Calcage(secs, 86400, 4).toString()[1]);
+      DisplayStr = DisplayStr.replace(/%%H%%/g, Calcage(secs, 3600, 24));
+    }
+    
     DisplayStr = DisplayStr.replace(/%%M%%/g, Calcage(secs, 60, 60));
     DisplayStr = DisplayStr.replace(/%%S%%/g,		Calcage(secs, 1, 60));
     
+    DisplayDiv = document.getElementById(myDiv);
+    
     if (secs > 0) {
-      document.getElementById(myDiv).innerHTML = DisplayStr;
-      setTimeout("CountBack('" + myDiv + "'," + (secs - 1) + ");", 990);
-    } else {
-      document.getElementById(myDiv).innerHTML = "<b><?php echo $this->translate("Please wait..."); ?></b>";
       
-      new Request.HTML({
-        'url' : '<?php echo $this->url(array('action' => 'job'), 'event_general', true); ?>',
-        'onComplete' : function(responseTree, responseElements, responseHTML, responseJavaScript) {
-          if( responseHTML ) {
-            $(myDiv).getParent().getParent().getParent().destroy();
+      if (DisplayDiv != null) {
+        DisplayDiv.innerHTML = DisplayStr;
+        setTimeout("CountBack('" + myDiv + "'," + (secs - 1) + ");", 990);
+      }
+    } else {
+      
+      if (DisplayDiv != null) {
+        DisplayDiv.innerHTML = "<b><?php echo $this->translate("Please wait..."); ?></b>";
+        
+        new Request.HTML({
+          'url' : '<?php echo $this->url(array('action' => 'job'), 'event_general', true); ?>',
+          'onComplete' : function(responseTree, responseElements, responseHTML, responseJavaScript) {
+            if( responseHTML ) {
+              $(myDiv).getParent().getParent().getParent().destroy();
+              //document.getElementById(myDiv).innerHTML = "<b><?php //echo $this->translate("Expired"); ?></b>";
+            }
           }
-        }
-      }).send();
+        }).send();
+      }
     }
   }
 </script>
@@ -104,9 +121,9 @@
   </div>
   <div class="event_members_total">
     <?php if( '' == $this->search ): ?>
-      <?php echo $this->translate(array('This event has %1$s guest.', 'This event has %1$s guests.', $this->members->getTotalItemCount() - 1),$this->locale()->toNumber($this->members->getTotalItemCount() - 1)) ?>
+      <?php echo $this->translate(array('This event has %1$s guest.', 'This event has %1$s guests.', $this->guestCount),$this->locale()->toNumber($this->guestCount)) ?>
     <?php else: ?>
-      <?php echo $this->translate(array('This event has %1$s guest that matched the query "%2$s".', 'This event has %1$s guests that matched the query "%2$s".', $this->members->getTotalItemCount()), $this->locale()->toNumber($this->members->getTotalItemCount()), $this->escape($this->search)) ?>
+      <?php echo $this->translate(array('This event has %1$s guest that matched the query "%2$s".', 'This event has %1$s guests that matched the query "%2$s".', $this->guestCount), $this->locale()->toNumber($this->guestCount), $this->escape($this->search)) ?>
     <?php endif; ?>
   </div>
   <?php if( !empty($this->waitingMembers) && $this->waitingMembers->getTotalItemCount() > 0 ): ?>
@@ -150,7 +167,10 @@
               )) ?>
             <?php endif; ?>
             
-            <?php if( $memberInfo->active == false && $memberInfo->resource_approved == true and $memberInfo->rsvp != 4 ): ?>
+            <?php if( $memberInfo->active == false
+                     and $memberInfo->resource_approved == true
+                     and $memberInfo->rsvp != 4
+                     and $memberInfo->rsvp != 9 ): ?>
               <?php echo $this->htmlLink(array('route' => 'event_extended', 'controller' => 'member', 'action' => 'cancel', 'event_id' => $this->event->getIdentity(), 'user_id' => $member->getIdentity()), $this->translate('Cancel Invite'), array(
                 'class' => 'buttonlink smoothbox icon_event_cancel'
               )) ?>
@@ -175,24 +195,75 @@
             </span>
           </div>
           <div class="event_members_rsvp">
-            <?php echo $this->translate('EVENT_MEMBER_STATUS_' . $memberInfo->rsvp) ?>
+            <?php $viewerInfo = $this->event->membership()->getMemberInfo($this->viewer()); ?>
+            <?php $viewerMemberInfos = false; ?>
             
-            <?php if ($memberInfo->rsvp == 0) : ?>
-            <?php
-              $endDateObject = new Zend_Date(strtotime($memberInfo->datetime) + 86400);
-              $nowTime = new Zend_Date(time());
-              if( $this->viewer() && $this->viewer()->getIdentity() ) {
-                $tz = $this->viewer()->timezone;
-                $endDateObject->setTimezone($tz);
-                $nowTime->setTimezone($tz);
-              }
-            ?>
-            <br />
-            <?php echo $this->translate('Time left for action: '); ?>
-            <span id="timer_member_<?php echo $member->getIdentity(); ?>">[timer <?php echo $member->getIdentity(); ?>]</span>
-            <script type="text/javascript">
-              StartCountDown("timer_member_<?php echo $member->getIdentity(); ?>","<?php echo $endDateObject->toString('MM/dd/y H:mm:ss'); ?>", "<?php echo $nowTime->toString('MM/dd/y H:mm:ss'); ?>");
-            </script>
+            <?php // Accepted, accepted_after_message, paid users can see themselves ?>
+            <?php if (($viewerInfo->rsvp == 1 or $viewerInfo->rsvp == 2 or $viewerInfo->rsvp == 3)
+                      and ($memberInfo->rsvp == 1 or $memberInfo->rsvp == 2 or $memberInfo->rsvp == 3)) : ?>
+              <?php $viewerMemberInfos = true; ?>
+            <?php endif; ?>
+            
+            <?php if ($this->viewer()->isAdmin()
+                      or $this->event->isOwner($this->viewer())
+                      or $this->viewer()->getIdentity() == $member->getIdentity()
+                      or $viewerMemberInfos) : ?>
+              
+              <?php // host can't see rsvp refund and refunded he see this as Cancelled rspv ?>
+              <?php if (($memberInfo->rsvp == 4 or $memberInfo->rsvp == 5)
+                        and $this->event->isOwner($this->viewer())
+                        and !$this->viewer()->isAdmin()) : ?>
+                <?php echo $this->translate('EVENT_MEMBER_STATUS_CANCELED') ?>
+              <?php else : ?>
+                <?php echo $this->translate('EVENT_MEMBER_STATUS_' . $memberInfo->rsvp) ?>
+              <?php endif; ?>
+              
+              <?php // timer only for admin, host, viewer ?>
+              <?php if ($this->viewer()->isAdmin()
+                      or $this->event->isOwner($this->viewer())
+                      or $this->viewer()->getIdentity() == $member->getIdentity()) : ?>
+            
+                <?php if ($memberInfo->rsvp == 0) : ?>
+                  <?php
+                    $endDateObject = new Zend_Date(strtotime($memberInfo->datetime) + 86400);
+                    $nowTime = new Zend_Date(time());
+                    if( $this->viewer() && $this->viewer()->getIdentity() ) {
+                      $tz = $this->viewer()->timezone;
+                      $endDateObject->setTimezone($tz);
+                      $nowTime->setTimezone($tz);
+                    }
+                  ?>
+                  <br />
+                  <?php echo $this->translate('Time left for action: '); ?>
+                  <span id="timer_member_<?php echo $member->getIdentity(); ?>">[timer <?php echo $member->getIdentity(); ?>]</span>
+                  <script type="text/javascript">
+                    StartCountDown("timer_member_<?php echo $member->getIdentity(); ?>","<?php echo $endDateObject->toString('MM/dd/y H:mm:ss'); ?>", "<?php echo $nowTime->toString('MM/dd/y H:mm:ss'); ?>");
+                  </script>
+                <?php endif; ?>
+                <?php if ($memberInfo->rsvp == 1 or $memberInfo->rsvp == 2) : ?>
+                  <?php
+                    
+                    if ($memberInfo->is_approved_late == 1) {
+                      $endDateObject = new Zend_Date(strtotime($memberInfo->rsvp_update) + 86400);
+                    } else {
+                      $endDateObject = new Zend_Date(strtotime($memberInfo->rsvp_update) + 86400 * 4);
+                    }
+                    
+                    $nowTime = new Zend_Date(time());
+                    if( $this->viewer() && $this->viewer()->getIdentity() ) {
+                      $tz = $this->viewer()->timezone;
+                      $endDateObject->setTimezone($tz);
+                      $nowTime->setTimezone($tz);
+                    }
+                  ?>
+                  <br />
+                  <?php echo $this->translate('Time left for pay: '); ?>
+                  <span id="timer_member_<?php echo $member->getIdentity(); ?>">[timer <?php echo $member->getIdentity(); ?>]</span>
+                  <script type="text/javascript">
+                    StartCountDown("timer_member_<?php echo $member->getIdentity(); ?>","<?php echo $endDateObject->toString('MM/dd/y H:mm:ss'); ?>", "<?php echo $nowTime->toString('MM/dd/y H:mm:ss'); ?>");
+                  </script>
+                <?php endif; ?>
+              <?php endif; ?>
             <?php endif; ?>
           </div>
         </div>

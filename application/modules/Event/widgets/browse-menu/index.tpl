@@ -1,8 +1,8 @@
 <?php if( $this->parent_type !== 'group' ) { ?>
 <div class="headline">
-  <h2>
+  <?php /*<h2>
     <?php echo $this->translate('Events') ?>
-  </h2>
+  </h2> */ ?>
   <div class="tabs">
     <?php
       // Render the menu

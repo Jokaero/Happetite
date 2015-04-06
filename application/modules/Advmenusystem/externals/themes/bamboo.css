@@ -1,0 +1,33 @@
+/* Adv.Menu Mini */
+.layout_core_menu_mini
+{
+    height: 30px;
+    overflow: visible;	
+}
+.ynadvmenu_MyProfile > span > a.new_updates
+{
+	padding-bottom: 0px!important;
+}
+li.ynadvmenu_MyProfile a div img
+{
+	margin-top: -4px;
+	*margin-top: 2px;
+}
+li.ynadvmenu_downservices .pulldown_contents_wrapper
+{
+	margin-top: 24px;
+}
+
+/* Adv.Menu Main */
+.layout_core_menu_main .navigation li:first-child a
+{
+	padding-left: 0;
+}
+li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper
+{
+	background-color: #FFF;
+}
+li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper > li a:hover
+{
+	color: #1C3E47;
+}

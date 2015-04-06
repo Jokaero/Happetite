@@ -1,0 +1,17 @@
+/* Adv.Menu Main */
+.ynadvmenu_MyProfile > span > a.new_updates
+{
+	padding-bottom: 7px!important;
+}
+li.ynadvmenu_MyProfile a div img
+{
+	*margin-top: -3px;	
+}
+ul.ynadvmenu_pulldownMainWrapper
+{
+	margin-top: 0px;
+}
+.ynadvmenu_downservices .pulldown_contents_wrapper
+{
+	margin-top: 27px;
+}

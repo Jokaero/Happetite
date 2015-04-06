@@ -346,6 +346,22 @@ class User_AuthController extends Core_Controller_Action_Standard
 
       // Just redirect to home
       return $this->_helper->redirector->gotoRoute(array('action' => 'home'), 'user_general', true);
+    } elseif ('smoothbox' === $this->_helper->contextSwitch->getCurrentContext()) {
+      
+      $params = array(
+        'message' => Zend_Registry::get('Zend_Translate')->_('Success.'),
+      );
+      
+      // Redirect by session
+      $session = new Zend_Session_Namespace('Redirect');
+      if (isset($session->route)) {
+        $params['redirect'] = $session->params['redirect'];
+      } else {
+        $params['parentRefresh'] = true;
+      }
+      
+      $this->_forward('success', 'utility', 'core', $params);
+      
     }
   }
 

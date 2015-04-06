@@ -34,11 +34,11 @@ class Event_PaymentController extends Core_Controller_Action_Standard
     
     $membership = $event->membership()->getRow($viewer);
     
-    if (empty($membership) or $membership->rsvp != 1 or $event->status != 'open') {
+    if (empty($membership) or !in_array($membership->rsvp, array(1, 2)) or $event->status != 'open') {
       return $this->_forward('success', 'utility', 'core', array(
-          'smoothboxClose' => true,
+          'smoothboxClose' => 5000,
           'parentRefresh' => false,
-          'messages' => array(Zend_Registry::get('Zend_Translate')->_('An error has occurred.'))
+          'messages' => array(Zend_Registry::get('Zend_Translate')->_('You can\'t pay for this class as you\'re not accepted for it anymore'))
       ));
     }
     

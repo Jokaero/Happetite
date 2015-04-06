@@ -33,8 +33,6 @@ class Invite_Form_Invite extends Engine_Form
 
     // Init form
     $this
-      ->setTitle('Invite Your Friends')
-      ->setDescription('_INVITE_FORM_DESCRIPTION')
       ->setLegend('');
     
     // Init recipients

@@ -1051,8 +1051,35 @@ ul.events_profile_tab .events_profile_tab_desc
   margin-top: 7px;
 }
 
+h3.class_type {
+  clear: both;
+  padding-top: 10px;
+}
 
+.event-wrapper {
+  border: 1px solid #999999;
+  padding: 5px;
+  width: 30%;
+  display: inline-block;
+  height: 110px;
+}
 
+ul.events_profile_tab > li.event-wrapper + li.event-wrapper {
+  padding-top: 5px;
+  margin-top: 0px;
+}
+
+.events_profile_tab_owner {
+  border-top: 1px solid #79797A;
+}
+
+.events_profile_tab_button {
+  float: right;
+}
+
+.layout_event_profile_my_events > h3:not([class="class_type"]) {
+  display: none;
+}
 
 
 /*
@@ -1264,3 +1291,192 @@ div.block_cvv_image input {
 {
   background-image: url(~/application/modules/Event/externals/images/member/join.png);
 }
+
+.global_form .form-elements label.required:after {
+  content: ' *';
+  color: red;
+}
+
+#fieldset-price_group{
+  position: relative;
+}
+
+#fieldset-price_group #price_chf-wrapper{
+  position: absolute;
+  top: 30px;
+  width: 160px;
+}
+
+
+.event_ended:hover,
+.event_canceled:hover {
+  text-decoration: none;
+  color: #5f93b4;
+}
+
+.event_ended,
+.event_canceled {
+  cursor: default;
+}
+
+#filter-form #date-hour, #filter-form #date-minute{
+  display: none;
+}
+#filter-form dd{
+  float: left;
+}
+#filter-form dt{
+  float: left;
+  margin-left: 20px;
+}
+#filter-form{
+  display: block;
+  height: 35px;
+  margin-bottom: 10px;
+}
+#filter-form button{
+  margin-top: 0px;
+}
+#filter-form #submit{
+  margin-left: 20px;
+}
+#filter-form #calendar_output_span_date-date{
+  display: block;
+  width: 115px;
+}
+
+/************ Classes Steps Pages***************/
+.classes-steps-guest-content .main-image,
+.classes-steps-host-content .main-image {
+  width: 100%;
+}
+
+.classes-steps-guest-content .image-block,
+.classes-steps-host-content .image-block {
+  float: left;
+  width: 45%;
+}
+
+.classes-steps-guest-content .main-image {
+  background: url(~/application/modules/Event/externals/images/u13.png) no-repeat;
+  height: 266px;
+  background-size: 100%;
+}
+
+.classes-steps-host-content .main-image {
+  background: url(~/application/modules/Event/externals/images/u13.png) no-repeat;
+  height: 266px;
+  background-size: 100%;
+}
+
+.classes-steps-guest-content .description-block,
+.classes-steps-host-content .description-block {
+  float: right;
+  width: 45%;
+}
+
+.classes-steps-guest-content .next-step-button,
+.classes-steps-host-content .next-step-button {
+  float: right;
+}
+
+.classes-steps-guest-content .next-step-button a,
+.classes-steps-host-content .next-step-button a {
+  color: #fff;
+}
+
+.classes-steps-guest-share-content .facebook,
+.classes-steps-guest-share-content .twitter {
+  height: 250px;
+  width: 250px;
+  display: inline-block;
+}
+
+.classes-steps-guest-share-content .facebook-button {
+  background: url(~/application/modules/Event/externals/images/fb.png) no-repeat;
+}
+
+.classes-steps-guest-share-content .twitter-button {
+  background: url(~/application/modules/Event/externals/images/twitter.png) no-repeat;
+}
+
+.classes-steps-guest-share-content .facebook-button,
+.classes-steps-guest-share-content .twitter-button {
+  background-size: 100%;
+  display: block;
+  height: 100%;
+}
+
+.classes-steps-guest-share-content .facebook {
+  margin-left: 200px;
+}
+
+.classes-steps-guest-share-content .twitter {
+  margin-right: 200px;
+}
+
+.classes-steps-guest-share-content .title,
+.classes-steps-guest-share-content .description,
+.classes-steps-guest-share-content .skip {
+  text-align: center;
+}
+
+/***********************************************/
+
+/*Slider*/
+#recent_events_slider {
+  width: 683px;
+}
+
+/*my classes*/
+.user-info-wrapper .event-wrapper {
+  border: none;
+}
+
+.my-recipes-wrapper .photo img {
+  width: 142px;
+  height: 142px;
+}
+
+.my-recipes-wrapper .container {
+  width: 30%;
+  display: inline-block;
+}
+
+.my-reviews-wrapper .reviews-wrapper {
+  width: 30%;
+  display: inline-block;
+}
+
+
+/*My Recipes*/
+
+.my-recipes .recipe-item {
+  display: inline-block;
+  width: 45%;
+  border: 1px solid #000;
+  margin: 5px;
+}
+
+#global_page_event-member-request {
+  min-width: 500px;
+}
+
+.gallery .holder ul li {
+  display: inline-block;
+  width: 210px;
+  overflow: hidden;
+}
+
+#profile_members_slider.slider-wrapper.gallery {
+  width: 940px;
+}
+
+.holder {
+  width: 80%;
+}
+
+
+
+
+

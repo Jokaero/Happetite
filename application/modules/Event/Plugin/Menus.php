@@ -103,7 +103,13 @@ class Event_Plugin_Menus
     {
       throw new Event_Model_Exception('Whoops, not a event!');
     }
+    
+    if ($subject->status == 'closed' or $subject->status == 'finished'
+        or $subject->status == 'canceled' or $subject->status == 'verified') {
+      return false;
+    }
 
+    
     if( !$viewer->getIdentity() || !$subject->authorization()->isAllowed($viewer, 'edit') )
     {
       return false;
@@ -166,17 +172,31 @@ class Event_Plugin_Menus
     if( $subject->getType() !== 'event' ) {
       throw new Event_Model_Exception('Whoops, not a event!');
     }
-
-    if( !$viewer->getIdentity() ) {
-      return false;
-    }
-
-    if ($subject->status != 'open') {
-      return false;
+    
+    //if( !$viewer->getIdentity() ) {
+    //  return false;
+    //}
+    
+    // event is out of date
+    if ($subject->endtime < date('Y-m-d H:i:s', time()) and $subject->status != 'canceled') {
+      return array(
+        'label' => 'Class already took place',
+        'icon' => 'application/modules/Event/externals/images/post/close.png',
+        'uri' => 'javascript:void(0);',
+        'style' => 'cursor:default; pointer-events:none;',
+        'class' => 'event_ended',
+      );
     }
     
-    if ($subject->starttime < date('Y-m-d H:i:s')) {
-      return false;
+    // event is closed
+    if ($subject->status == 'canceled') {
+      return array(
+        'label' => 'Class has been canceled',
+        'icon' => 'application/modules/Event/externals/images/post/close.png',
+        'uri' => 'javascript:void(0);',
+        'style' => 'cursor:default; pointer-events:none;',
+        'class' => 'event_canceled',
+      );
     }
     
     $row = $subject->membership()->getRow($viewer);
@@ -196,22 +216,32 @@ class Event_Plugin_Menus
       }
       
       if( $subject->membership()->isResourceApprovalRequired() ) {
-        return array(
-          'label' => 'Join Event', // Request Invite
-          'icon' => 'application/modules/Event/externals/images/member/join.png',
-          'class' => 'smoothbox',
-          'route' => 'event_extended',
-          'params' => array(
-            'controller' => 'member',
-            'action' => 'request',
-            'event_id' => $subject->getIdentity(),
-          ),
-        );
+        if (!$viewer->getIdentity()) {
+          return array(
+            'label' => 'Join Event', // Request Invite
+            'icon' => 'application/modules/Event/externals/images/member/join.png',
+            'uri' => 'javascript:void(0);',
+            'onclick' => "advancedMenuUserLoginOrSignUp('login', '', ''); return false;",
+            'class' => 'join_link not_auth'
+          );
+        } else {
+          return array(
+            'label' => 'Join Event', // Request Invite
+            'icon' => 'application/modules/Event/externals/images/member/join.png',
+            'class' => 'smoothbox join_link',
+            'route' => 'event_extended',
+            'params' => array(
+              'controller' => 'member',
+              'action' => 'request',
+              'event_id' => $subject->getIdentity(),
+            ),
+          );
+        }
       } else {
         return array(
           'label' => 'Join Event',
           'icon' => 'application/modules/Event/externals/images/member/join.png',
-          'class' => 'smoothbox',
+          'class' => 'smoothbox join_link',
           'route' => 'event_extended',
           'params' => array(
             'controller' => 'member',
@@ -249,8 +279,28 @@ class Event_Plugin_Menus
         $title = 'Application Pending';
       }
       
-      if ($row->rsvp == 4) {
+      // if refund or canceled late
+      if ($row->rsvp == 4 or $row->rsvp == 9) {
         return false;
+      }
+      
+      // if refunded, timed out, rejected, canceled, not paid
+      if ($row->rsvp == 5
+          or $row->rsvp == 6
+          or $row->rsvp == 7
+          or $row->rsvp == 8
+          or $row->rsvp == 11) {
+        return array(
+          'label' => 'Join Event', // Request Invite
+          'icon' => 'application/modules/Event/externals/images/member/join.png',
+          'class' => 'smoothbox join_link',
+          'route' => 'event_extended',
+          'params' => array(
+            'controller' => 'member',
+            'action' => 'request',
+            'event_id' => $subject->getIdentity(),
+          ),
+        );
       }
       
       return array(

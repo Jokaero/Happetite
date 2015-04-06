@@ -11,7 +11,16 @@
  */
 ?>
 
-<div id='core_menu_mini_menu'>
+<script type="text/javascript">
+    window.addEvent('domready', function() {
+      $$('#form-language > ul li a').addEvent('click', function() {
+        $('hidden-lang').value = $(this).getAttribute('data');
+        $(this).getParent('form').submit();
+      });
+    });
+</script>
+
+<div id='core_menu_mini_menu' class="<?php echo ($this->viewer->getIdentity()) ? 'auth' : 'auth-empty'; ?>">
   <?php
     // Reverse the navigation order (they're floating right)
     $count = count($this->navigation);
@@ -44,11 +53,107 @@
     </li>
     <?php endif; ?>
     <?php foreach( $this->navigation as $item ): ?>
-      <li><?php echo $this->htmlLink($item->getHref(), $this->translate($item->getLabel()), array_filter(array(
-        'class' => ( !empty($item->class) ? $item->class : null ),
-        'alt' => ( !empty($item->alt) ? $item->alt : null ),
-        'target' => ( !empty($item->target) ? $item->target : null ),
-      ))) ?></li>
+      
+      <?php // Auth in lightbox ?>
+      
+      <?php $onClick = ''; ?>
+      <?php if ($item->name == 'core_mini_auth' or $item->name == 'core_mini_signup') : ?>
+        <?php if ($item->name == 'core_mini_auth') : ?>
+          <?php $tempFunctionName = 'login'; ?>
+        <?php elseif ($item->name == 'core_mini_signup') : ?>
+          <?php $tempFunctionName = 'signup'; ?>
+        <?php endif; ?>
+        <?php $onClick = "advancedMenuUserLoginOrSignUp('$tempFunctionName', '{$this->isUserLoginPage}', '{$this->isUserSignupPage}'); return false;"; ?>
+      <?php endif; ?>
+      
+      <li class="<?php echo !empty($item->class) ? $item->class : 'no-class' ?>">
+        <?php echo $this->htmlLink($item->getHref(), $this->translate($item->getLabel()), array_filter(array(
+          'class' => ( !empty($item->class) ? $item->class : null ),
+          'alt' => ( !empty($item->alt) ? $item->alt : null ),
+          'target' => ( !empty($item->target) ? $item->target : null ),
+          'onclick' => $onClick,
+        ))) ?>
+        
+        <?php // Languages submenu ?>
+        <?php if (1 !== count($this->languageNameList)) : ?>
+          <?php if ($item->_label == 'Language') : ?>
+            <form id="form-language" method="post" action="<?php echo $this->url(array('controller' => 'utility', 'action' => 'locale'), 'default', true) ?>" style="display:block">
+              <?php $selectedLanguage = $this->translate()->getLocale() ?>
+              <?php echo $this->formHidden('return', $this->url()) ?>
+              <ul>
+                <?php foreach ($this->languageNameList as $lang => $lang_name) : ?>
+                  <?php if ($lang == '') continue; ?>
+                  <li class="lang-wrapper">
+                    <a data="<?php echo $lang; ?>">
+                      <?php echo $lang_name; ?>
+                    </a>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+              <input type="hidden" value="" name="language" id="hidden-lang">
+            </form>
+          <?php endif; ?>
+        <?php endif; ?>
+        
+        <?php // User submenu ?>
+        <?php if ($item->name == 'custom_203') : ?>
+        <form>
+          <ul class="inner-menu-mini" id="user-submenu">
+            
+            <?php // My Profile ?>
+            <?php if ($this->viewer()->getIdentity()) : ?>
+              <li class="my-profile">
+                <?php echo $this->htmlLink(array(
+                  'route' => 'user_profile',
+                  'id' => $this->viewer->username,
+                  ), $this->translate('My Happetite')); ?>
+              </li>
+            <?php endif; ?>
+            
+            <?php // Attend a Class ?>
+            <li class="attend-a-class">
+              <?php echo $this->htmlLink(array(
+                      'route' => 'event_steps',
+                      'action' => 'guest'
+                    ), $this->translate('Attend a Class'));
+              ?>
+            </li>
+            
+            <?php // Be a Host ?>
+            <li class="host-a-class">
+              <?php echo $this->htmlLink(array(
+                      'route' => 'event_steps',
+                      'action' => 'host'
+                    ), $this->translate('Host a Class'));
+              ?>
+            </li>
+            
+            <?php // Settings ?>
+            <?php if ($this->viewer()->getIdentity()) : ?>
+              <li class="member-settings">
+                <?php echo $this->htmlLink(array(
+                  'route' => 'user_extended',
+                  'controller' => 'settings',
+                  'action' => 'general'
+                  ), $this->translate('My Settings')); ?>
+              </li>
+            <?php endif; ?>
+            
+            <?php // Support ?>
+            <li class="support">
+              <?php echo $this->htmlLink('/help/contact', $this->translate('Support')); ?>
+            </li>
+            
+            <?php // LogOut ?>
+            <li class="core_mini_auth">
+              <?php echo $this->htmlLink('/logout', $this->translate('Sign Out')); ?>
+            </li>
+            
+          </ul>
+        </form>
+        <?php endif; ?>
+        
+      </li>
     <?php endforeach; ?>
     <?php if($this->search_check):?>
       <li id="global_search_form_container">

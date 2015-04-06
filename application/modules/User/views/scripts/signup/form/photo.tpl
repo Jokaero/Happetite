@@ -11,4 +11,7 @@
  */
 ?>
 
-<?php echo $this->form->render($this); ?>
+<div class="form-outer-title"><?php echo $this->translate('Add Your Photo'); ?></div>
+<div class="form-outer-description"><?php echo nl2br($this->translate('FORM_ADD_PHOTO_DESCRIPTION')); ?></div>
+<?php echo $this->form->render($this) ?>
+<div class="form-outer-notice"><?php echo $this->translate('Fields marked with an asterisk %s are mandatory', '<span>*</span>'); ?></div>

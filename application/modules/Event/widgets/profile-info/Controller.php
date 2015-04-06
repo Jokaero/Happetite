@@ -36,6 +36,18 @@ class Event_Widget_ProfileInfoController extends Engine_Content_Widget_Abstract
     
     $sitePercent = Engine_Api::_()->getApi('settings', 'core')
       ->getSetting('event_percent', 10);
-    $this->view->price = $subject->price * (1 + $sitePercent / 100);
+    $this->view->price = ceil($subject->price * (1 + $sitePercent / 100));
+    
+    // left places
+    $membershipTable = Engine_Api::_()->getDbTable('membership', 'event');
+    
+    $select = $membershipTable->select()
+      ->from($membershipTable->info('name'), 'COUNT(user_id) as count')
+      ->where('resource_id = ?', $subject->getIdentity())
+      ->where('rsvp IN (?)', array(1, 2, 3)) // accepted, accepted_after_remind, paid statuses
+      ;
+    
+    $bookedPlaces = $membershipTable->fetchRow($select);
+    $this->view->bookedPlacesCount = $bookedPlacesCount = $bookedPlaces->count;
   }
 }

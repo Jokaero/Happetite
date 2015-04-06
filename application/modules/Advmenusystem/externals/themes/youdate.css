@@ -1,0 +1,66 @@
+/* Adv.Menu Mini */
+li.ynadvmenu_notification 
+{
+    margin-top: 5px !important;
+	background: none transparent!important;
+}
+li.ynadvmenu_MyProfile 
+{
+    background-position: left 2px !important;
+}
+li.ynadvmenu_MyProfile.ynadvmenu_downservices
+{
+	background-position: left 6px !important;
+}
+li.ynadvmenu_downservices 
+{
+    margin-top: 3px !important;
+}
+#core_menu_mini_menu_nosignin li.ynadvmenu_downservices
+{
+	margin-top: -7px !important;
+	margin-right: 6px;
+}
+
+/* Adv.Menu Main */
+li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper
+{
+    background-color: #FFFFFF; 
+	border: 0;	
+	border-top: 6px solid #F100FF;
+	border-radius: 0;
+	margin-left: -4px!important;
+}
+li.ynadvmenu_downservicesMain.active
+{
+	margin-top: -7px;
+	margin-right: 8px;
+	padding: 0 0 0 5px!important;
+    background: none transparent;
+}
+li.ynadvmenu_downservicesMain.active:hover
+{
+	background: url(../../../../themes/youdate/images/more_active.png) no-repeat left 2px transparent;
+}
+li.ynadvmenu_downservicesMain.active > a
+{
+    padding-bottom: 7px;
+    padding-top: 12px;	
+}
+li.ynadvmenu_downservicesMain.active:hover > a:link, li.ynadvmenu_downservicesMain.active:hover > a:visited,
+li.ynadvmenu_downservicesMain.active > a:link, li.ynadvmenu_downservicesMain.active > a:visited
+{
+	color: #FFF!important;
+}
+li.ynadvmenu_downservicesMain.active > a:link, li.ynadvmenu_downservicesMain.active > a:visited
+{
+	background: url(../../../../themes/youdate/images/more.png) no-repeat right 15px transparent;
+}
+li.ynadvmenu_downservicesMain.active:hover > a
+{
+	background: url(../../../../themes/youdate/images/more_2.png) no-repeat right 3px transparent !important;
+}
+li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper > li a
+{
+	font-size: $theme_topbar_minimenu_link_size;
+}

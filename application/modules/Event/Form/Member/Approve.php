@@ -18,6 +18,21 @@
  */
 class Event_Form_Member_Approve extends Engine_Form
 {
+  /**
+   * isUsersMoreThanMax
+   */ 
+  protected $_params = array();
+  
+  public function setParams($params)
+  {
+    $this->_params = $params;
+  }
+  
+  public function getParams()
+  {
+    return $this->_params;
+  }
+  
   public function init()
   {
     $this
@@ -26,14 +41,14 @@ class Event_Form_Member_Approve extends Engine_Form
       ->setMethod('POST')
       ->setAction($_SERVER['REQUEST_URI'])
       ;
-
+    
     //$this->addElement('Hash', 'token');
 
     $this->addElement('Button', 'submit', array(
       'label' => 'Approve Request',
-      'ignore' => true,
+      'ignore' => false,
       'decorators' => array('ViewHelper'),
-      'type' => 'submit'
+      'type' => 'submit',
     ));
 
     $this->addElement('Cancel', 'cancel', array(
@@ -51,5 +66,33 @@ class Event_Form_Member_Approve extends Engine_Form
       'submit',
       'cancel'
     ), 'buttons');
+    
+    $params = $this->getParams();
+    
+    // if accepted guests more than allowed in class
+    if ($params['isUsersMoreThanMax']) {
+      
+      // description
+      $this->setDescription('You’re about to accept more guests than your maximum class size indicates');
+      
+      // submit button
+      $this->submit->setLabel('Accept anyway');
+      
+      // reject button
+      $this->addElement('Button', 'reject', array(
+        'label' => 'Reject guest',
+        'ignore' => false,
+        'decorators' => array('ViewHelper'),
+        'type' => 'submit',
+      ));
+      
+      $this->addDisplayGroup(array(
+        'submit',
+        'reject',
+        'cancel',
+      ), 'buttons');
+      
+    }
+    
   }
 }

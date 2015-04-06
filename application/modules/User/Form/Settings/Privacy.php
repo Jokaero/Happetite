@@ -42,8 +42,7 @@ class User_Form_Settings_Privacy extends Engine_Form
     $user = $this->getItem();
 
 
-    $this->setTitle('Privacy Settings')
-      ->setAction(Zend_Controller_Front::getInstance()->getRouter()->assemble(array()))
+    $this->setAction(Zend_Controller_Front::getInstance()->getRouter()->assemble(array()))
       ;
 
     // Init blocklist

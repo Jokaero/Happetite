@@ -44,7 +44,7 @@ class Event_IndexController extends Core_Controller_Action_Standard
     $this->view->filter = $filter;
 
     // Create form
-    $this->view->formFilter = $formFilter = new Event_Form_Filter_Browse();
+    $this->view->formFilter = $formFilter = new Event_Form_Filter_Custom();
     $defaultValues = $formFilter->getValues();
 
     if( !$viewer || !$viewer->getIdentity() ) {
@@ -58,15 +58,33 @@ class Event_IndexController extends Core_Controller_Action_Standard
     if (count($formFilter->category_id->getMultiOptions()) <= 1) {
       $formFilter->removeElement('category_id');
     }
-
+    
+    // fix for custom filter
+    $allParams = $this->_getAllParams();
+    
+    if (is_array($allParams['date']) and !empty($allParams['date']['date'])) {
+      $allParams['date']['hour'] = '12';
+      $allParams['date']['minute'] = '0';
+      $allParams['date']['ampm'] = 'AM';
+    }
+    
     // Populate form data
-    if( $formFilter->isValid($this->_getAllParams()) ) {
+    if( $formFilter->isValid($allParams) ) {
       $this->view->formValues = $values = $formFilter->getValues();
     } else {
       $formFilter->populate($defaultValues);
       $this->view->formValues = $values = array();
     }
-
+    
+    // Convert times
+    if ($viewer and $viewer->getIdentity()) {
+      $oldTz = date_default_timezone_get();
+      date_default_timezone_set($viewer->timezone);
+      $date = strtotime($values['date']);
+      $values['date'] = date('Y-m-d H:i:s', $date);
+      date_default_timezone_set($oldTz);
+    }
+    
     // Prepare data
     $this->view->formValues = $values = $formFilter->getValues();
 
@@ -78,6 +96,7 @@ class Event_IndexController extends Core_Controller_Action_Standard
     }
 
     $values['search'] = 1;
+    $values['city'] = $allParams['city'];
 
     if( $filter == "past" ) {
       $values['past'] = 1;
@@ -89,13 +108,19 @@ class Event_IndexController extends Core_Controller_Action_Standard
     if( ($user_id = $this->_getParam('user')) ) {
       $values['user_id'] = $user_id;
     }
-    
+
     
     // Get paginator
     $this->view->paginator = $paginator = Engine_Api::_()->getItemTable('event')
             ->getEventPaginator($values);
     $paginator->setCurrentPageNumber($this->_getParam('page'));
-
+    $paginator->setItemCountPerPage(12);
+    
+    // get allowed events for attend button
+    //$this->view->allowedEventsIds = $allowedEventsIds = Engine_Api::_()->event()->getEventAllowedIds($viewer);
+    
+    // paginationControl
+    $this->view->paginationQuery = $values;
     
     // Render
     $this->_helper->content
@@ -106,6 +131,7 @@ class Event_IndexController extends Core_Controller_Action_Standard
 
   public function manageAction()
   {
+    
     // Create form
     if( !$this->_helper->requireAuth()->setAuthParams('event', null, 'edit')->isValid() ) return;
 
@@ -119,15 +145,37 @@ class Event_IndexController extends Core_Controller_Action_Standard
         ->setEnabled()
         ;
 
-    $this->view->formFilter = $formFilter = new Event_Form_Filter_Manage();
+    $this->view->formFilter = $formFilter = new Event_Form_Filter_Custom();
     $defaultValues = $formFilter->getValues();
+    
+    // fix for custom filter
+    $allParams = $this->_getAllParams();
+    
+    if (is_array($allParams['date']) and !empty($allParams['date']['date'])) {
+      $allParams['date']['hour'] = '1';
+      $allParams['date']['minute'] = '0';
+      $allParams['date']['ampm'] = 'AM';
+    }
+    
+    //echo '<pre>'; print_r($allParams); echo '</pre>'; exit;
+    $values['city'] = $allParams['city'];
 
     // Populate form data
-    if( $formFilter->isValid($this->_getAllParams()) ) {
+    if( $formFilter->isValid($allParams) ) {
+      
       $this->view->formValues = $values = $formFilter->getValues();
     } else {
       $formFilter->populate($defaultValues);
       $this->view->formValues = $values = array();
+    }
+    
+    // Convert times
+    if ($viewer and $viewer->getIdentity()) {
+      $oldTz = date_default_timezone_get();
+      date_default_timezone_set($viewer->timezone);
+      $date = strtotime($values['date']);
+      $values['date'] = date('Y-m-d H:i:s', $date);
+      date_default_timezone_set($oldTz);
     }
 
     $viewer = Engine_Api::_()->user()->getViewer();
@@ -151,15 +199,24 @@ class Event_IndexController extends Core_Controller_Action_Standard
     if( !empty($values['text']) ) {
       $select->where("`{$tableName}`.title LIKE ?", '%'.$values['text'].'%');
     }
+    if( !empty($values['city']) ) {
+      $select->where("`{$tableName}`.city LIKE ?", '%'.$values['city'].'%');
+    }
+    if (isset($values['date']) and !empty($values['date'])) {
+      $select->where("`{$tableName}`.starttime > ?", (string) $values['date']);
+    }
 
-    $select->order('starttime ASC');
+    $select->order('creation_date DESC');
     //$select->where("endtime > FROM_UNIXTIME(?)", time());
-
+//echo '<pre>'; print_r((string) $select); echo '</pre>'; exit;
     $this->view->paginator = $paginator = Zend_Paginator::factory($select);
     $this->view->text = $values['text'];
     $this->view->view = $values['view'];
-    $paginator->setItemCountPerPage(20);
+    $paginator->setItemCountPerPage(12);
     $paginator->setCurrentPageNumber($this->_getParam('page'));
+    
+    // paginationControl
+    $this->view->paginationQuery = $values;
 
     // Check create
     $this->view->canCreate = Engine_Api::_()->authorization()->isAllowed('event', null, 'create');
@@ -229,7 +286,7 @@ class Event_IndexController extends Core_Controller_Action_Standard
     $values['user_id'] = $viewer->getIdentity();
     $values['parent_type'] = $parent_type;
     $values['parent_id'] =  $parent_id;
-    
+    $values['currency'] =  'CHF';
     $values['search'] = 1;
     $values['approval'] = 0;
     $values['auth_invite'] = 1;
@@ -247,9 +304,38 @@ class Event_IndexController extends Core_Controller_Action_Standard
     $start = strtotime($values['starttime']);
     $end = strtotime($values['endtime']);
     date_default_timezone_set($oldTz);
+    
+    if ($start < time()) {
+      $form->getElement('starttime')->setErrors(array('Incorrectly entered date.'));
+      return;
+    }
+    
     $values['starttime'] = date('Y-m-d H:i:s', $start);
     $values['endtime'] = date('Y-m-d H:i:s', $end);
+    $values['photo_obj'] = $form->photo->getFileInfo();
+    $_SESSION['event_values'] = $values;
+   
+    return $this->_helper->redirector->gotoRoute(array('action' => 'bank'), 'event_general', true);
+    
+  }
+  
+  public function bankAction()
+  {
+    $viewer = Engine_Api::_()->user()->getViewer();
+    
+    $form = $this->view->form = new Event_Form_Bank();
+    $values = $_SESSION['event_values'];
+   
+    if( !$this->getRequest()->isPost() ) {
+      return;
+    }
 
+    if( !$form->isValid($this->getRequest()->getPost()) ) {
+      return;
+    }
+    $bankValue = $form->getValues();
+    $values = array_merge($bankValue, $values);
+ 
     $db = Engine_Api::_()->getDbtable('events', 'event')->getAdapter();
     $db->beginTransaction();
     
@@ -274,10 +360,9 @@ class Event_IndexController extends Core_Controller_Action_Standard
         ->getMemberInfo($viewer)
         ->setFromArray(array('rsvp' => 10, 'datetime' => $datetime, 'rsvp_update' => $datetime))
         ->save();
-      
       // Add photo
-      if( !empty($values['photo']) ) {
-        $event->setPhoto($form->photo);
+      if( !empty($values['photo_obj']) ) {
+        $event->setPhoto($values['photo_obj']['photo']);
       }    
 
       // Set auth
@@ -324,7 +409,7 @@ class Event_IndexController extends Core_Controller_Action_Standard
       $db->commit();
 
       // Redirect
-      return $this->_helper->redirector->gotoRoute(array('id' => $event->getIdentity()), 'event_profile', true);
+      return $this->_helper->redirector->gotoRoute(array('event_id' => $event->getIdentity(), 'action' => 'host-share'), 'event_steps', true);
     }
 
     catch( Engine_Image_Exception $e )
@@ -338,7 +423,8 @@ class Event_IndexController extends Core_Controller_Action_Standard
       $db->rollBack();
       throw $e;
     }
-
+    
+    
   }
 
   public function uploadPhotoAction()

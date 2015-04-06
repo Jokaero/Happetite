@@ -1,0 +1,34 @@
+/* Adv.Menu Notification */
+li.ynadvmenu_notification
+{
+    padding-bottom: 11px;
+    padding-top: 9px;
+	padding-right: 5px;
+}
+
+/* Adv.Menu Mini */
+.ynadvmenu_MyProfile > span > a.new_updates
+{
+	padding-bottom: 6px!important;
+}
+li.ynadvmenu_MyProfile a div img
+{
+	margin-top: -5px;
+	*margin-top: 5px;
+}
+li.ynadvmenu_downservices
+{
+    padding-left: 2px;
+}
+li.ynadvmenu_downservices .pulldown_contents_wrapper
+{
+	*margin-top: 32px;
+	*margin-left: 2px;
+}
+
+/* Adv.Menu Main */
+li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper
+{
+    border: 0 none;
+    margin-left: 0 !important;
+}

@@ -15,7 +15,10 @@
   <?php if ($this->form->saveSuccessful): ?>
     <h3><?php echo $this->translate('Settings were successfully saved.');?></h3>
   <?php endif; ?>
+  <div class="form-outer-title"><?php echo $this->translate('GENERAL SETTINGS'); ?></div>
+  <div class="form-outer-description"><?php echo nl2br($this->translate('FORM_USER_GENERAL_SETTINGS_DESCRIPTION')); ?></div>
   <?php echo $this->form->render($this) ?>
+  <div class="form-outer-notice"><?php echo $this->translate('Fields marked with an asterisk %s are mandatory', '<span>*</span>'); ?></div>
 </div>
 
 <?php if( Zend_Controller_Front::getInstance()->getRequest()->getParam('format') == 'html' ): ?>

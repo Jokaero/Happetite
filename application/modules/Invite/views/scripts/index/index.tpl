@@ -11,9 +11,12 @@
  */
 ?>
 
-<div id="invite_form">
-  
-  <?php echo $this->form->render($this) ?>
+<div class="form-outer-title"><?php echo $this->translate('Invite Your Friends'); ?></div>
+<div class="form-outer-description"><?php echo nl2br($this->translate('_INVITE_FORM_DESCRIPTION')); ?></div>
 
+<div id="invite_form">
+  <?php echo $this->form->render($this) ?>
 </div>
+
+<div class="form-outer-notice"><?php echo $this->translate('Fields marked with an asterisk %s are mandatory', '<span>*</span>'); ?></div>
 

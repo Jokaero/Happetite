@@ -65,6 +65,10 @@ return array(
       'event' => 'addActivity',
       'resource' => 'Event_Plugin_Core',
     ),
+    array(
+      'event' => 'onRenderLayoutDefault',
+      'resource' => 'Event_Plugin_Core',
+    ),
   ),
   // Items ---------------------------------------------------------------------
   'items' => array(
@@ -75,6 +79,7 @@ return array(
     'event_post',
     'event_topic',
     'event_transaction',
+    'event_slide',
   ),
   // Routes --------------------------------------------------------------------
   'routes' => array(
@@ -98,7 +103,7 @@ return array(
         'action' => 'browse',
       ),
       'reqs' => array(
-        'action' => '(index|browse|create|delete|list|manage|edit|job)',
+        'action' => '(index|browse|create|delete|list|manage|edit|job|bank)',
       )
     ),
     'event_payment' => array(
@@ -121,7 +126,7 @@ return array(
         'action' => 'index',
       ),
       'reqs' => array(
-        'action' => '(edit|delete|join|leave|invite|accept|style|reject|cancel|members-full|finish)',
+        'action' => '(edit|edit-bank|delete|join|leave|invite|accept|style|reject|cancel|members-full|finish)',
         'event_id' => '\d+',
       )
     ),
@@ -164,6 +169,18 @@ return array(
       'reqs' => array(
         'controller' => '\D+',
         'action' => '\D+',
+      )
+    ),
+    'event_steps' => array(
+      'route' => 'classes/step/:action/*',
+      'defaults' => array(
+        'module' => 'event',
+        'controller' => 'classes-steps',
+        'action' => 'index',
+      ),
+      'reqs' => array(
+        'action' => '(index|guest|host|guest-share|host-share)',
+        //'event_id' => '\d+',
       )
     ),
   )

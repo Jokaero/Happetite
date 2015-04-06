@@ -25,10 +25,18 @@ class Fields_View_Helper_FieldBirthdate extends Fields_View_Helper_FieldAbstract
       return false;
     }
     
-    $label = $this->view->locale()->toDate($value->value, array(
-      'size' => 'long',
-      'timezone' => false,
-    ));
+    $label = null;
+    
+    try {
+      $label = date_diff(date_create($value->value), date_create('today'))->y;
+    } catch (Exception $e) {
+      $label = $this->view->locale()->toDate($value->value, array(
+        'size' => 'long',
+        'timezone' => false,
+      ));
+    }
+    
+    
     //$str = $this->view->date($value->value);
     $parts = @explode('-', $value->value);
 

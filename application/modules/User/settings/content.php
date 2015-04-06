@@ -73,6 +73,20 @@ return array(
     ),
   ),
   array(
+    'title' => 'Recent Signups Slider',
+    'description' => 'Displays the list of most recent signups in slider.',
+    'category' => 'User',
+    'type' => 'widget',
+    'name' => 'user.list-signups-slider',
+    'isPaginated' => true,
+    'defaultParams' => array(
+      'title' => 'Recent Signups Slider',
+    ),
+    'requirements' => array(
+      'no-subject',
+    ),
+  ),
+  array(
     'title' => 'Login or Signup',
     'description' => 'Displays a login form and a signup link for members that are not logged in.',
     'category' => 'User',

@@ -1,0 +1,9 @@
+/* Adv.Menu Main */
+ul.ynadvmenu_pulldownMainWrapper
+{
+	margin-top: 0px;
+}
+li.ynadvmenu_MyProfile a div img
+{
+	margin-top: -1px;
+}

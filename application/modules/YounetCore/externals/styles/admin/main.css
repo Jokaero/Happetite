@@ -1,0 +1,33 @@
+@include "constants.css";
+@scan "application/modules" "externals/styles/admin/main.css" "Core";
+.clear{clear:both;}
+.news_li
+{
+	padding-bottom: 15px;
+}
+div.news_title
+{
+    min-height:20px;
+    background-color:#E9F4FA; 
+    padding: 5px 10px;
+    border-bottom: 1px solid #aaa;
+}
+.news_title a
+{
+    font-weight: bold;
+    text-transform:uppercase;
+    font-size: 8pt;
+}
+.news_content
+{
+    text-align: justify;
+    
+}
+.news_content .view_more p
+{
+    display:none;
+}
+.news_title span
+{
+  float:right;    
+}

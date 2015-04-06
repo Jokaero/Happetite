@@ -123,4 +123,21 @@ class Event_Plugin_Core
       }
     }
   }
+  
+  public function onRenderLayoutDefault($event)
+  {
+    // @deprecated
+    //$view = $event->getPayload();
+    //
+    //if (!($view instanceof Zend_View)) {
+    //  return;
+    //}
+    //
+    //$headScript = new Zend_View_Helper_HeadScript();
+    //
+    //// sign in/sign up in smoothbox
+    //$headScript->appendFile('application/modules/Event/externals/scripts/auth.js');
+    
+  }
+  
 }

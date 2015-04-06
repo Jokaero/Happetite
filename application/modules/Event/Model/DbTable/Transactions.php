@@ -69,7 +69,7 @@ class Event_Model_DbTable_Transactions extends Engine_Db_Table
       ->getSetting('event_percent', 10);
     
     // Calculate full price
-    $fullPrice = $event->price * (1 + $sitePercent / 100);
+    $fullPrice = ceil($event->price * (1 + $sitePercent / 100));
     $priceServiceFee = $fullPrice - $event->price;
     
     $userStatus = Zend_Registry::get('Zend_Translate')->_('Guest');
@@ -294,18 +294,18 @@ class Event_Model_DbTable_Transactions extends Engine_Db_Table
       ->where('event_id = ?', $event->getIdentity());
     
     if (!$event->isOwner($user)) {
-      return number_format(@$this->fetchRow($select)->payment, 2)
+      return ceil(@$this->fetchRow($select)->payment)
         . ' ' . @$this->fetchRow($select)->currency;
     } else {
-      $payment = round(@$this->fetchRow($select)->payment, 2);
+      $payment = ceil(@$this->fetchRow($select)->payment);
       
       $select = $this->select()
         ->from($this, array('payment' => "(SUM(price) * 100) / $sitePercent", 'currency'))
         ->where('user_id <> ?', $user->getIdentity())
         ->where('event_id = ?', $event->getIdentity());
-      $membersPayment = round(@$this->fetchRow($select)->payment, 2);
+      $membersPayment = ceil(@$this->fetchRow($select)->payment);
       
-      $payment = number_format(abs($payment) - $membersPayment, 2);
+      $payment = ceil(abs($payment) - $membersPayment);
       
       if (isset($params['currency']) and $params['currency'] == false) {
         return $payment;

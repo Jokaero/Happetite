@@ -1,0 +1,33 @@
+/* Adv.Menu Mini */
+div.layout_page_header
+{
+	overflow: visible;
+}
+li.ynadvmenu_notification
+{
+	padding-top: 7px;
+}
+li.ynadvmenu_MyProfile a div img
+{
+	*margin-top: 5px;
+}
+li.ynadvmenu_downservices .pulldown_contents_wrapper
+{
+	*margin-top: 25px;
+}
+li.ynadvmenu_downservices .updates_pulldown_active > a.new_updates
+{
+  border-top: 2px solid #f96262;
+  color: #f96262;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 #fff;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+/* Adv.Menu Main */
+li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper
+{
+    border: 0 none;
+    margin-left: 0 !important;	
+}

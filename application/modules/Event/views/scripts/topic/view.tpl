@@ -89,13 +89,11 @@
 </div>
 <?php $this->placeholder('eventtopicnavi')->captureEnd(); ?>
 
-
-
 <?php echo $this->placeholder('eventtopicnavi') ?>
-<?php echo $this->paginationControl(null, null, null, array(
+<?php /*echo $this->paginationControl(null, null, null, array(
   'params' => array(
     'post_id' => null // Remove post id
-  )
+  )*/
 )) ?>
 
 

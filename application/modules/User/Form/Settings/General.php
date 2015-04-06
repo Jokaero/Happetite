@@ -38,8 +38,7 @@ class User_Form_Settings_General extends Engine_Form
   {
     // @todo fix form CSS/decorators
     // @todo replace fake values with real values
-    $this->setTitle('General Settings')
-      ->setAction(Zend_Controller_Front::getInstance()->getRouter()->assemble(array()))
+    $this->setAction(Zend_Controller_Front::getInstance()->getRouter()->assemble(array()))
       ;
 
     // Init email

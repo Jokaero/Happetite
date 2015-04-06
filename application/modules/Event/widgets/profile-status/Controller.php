@@ -33,5 +33,46 @@ class Event_Widget_ProfileStatusController extends Engine_Content_Widget_Abstrac
     //}
 
     $this->view->event = $subject;
+    
+    // Colored title if more than 1 word(50% black/50% orange words)
+    $eventTitle = $subject->getTitle();
+    
+    $eventTitleArray = explode(' ', $eventTitle);
+    $count = count($eventTitleArray);
+    
+    if ($count > 1) {
+      $middleIndex = ceil($count / 2);
+      $styledTitle = '';
+      
+      // concatinate title back
+      for ($i = 0; $i < $count; $i++) {
+        
+        // get first wrap 
+        if ($i == 0) {
+          $styledTitle .= '<span class="first_part">';
+        }
+        
+        // add word
+        $styledTitle .= $eventTitleArray[$i];
+        
+        // get some space between words
+        if ($i != $count - 1) {
+          $styledTitle .= ' ';
+        }
+        
+        // get first wrap end and get last wrap 
+        if ($i == $middleIndex - 1) {
+          $styledTitle .= '</span>';
+          $styledTitle .= '<span class="last_part">';
+        }
+        
+        // get last wrap end
+        if ($i == $count - 1) {
+          $styledTitle .= '</span>';
+        }
+      }
+    }
+    
+    $this->view->eventTitle = (!empty($styledTitle)) ? $styledTitle : $eventTitle;
   }
 }

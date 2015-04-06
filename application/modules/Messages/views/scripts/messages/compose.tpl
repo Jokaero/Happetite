@@ -205,5 +205,8 @@
   <?php echo $this->partial($partial[0], $partial[1]) ?>
 <?php endforeach; ?>
 
+<div class="form-outer-title"><?php echo $this->translate('Compose Message'); ?></div>
+<div class="form-outer-description"><?php echo nl2br($this->translate('Create your new message with the form below. Your message can be addressed to up to 10 recipients.')); ?></div>
 <?php echo $this->form->render($this) ?>
+<div class="form-outer-notice"><?php echo $this->translate('Fields marked with an asterisk %s are mandatory', '<span>*</span>'); ?></div>
 

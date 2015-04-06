@@ -19,4 +19,7 @@
   ));
 ?>
 
+<div class="form-outer-title"><?php echo $this->translate('Profile Information'); ?></div>
+<div class="form-outer-description"><?php echo nl2br($this->translate('FORM_PROFILE_INFORMATION_DESCRIPTION')); ?></div>
 <?php echo $this->form->render($this) ?>
+<div class="form-outer-notice"><?php echo $this->translate('Fields marked with an asterisk %s are mandatory', '<span>*</span>'); ?></div>

@@ -1,0 +1,86 @@
+/* Adv.Menu Notification */
+ul.top_search > li.friend_request, .viewmore_setting li a.core_mini_messages
+{
+	display: none;
+}
+li.ynadvmenu_notification div.ynadvmenu_mini_wrapper a.ynadvmenu_NotifiIcon
+{
+	background-image: url(images/notification_inbox_updates.png);
+}
+#core_menu_mini_menu ul.top_search li.ynadvmenu_notification
+{
+    margin-top: 5px;
+    padding-left: 0;
+}
+
+/* Adv.Menu Mini */
+.ynadvmenu_downservices .pulldown_contents_wrapper
+{
+	margin-top: 20px;
+}
+@media all and (min-width:0) 
+{
+	.ynadvmenu_downservices .pulldown_contents_wrapper
+	{
+		margin-top: 18px;
+	}  /* IE9 */
+}
+.ynadvmenu_downservices > span > a
+{
+	padding-bottom: 9px;
+}
+li.ynadvmenu_downservices span.updates_pulldown_active ul li a
+{
+	font-weight: normal;
+}
+.fixie .menu_mini_signout
+{
+	margin-top: 12px;
+}
+
+/* Adv.Menu Main */
+.ynadvmenu_downservicesMain
+{
+	background-color: transparent!important;
+}
+li.ynadvmenu_downservicesMain:hover
+{
+	background-color: #FFF!important;
+}
+.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper
+{
+	background-color: #FFFFFF;
+    margin-left: -6px !important;
+	*margin-left: -1px !important;
+    margin-top: 9px!important;
+	*margin-top: 29px!important;
+	border-left: 1px solid #E5E5E5;
+	border-right: 1px solid #E5E5E5;
+	border-bottom: 1px solid #E5E5E5;
+	border-radius: 0;
+}
+li.ynadvmenu_downservicesMain.active > a:link, 
+li.ynadvmenu_downservicesMain.active > a:visited,
+li.ynadvmenu_downservicesMain.active:hover > a:link, 
+li.ynadvmenu_downservicesMain.active:hover > a:visited
+{
+	background-image: url(../../../../themes/youface/images/dropdown_mainmenu.png)!important;	
+}
+li.ynadvmenu_downservicesMain.active > a:link, li.ynadvmenu_downservicesMain.active > a:visited, li.ynadvmenu_downservicesMain.active:hover > a
+{
+	background-position: right 9px!important;
+}
+li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper > li + li
+{
+	border-top: 1px solid #CCCCCC !important;
+}
+li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper > li a
+{
+    line-height: 20px;
+    padding: 5px 10px !important;	
+}
+#layout_core_menu_main ul.ynadvmenu_pulldownMainWrapper > li a:hover
+{
+	background: none #17375e;
+	color: #FFF;
+}

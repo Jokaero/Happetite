@@ -22,8 +22,7 @@ class User_Form_Settings_Password extends Engine_Form
   {
     // @todo fix form CSS/decorators
     // @todo replace fake values with real values
-    $this->setTitle('Change Password')
-      ->setAction(Zend_Controller_Front::getInstance()->getRouter()->assemble(array()))
+    $this->setAction(Zend_Controller_Front::getInstance()->getRouter()->assemble(array()))
       ;
 
     // Init old password

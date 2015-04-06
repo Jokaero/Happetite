@@ -1,0 +1,16 @@
+/* Adv.Menu Notification */
+li.ynadvmenu_notification
+{
+	padding-top: 9px;
+}
+
+/* Adv.Menu Mini */
+li.ynadvmenu_MyProfile a div img
+{
+	margin-top: -14px;
+	*margin-top: -8px;
+}
+li.ynadvmenu_MyProfile .pulldown_contents_wrapper
+{
+	margin-top: 32px!important;
+}

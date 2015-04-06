@@ -665,6 +665,13 @@ var Calendar = new Class({
 						else if (j % 10 == 3 && j != '13') { str += d_rd; }
 						else { str += d_th; }
 						break;
+					
+					case '[': // open tags
+						str += '<span class="calendar_output_frt">';
+						break;
+					case ']': // close tags
+						str += '</span>';
+						break;
 	
 					default:
 						str += cha;
@@ -1110,7 +1117,8 @@ var Calendar = new Class({
 		this.rebuild(cal);	 // in the case of options, we'll need to make sure we have the correct number of days available
 		
 		cal.els.each(function(el) {	// then we can set the value to the field
-			el.value = this.format(cal.val, el.format); 		
+			el.value = this.format(cal.val, el.format);
+			el.format = 'm/d[Y]';
 			$('calendar_output_span_' + el.id) .innerHTML = this.format(cal.val, el.format);
 		}, this);
 	}

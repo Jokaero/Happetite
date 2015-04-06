@@ -80,12 +80,12 @@ class Event_TopicController extends Core_Controller_Action_Standard
   public function viewAction()
   {
     if( !$this->_helper->requireSubject('event_topic')->isValid() ) return;
-    //if( !$this->_helper->requireAuth()->setAuthParams()->isValid() ) return;
-
+    if( !$this->_helper->requireAuth()->setAuthParams()->isValid() ) return;
+    if( !$this->_helper->requireAuth()->setAuthParams('event', null, 'comment')->isValid() ) return;
     $this->view->viewer = $viewer = Engine_Api::_()->user()->getViewer();
     $this->view->topic = $topic = Engine_Api::_()->core()->getSubject();
     $this->view->event = $event = $topic->getParentEvent();
-
+    
     $this->view->canEdit = $canEdit = $event->authorization()->isAllowed($viewer, 'edit');
     $this->view->canPost = $canPost = $event->authorization()->isAllowed($viewer, 'comment');
     $this->view->canAdminEdit = Engine_Api::_()->authorization()->isAllowed($event, null, 'edit');
@@ -156,11 +156,11 @@ class Event_TopicController extends Core_Controller_Action_Standard
   {
     if( !$this->_helper->requireUser()->isValid() ) return;
     if( !$this->_helper->requireSubject('event')->isValid() ) return;
-    if( !$this->_helper->requireAuth()->setAuthParams(null, null, 'comment')->isValid() ) return;
+   
 
     $this->view->event = $event = Engine_Api::_()->core()->getSubject();
     $this->view->viewer = $viewer = Engine_Api::_()->user()->getViewer();
-
+    
     // Make form
     $this->view->form = $form = new Event_Form_Topic_Create();
 

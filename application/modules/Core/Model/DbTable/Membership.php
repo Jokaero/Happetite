@@ -140,13 +140,30 @@ abstract class Core_Model_DbTable_Membership extends Engine_Db_Table
   {
     $this->_isSupportedType($resource);
     $row = $this->getRow($resource, $user);
+    $id = $resource->getIdentity().'_'.$user->getIdentity();
 
-    if( null !== $row )
-    {
+    if( null !== $row ) {
+      
+      // check refunded, timed out, rejected, canceled, not paid statuses
+      if ($row->rsvp == 5
+          or $row->rsvp == 6
+          or $row->rsvp == 7
+          or $row->rsvp == 8
+          or $row->rsvp == 11) {
+        $row->rsvp = 0;
+        $row->resource_approved = !$this->isResourceApprovalRequired($resource);
+        $row->user_approved = 0;
+        $row->save();
+        
+        $this->_rows[$id] = $row;
+        $this->_checkActive($resource, $user);
+    
+        return $this;
+      }
+      
       throw new Core_Model_Exception('That user is already a member');
     }
 
-    $id = $resource->getIdentity().'_'.$user->getIdentity();
     $row = $this->getTable()->createRow();
     $row->setFromArray(array(
       'resource_id' => $resource->getIdentity(),

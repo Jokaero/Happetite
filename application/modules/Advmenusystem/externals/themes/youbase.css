@@ -1,0 +1,71 @@
+/* Adv.Menu Mini */
+li.ynadvmenu_notification 
+{
+	padding-top: 5px!important;
+}
+li.ynadvmenu_downservices
+{
+	padding: 7px 0!important;
+}
+.ynadvmenu_MyProfile > span > a.new_updates
+{
+	padding-bottom: 3px!important;
+}
+li.ynadvmenu_MyProfile a div img
+{
+	margin-top: -2px;
+	*margin-top: -2px;
+}
+.ynadvmenu_downservices
+{
+	margin-right: 5px;
+}
+
+/* Adv.Menu Main */
+li.ynadvmenu_downservicesMain
+{
+	border-radius: 5px 5px 0 0;
+}
+li.ynadvmenu_downservicesMain > a
+{
+	padding: 0 10px;
+}
+li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper {
+    border: 0 none;
+    margin-left: 0 !important;
+    padding: 0 9px !important;
+	z-index: 10;
+}
+li.ynadvmenu_downservicesMain.active ul.ynadvmenu_pulldownMainWrapper > li + li 
+{
+    border-top: 1px solid #1A4DA2 !important;
+}
+li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper > li a:link, li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper > li a:visited
+{
+	color: #FFF;
+	font-size: 12px;
+	line-height: 18px;
+}
+li.ynadvmenu_downservicesMain ul.ynadvmenu_pulldownMainWrapper > li a:hover
+{
+	color: #FF0000;
+}
+li.ynadvmenu_downservicesMain.active 
+{
+    background: none transparent;
+	padding-right: 3px;
+}
+li.ynadvmenu_downservicesMain.active > a:link, li.ynadvmenu_downservicesMain.active > a:visited, li.ynadvmenu_downservicesMain.active > a:hover
+{
+	background-position: 110% 90%!important;
+	background-color: transparent;
+	background-repeat: no-repeat;
+}
+li.ynadvmenu_downservicesMain.active > a:link, li.ynadvmenu_downservicesMain.active > a:visited
+{
+    background-image: url(../../../../themes/youbase/images/more_22.gif);
+}
+li.ynadvmenu_downservicesMain.active:hover > a
+{
+	background-image: url(../../../../themes/youbase/images/more_2.gif)!important;
+}

@@ -22,7 +22,6 @@ class Event_Widget_ProfileMembersController extends Engine_Content_Widget_Abstra
   
   public function indexAction()
   {
-
     // Don't render this if not authorized
     $viewer = Engine_Api::_()->user()->getViewer();
     if( !Engine_Api::_()->core()->hasSubject() ) {
@@ -41,25 +40,32 @@ class Event_Widget_ProfileMembersController extends Engine_Content_Widget_Abstra
 
     // Prepare data
     $this->view->event = $event = Engine_Api::_()->core()->getSubject();
-
+    
     $members = null;
-    $select = $event->membership()->getMembersSelect(null);
-    if( $search ) {
-      $userTable = Engine_Api::_()->getItemTable('user');
-      $userTableName = $userTable->info('name');
-      $membershipTableName = $select->getTable()->info('name');
-      
-      $select
-        ->from($membershipTableName)
-        ->joinLeft($userTableName, "$userTableName.user_id = $membershipTableName.user_id", null)
-        ->where('displayname LIKE ?', '%' . $search . '%');
+    
+    $params = array();
+    
+    if ($viewer->getIdentity()) {
+      $params['viewer'] = $viewer->getIdentity();
     }
     
-    if (!$event->isOwner($viewer) and !$viewer->isAdmin()) {
-      $select->where("rsvp = '3' OR user_id IN ('"
-                     . $event->getOwner()->getIdentity() . "', '"
-                     . $viewer->getIdentity() . "')");
+    // search
+    if ($search) {
+      $params['search'] = $search;
+      $params['rsvps'] = array(1, 2, 3);
     }
+    
+    // not host
+    if (!$event->isOwner($viewer)) {
+      $params['user_not_host'] = true;
+    }
+    
+    // not admin
+    if (!$viewer->isAdmin()) {
+      $params['user_not_admin'] = true;
+    }
+    
+    $select = Engine_Api::_()->event()->getEventUsersSelect($event, $params);
     
     $this->view->members = $members = Zend_Paginator::factory($select);
 
@@ -75,8 +81,27 @@ class Event_Widget_ProfileMembersController extends Engine_Content_Widget_Abstra
     }
 
     // Add count to title if configured
-    if( $this->_getParam('titleCount', false) && $paginator->getTotalItemCount() > 0 ) {
-      $this->_childCount = $paginator->getTotalItemCount() - 1;
+    if( $this->_getParam('titleCount', false) && $paginator->getTotalItemCount() >= 0 ) {
+      
+      $params = array(
+        'count' => true,
+        'rsvps' => array(1, 2, 3),
+      );
+      
+      // search
+      if ($search) {
+        $params['search'] = $search;
+      }
+      
+      $select = Engine_Api::_()->event()->getEventUsersSelect($event, $params);
+      
+      $result = Engine_Api::_()->getDbTable('membership', 'event')->fetchRow($select);
+      
+      $guestCount = $result->count;
+      
+      $this->view->guestCount = $guestCount;
+      $this->_childCount = $guestCount;
+      
     }
   }
 

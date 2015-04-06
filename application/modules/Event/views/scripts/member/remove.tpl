@@ -11,4 +11,10 @@
  */
 ?>
 
+<style type="text/css">
+  .global_form_popup {
+    width: 400px;
+  }
+</style>
+
 <?php echo $this->form->setAttrib('class', 'global_form_popup')->render($this) ?>

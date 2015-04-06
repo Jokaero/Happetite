@@ -23,7 +23,6 @@ class User_Form_Signup_Fields extends Fields_Form_Standard
   public function init()
   {
     // Init form
-    $this->setTitle('Profile Information');
 
     $this
       ->setIsCreation(true)

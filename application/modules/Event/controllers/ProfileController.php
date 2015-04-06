@@ -43,6 +43,18 @@ class Event_ProfileController extends Core_Controller_Action_Standard
   {
     $subject = Engine_Api::_()->core()->getSubject();
     $viewer = Engine_Api::_()->user()->getViewer();
+    
+    $sharedUrl = Engine_Api::_()->event()->getSiteUrl() . $this->view->url(array('id' => $subject->getIdentity()), 'event_profile');
+    $sharedTitle = $this->view->translate('SHARED_TITLE_FACEBOOK %s', $subject->getTitle());
+    $sharedDescription = Zend_Registry::get('Zend_Translate')->_('SHARED_DESCRIPTION_FACEBOOK');
+    $sharedType = 'website';
+    
+    // for Facebook sharing
+    $this->view->doctype('XHTML1_RDFA');
+    $this->view->headMeta()->setProperty('og:title', $sharedTitle);
+    $this->view->headMeta()->setProperty('og:type', $sharedType);
+    $this->view->headMeta()->setProperty('og:url', $sharedUrl);
+    $this->view->headMeta()->setProperty('og:description', $sharedDescription);
 
     if( !$this->_helper->requireAuth()->setAuthParams($subject, $viewer, 'view')->isValid() ) {
       return;

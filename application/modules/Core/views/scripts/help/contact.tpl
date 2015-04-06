@@ -14,5 +14,8 @@
 <?php if( $this->status ): ?>
   <?php echo $this->message; ?>
 <?php else: ?>
+  <div class="form-outer-title"><?php echo $this->translate('Contact Us'); ?></div>
+  <div class="form-outer-description"><?php echo nl2br($this->translate('_CORE_CONTACT_DESCRIPTION')); ?></div>
   <?php echo $this->form->render($this) ?>
+  <div class="form-outer-notice"><?php echo $this->translate('Fields marked with an asterisk %s are mandatory', '<span>*</span>'); ?></div>
 <?php endif; ?>

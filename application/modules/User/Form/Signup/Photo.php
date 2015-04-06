@@ -23,7 +23,6 @@ class User_Form_Signup_Photo extends Engine_Form
     $settings = Engine_Api::_()->getApi('settings', 'core');
   
     // Init form
-    $this->setTitle('Add Your Photo');
 
     $this
       ->setAttrib('enctype', 'multipart/form-data')

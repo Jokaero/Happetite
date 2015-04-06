@@ -18,6 +18,19 @@
  */
 class Event_Form_Member_Request extends Engine_Form
 {
+  
+  protected $_forceRefresh;
+  
+  protected function setForceRefresh($forceRefresh)
+  {
+    $this->_forceRefresh = $forceRefresh;
+  }
+  
+  protected function getForceRefresh()
+  {
+    return $this->_forceRefresh;
+  }
+  
   public function init()
   {
     $this
@@ -35,13 +48,19 @@ class Event_Form_Member_Request extends Engine_Form
       'decorators' => array('ViewHelper'),
       'type' => 'submit'
     ));
-
+    
+    $onClick = 'parent.Smoothbox.close();';
+    
+    if ($this->getForceRefresh()) {
+      $onClick = 'parent.window.location = parent.window.location;';
+    }
+    
     $this->addElement('Cancel', 'cancel', array(
       'prependText' => ' or ',
       'label' => 'cancel',
       'link' => true,
       'href' => '',
-      'onclick' => 'parent.Smoothbox.close();',
+      'onclick' => $onClick,
       'decorators' => array(
         'ViewHelper'
       ),

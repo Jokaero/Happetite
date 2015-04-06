@@ -106,11 +106,11 @@ if( $settings->getSetting('user.support.links', 0) == 1 ) {
             <td><?php echo $this->htmlLink($item->getHref(), $item->getTitle()); ?></td>
             <td><?php echo $this->htmlLink($item->getOwner()->getHref(), $item->getOwner()->getTitle()); ?></td>
 			<?php $sitePercent = Engine_Api::_()->getApi('settings', 'core')->getSetting('event_percent', 10); ?>
-			<td><?php echo $item->price * (1 + $sitePercent / 100) ?> <?php echo $item->currency ?></td>
+			<td><?php echo ceil($item->price * (1 + $sitePercent / 100)) ?> <?php echo $item->currency ?></td>
 			<td><?php echo $this->locale()->toDateTime($item->starttime) ?></td>
 			<td><?php echo $this->locale()->toDateTime($item->creation_date) ?></td>
 			<td>
-			  <?php echo $this->translate('All: %s', $item->getMemberCount()); ?><br />
+			  <?php echo $this->translate('All: %s', $item->getMemberCount(array(10, 0, 1, 2, 3, 4))); ?><br />
 			  <?php echo $this->translate('Host: %s', $item->getMemberCount(array(10))); ?><br />
 			  <?php echo $this->translate('Applied: %s', $item->getMemberCount(array(0))); ?><br />
 			  <?php echo $this->translate('Accepted: %s', $item->getMemberCount(array(1, 2))); ?><br />

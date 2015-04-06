@@ -68,6 +68,7 @@
 "Posted by %s";"Posted by %s"
 "%s update";"%s update";"%s updates"
 "%s Update";"%s Update";"%s Updates"
+"%s Update";"%s Notification";"%s Notifications"
 "updates";"updates"
 "0 Updates";"0 Updates"
 "First";"First"
@@ -193,7 +194,9 @@ Message:
 
 "_CORE_PRIVACY_STATEMENT";"This page will contain the privacy statement of your choice."
 "_CORE_TERMS_OF_SERVICE";"This page will contain the terms of service of your choice."
-
+"_CORE_FAQ";"This page will contain the FAQ of your choice."
+"_CORE_SAFETY";"This page will contain the safety of your choice."
+"_CORE_ABOUT";"This page will contain the about us of your choice."
 
 "You can no longer respond to this message because %1$s has blocked you.";"You can no longer respond to this message because %1$s has blocked you."
 

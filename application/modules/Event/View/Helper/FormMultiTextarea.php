@@ -48,7 +48,7 @@ class Event_View_Helper_FormMultiTextarea extends Zend_View_Helper_FormTextarea
     // Add javascript for adding anothing text link
     // Add anchor for haxing
     $tName = trim($name, '[]');
-    $content .= '<a href="javascript:void(0);" id="' . $tName . '">' . $this->view->translate('Add') . '</a>';
+    $content .= '<a href="javascript:void(0);" id="' . $tName . '">' . $this->view->translate(strtoupper('Add_' . $tName)) . '</a>';
     $script = <<<EOF
 window.addEvent('domready', function() {
   var anchor = $('$tName');

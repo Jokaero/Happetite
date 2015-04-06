@@ -84,14 +84,14 @@ class Messages_Plugin_Menus
     }
     
     return array(
-      'label' => "Send Message",
+      'label' => "Contact Me",
       'icon' => 'application/modules/Messages/externals/images/send.png',
       'route' => 'messages_general',
-      'class' => 'smoothbox',
+      //'class' => 'smoothbox',
       'params' => array(
         'action' => 'compose',
         'to' => $subject->getIdentity(),
-        'format' => 'smoothbox',
+        //'format' => 'smoothbox',
       ),
     );
   }

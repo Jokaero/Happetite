@@ -63,6 +63,21 @@ return array(
     ),
   ),
   array(
+    'title' => 'My Classes',
+    'description' => 'Displays a member\'s classes on their profile.',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.profile-my-events',
+    'isPaginated' => true,
+    'defaultParams' => array(
+      'title' => 'Events',
+      'titleCount' => true,
+    ),
+    'requirements' => array(
+      'subject' => 'user',
+    ),
+  ),
+  array(
     'title' => 'Event Profile Discussions',
     'description' => 'Displays a event\'s discussions on it\'s profile.',
     'category' => 'Events',
@@ -106,6 +121,91 @@ return array(
     'isPaginated' => true,
     'defaultParams' => array(
       'title' => 'Guests',
+      'titleCount' => true,
+    ),
+    'requirements' => array(
+      'subject' => 'event',
+    ),
+  ),
+  array(
+    'title' => 'Event Profile Members in Slider Core',
+    'description' => 'Core Widget for Event Profile Members in Slider. REQUIRED.',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.profile-members-slider-core',
+    'requirements' => array(
+      'subject' => 'event',
+    ),
+  ),
+  array(
+    'title' => 'Event Profile Members in Slider',
+    'description' => 'Displays a event\'s members on it\'s profile in Slider.',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.profile-members-slider',
+    'isPaginated' => true,
+    'defaultParams' => array(
+      'title' => 'Guests',
+      'titleCount' => true,
+    ),
+    'requirements' => array(
+      'subject' => 'event',
+    ),
+  ),
+  array(
+    'title' => 'Guests Who attend',
+    'description' => 'Displays a event\'s Guests who attend.',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.guests-attend',
+    'isPaginated' => true,
+    'defaultParams' => array(
+      'title' => 'Guests',
+      'titleCount' => true,
+    ),
+    'requirements' => array(
+      'subject' => 'event',
+    ),
+  ),
+  array(
+    'title' => 'Guests Who attend in slider',
+    'description' => 'Displays a event\'s Guests who attend in slider.',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.guests-attend-slider',
+    'isPaginated' => true,
+    'defaultParams' => array(
+      'title' => 'Guests in slider',
+      'titleCount' => true,
+    ),
+    'requirements' => array(
+      'subject' => 'event',
+    ),
+  ),
+  array(
+    'title' => 'More classes',
+    'description' => 'Displays More classes.',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.more-classes',
+    'isPaginated' => true,
+    'defaultParams' => array(
+      'title' => 'More Classes',
+      'titleCount' => true,
+    ),
+    'requirements' => array(
+      'subject' => 'event',
+    ),
+  ),
+  array(
+    'title' => 'More classes in slider',
+    'description' => 'Displays More classes in slider.',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.more-classes-slider',
+    'isPaginated' => true,
+    'defaultParams' => array(
+      'title' => 'More Classes in slider',
       'titleCount' => true,
     ),
     'requirements' => array(
@@ -157,6 +257,40 @@ return array(
       'subject' => 'event',
     ),
   ),
+  
+   array(
+    'title' => 'Slider on landing',
+    'description' => 'Displays slider on landing.',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.landing-slider',
+    'requirements' => array(
+      'subject' => 'event',
+    ),
+  ),
+  
+  array(
+    'title' => 'Classes Map',
+    'description' => 'Displays class on the map.',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.classes-map',
+    'requirements' => array(
+      'subject' => 'event',
+    ),
+  ),
+  
+  array(
+    'title' => 'Class Owner',
+    'description' => 'Displays class owner.',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.event-owner',
+    'requirements' => array(
+      'subject' => 'event',
+    ),
+  ),
+  
   array(
     'title' => 'Event Profile Status',
     'description' => 'Displays a event\'s title on it\'s profile.',
@@ -231,6 +365,39 @@ return array(
   ),
   
   array(
+    'title' => 'Recent Events Slider',
+    'description' => 'Displays a list of recently created events in slider.',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.list-recent-events-slider',
+    'isPaginated' => true,
+    'defaultParams' => array(
+      'title' => 'Recent Events Slider',
+    ),
+    'requirements' => array(
+      'no-subject',
+    ),
+    'adminForm' => array(
+      'elements' => array(
+        array(
+          'Radio',
+          'recentType',
+          array(
+            'label' => 'Recent Type',
+            'multiOptions' => array(
+              'creation' => 'Creation Date',
+              'modified' => 'Modified Date',
+              'start' => 'Started',
+              'end' => 'Ended',
+            ),
+            'value' => 'creation',
+          )
+        ),
+      )
+    ),
+  ),
+  
+  array(
     'title' => 'Event Browse Search',
     'description' => 'Displays a search form in the event browse page.',
     'category' => 'Events',
@@ -240,6 +407,18 @@ return array(
       'no-subject',
     ),
   ),
+  
+  array(
+    'title' => 'Classes Filter ',
+    'description' => 'Displays a search form in the upcoming classes page.',
+    'category' => 'Classes',
+    'type' => 'widget',
+    'name' => 'event.classes-filter',
+    'requirements' => array(
+      'no-subject',
+    ),
+  ),
+  
   array(
     'title' => 'Event Browse Menu',
     'description' => 'Displays a menu in the event browse page.',
@@ -260,4 +439,47 @@ return array(
       'no-subject',
     ),
   ),
+  array(
+    'title' => 'User Info',
+    'description' => 'Displays 3 widgets in 1, some user info.',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.user-info',
+  ),
+  array(
+    'title' => 'How Does It Work',
+    'description' => 'How Does It Work Info',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.how-does-it-work',
+  ),
+  array(
+    'title' => 'My Recipes',
+    'description' => 'Displays My Recipes on Profile',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.my-recipes',
+  ),
+  array(
+    'title' => 'Share This',
+    'description' => 'Displays Share This Buttons',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.share-this',
+  ),
+  array(
+    'title' => 'Class Cover Photo',
+    'description' => 'Displays Class Cover Photo',
+    'category' => 'Events',
+    'type' => 'widget',
+    'name' => 'event.event-cover-photo',
+  ),
+  array(
+    'title' => 'Profile About Me',
+    'description' => 'About Me Text',
+    'category' => 'User',
+    'type' => 'widget',
+    'name' => 'event.profile-about',
+  ),
+  
 ) ?>
