@@ -36,6 +36,7 @@
 <div class='event_stats class_menu starter-wrapper'>
   <h3><?php echo $this->translate('Menu:'); ?></h3>
   <div class="starter-list-main">
+    <span class="starter-list-main-header"></span>
     <ul class="starter-list">
       <?php $class_starters = unserialize($this->subject->class_starter); ?>
       <?php if (!empty($this->subject->class_starter) and is_array($class_starters) and !empty($class_starters)) : ?>
@@ -73,6 +74,7 @@
         <?php endforeach; ?>
       <?php endif; ?>
     </ul>
+    <span class="starter-list-main-footer"></span>
   </div>
   <button class="download-recipe"><?php echo $this->translate('Download a Recipe'); ?></button>
 </div>

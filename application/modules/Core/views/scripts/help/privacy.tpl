@@ -11,7 +11,7 @@
  */
 ?>
 
-<h2><?php echo $this->translate('Privacy Statement') ?></h2>
+<h2 class="heading-content-main"><?php echo $this->translate('Privacy Statement') ?></h2>
 <p>
   <?php
   $str = $this->translate('_CORE_PRIVACY_STATEMENT');

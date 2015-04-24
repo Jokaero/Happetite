@@ -131,11 +131,10 @@ class Seaocore_View_Helper_FormCalendarDateTime extends Engine_View_Helper_FormC
       });
     });
   ");
-
-
+$hiddenValue = substr($value['date'],0,5) . '/' . substr($value['date'],-11,-7);
         return
                 '<div class="event_calendar_container" style="display:inline">' .
-                $this->view->formHidden($name . '[date]', @$value['date'], array_merge(array('class' => 'calendar', 'id' => $name . '-date'), (array) @$attribs['dateAttribs'])) .
+                $this->view->formHidden($name . '[date]', @$hiddenValue, array_merge(array('class' => 'calendar', 'id' => $name . '-date'), (array) @$attribs['dateAttribs'])) .
                 '<span class="calendar_output_span" id="calendar_output_span_' . $name . '-date">' .
                 ( @$value['date'] ? @$value['date'] : $this->view->translate('Select a date') ) .
                 '</span>' .

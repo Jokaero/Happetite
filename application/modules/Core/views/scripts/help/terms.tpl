@@ -11,7 +11,7 @@
  */
 ?>
 
-<h2><?php echo $this->translate('Terms of Service') ?></h2>
+<h2 class="heading-content-main"><?php echo $this->translate('Terms of Service') ?></h2>
 <p>
   <?php 
   $str = $this->translate('_CORE_TERMS_OF_SERVICE');
