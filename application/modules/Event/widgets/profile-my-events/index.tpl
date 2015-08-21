@@ -61,9 +61,11 @@
 		<?php else : ?>
 			<?php foreach( $paginator as $event ): ?>
 				<li class="event-wrapper">
-					<div class="events_profile_tab_photo">
-						<?php echo $this->htmlLink($event, $this->itemPhoto($event, 'thumb.normal')) ?>
-					</div>
+					<?php $photo = Engine_Api::_()->getItem('storage_file', $event->photo_id); ?>
+					<a href="<?php echo $event->getHref() ?>">
+					  <div class="events_profile_tab_photo" style="background-image: url(<?php echo $photo->getHref() ?>); background-size: cover; background-position: 50% 50%;">
+					  </div>
+					</a>
 					<div class="events_profile_tab_info">
 						<div class="events_profile_tab_title">
 							<?php echo $this->htmlLink($event->getHref(), $event->getTitle()) ?>

@@ -3,9 +3,9 @@
   'params' => 
   array (
     'host' => 'localhost',
-    'username' => 'root',
-    'password' => '',
-    'dbname' => 'happetite',
+    'username' => 'taurussoft_happe',
+    'password' => 'U7o3F0t1',
+    'dbname' => 'taurussoft_happetite',
     'charset' => 'UTF8',
     'adapterNamespace' => 'Zend_Db_Adapter',
   ),

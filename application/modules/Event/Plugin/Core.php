@@ -140,4 +140,21 @@ class Event_Plugin_Core
     
   }
   
+  public function onUserCreateAfter($event)
+	{
+		$payload = $event->getPayload();
+		if ($payload instanceof User_Model_User) {
+			$notificationSettings = Engine_Api::_()->getDbtable('notificationSettings', 'activity');
+      
+      $data = array(
+        'user_id' => $payload->getIdentity(),
+        'type' => 'message_new',
+        'email' => 0,
+      );
+      
+      $notificationSettings->insert($data);
+		}
+
+	}
+  
 }

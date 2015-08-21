@@ -26,7 +26,7 @@
     
     <?php if( !empty($this->subject->category_id) ): ?>
     <li class="event_category">
-      <div class="label"><?php echo $this->translate('Category')?></div>
+      <div class="label"><?php echo $this->translate('Category:')?></div>
       <div class="event_stats_content">
         <?php echo $this->htmlLink(array(
           'route' => 'event_general',
@@ -38,7 +38,7 @@
     <?php endif ?>
     
     <li class="event_price">
-      <div class="label"><?php echo $this->translate('Price')?></div>
+      <div class="label"><?php echo $this->translate('Price:')?></div>
       <div class="event_stats_content">
         <?php echo $this->price; ?>
         <?php echo $this->subject->currency; ?>
@@ -46,7 +46,7 @@
     </li>
     
     <li class="event_participants">
-      <div class="label"><?php echo $this->translate('Maximum participants')?></div>
+      <div class="label"><?php echo $this->translate('Maximum participants:')?></div>
       <div class="event_stats_content">
       <?php if ($this->subject->max_users) : ?>
         <?php $leftPlaces = $this->subject->max_users - $this->bookedPlacesCount; ?>
@@ -75,14 +75,14 @@
       ?>
       <?php if( $this->subject->starttime == $this->subject->endtime ): ?>
         <div class="label">
-          <?php echo $this->translate('Date') ?>
+          <?php //echo $this->translate('Date') ?>
         </div>
         <div class="event_stats_content">
           <?php echo $this->locale()->toDate($startDateObject) ?>
         </div>
 
         <div class="label">
-          <?php echo $this->translate('Time') ?>
+          <?php echo $this->translate('Time:') ?>
         </div>
         <div class="event_stats_content">
           <?php echo $this->locale()->toTime($startDateObject) ?>
@@ -90,15 +90,15 @@
 
       <?php elseif( $startDateObject->toString('y-MM-dd') == $endDateObject->toString('y-MM-dd') ): ?>
         <div class="label">
-          <?php echo $this->translate('Date')?>
+          <?php echo $this->translate('Time:')?>
         </div>
         <div class="event_stats_content">
           <?php echo $this->locale()->toDate($startDateObject) ?>
         </div>
 
-        <div class="label">
-          <?php echo $this->translate('Time')?>
-        </div>
+        <!--<div class="label">
+          <?php echo $this->translate('Time:')?>
+        </div>-->
         <div class="event_stats_content">
           <?php echo $this->locale()->toTime($startDateObject) ?>
           -
@@ -127,7 +127,7 @@
         if ($this->subject->country) { $location .= ', ' .  $this->subject->country; }
       ?>
       <li class="event_location">
-        <div class="label"><?php echo $this->translate('Where')?></div>
+        <div class="label"><?php echo $this->translate('Where:')?></div>
         <div class="event_stats_content"><?php echo $location; ?></div>
       </li>
     <?php endif ?>

@@ -192,6 +192,11 @@ Unfortunately %1$s has not paid within the given timeframe of three days. He was
 
 "Date";"Date"
 "Time";"Time"
+"Time:";"Time:"
+"Where:";"Where:"
+"Category:";"Category:"
+"Price:";"Price:"
+"Maximum participants:";"Maximum participants:"
 "Where";"Where"
 "Host";"Host"
 "Led by";"Led by"
@@ -388,8 +393,8 @@ Unfortunately %1$s has not paid within the given timeframe of three days. He was
 "_ACTIVITY_ACTIONTYPE_EVENT_TOPIC_CREATE";"Creating an class discussion topic"
 "_ACTIVITY_ACTIONTYPE_EVENT_TOPIC_REPLY";"Replying to an class discussion topic"
 
-"ACTIVITY_TYPE_EVENT_ACCEPTED";"When my request to attend an class is approved."
-"ACTIVITY_TYPE_EVENT_APPROVE";"When someone request to join my class."
+"ACTIVITY_TYPE_EVENT_ACCEPTED";"When my request to attend a class is approved."
+"ACTIVITY_TYPE_EVENT_APPROVE";"When someone requests to join my class."
 "ACTIVITY_TYPE_EVENT_CREATE";"When a new class is created"
 "ACTIVITY_TYPE_EVENT_DISCUSSION_REPLY";"When people reply to discussion topics that I've replied to."
 "ACTIVITY_TYPE_EVENT_DISCUSSION_RESPONSE";"When people reply to discussion topics that I create."
@@ -745,17 +750,37 @@ Please Check our %s for more details"
 "host a class";"host a class"
 "how it works";"how it works"
 
+"_EMAIL_NOTIFY_MESSAGE_SYSTEM_NEW_REQUEST_TITLE";"Class Request System Message"
+"_EMAIL_NOTIFY_MESSAGE_SYSTEM_NEW_REQUEST_DESCRIPTION";"This email is sent to the member when someone requests to join their class."
+"_EMAIL_NOTIFY_MESSAGE_SYSTEM_NEW_REQUEST_SUBJECT";"[sender_title] has requested to join the class [object_title]"
+"_EMAIL_NOTIFY_MESSAGE_SYSTEM_NEW_REQUEST_BODY";"[header]
+
+[sender_title] has requested to join the class \"[object_title]\".
+Please accept him in 24h.
+
+http://[host][object_link]
+
+[footer]"
+"ACTIVITY_TYPE_MESSAGE_SYSTEM_NEW_REQUEST";"When someone requests to join my class."
+
+"_EMAIL_NOTIFY_MESSAGE_SYSTEM_NEW_APPROVE_TITLE";"Class Approved System Message"
+"_EMAIL_NOTIFY_MESSAGE_SYSTEM_NEW_APPROVE_DESCRIPTION";"This email is sent to when someone approve me to join their class."
+"_EMAIL_NOTIFY_MESSAGE_SYSTEM_NEW_APPROVE_SUBJECT";"You have been approved to join the class [object_title]"
+"_EMAIL_NOTIFY_MESSAGE_SYSTEM_NEW_APPROVE_BODY";"[header]
+
+You have been approved to join the class \"[object_title]\".
+You have 24h to pay for the class.
+Please click the following link to view it:
+
+http://[host][object_link]
+
+[footer]"
+"ACTIVITY_TYPE_MESSAGE_SYSTEM_NEW_APPROVE";"When my request to attend a class is approved."
+
+"conversation";"conversation"
+"message";"message"
+
+"Credit card number you have entered does not match card type you selected.";"Credit card number you have entered does not match card type you selected."
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+"IBAN number you have entered is incorrect, please enter a correct IBAN number and try again!";"IBAN number you have entered is incorrect, please enter a correct IBAN number and try again!"

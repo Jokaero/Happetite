@@ -93,9 +93,15 @@
   overflow:hidden;
   width:160px;
 }
+#global_page_event-profile-index .seaocore_profile_main_photo .show_photo_box{
+  height:144px;
+  width: 180px;
+}
+
 .seaocore_profile_main_photo .show_photo_box{
   height:160px;
 }
+
 .seaocore_profile_main_photo .item_photo table {
   height:100%;
   width:100%;

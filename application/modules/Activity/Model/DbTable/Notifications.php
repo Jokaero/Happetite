@@ -35,30 +35,31 @@ class Activity_Model_DbTable_Notifications extends Engine_Db_Table
   public function addNotification(User_Model_User $user, Core_Model_Item_Abstract $subject,
           Core_Model_Item_Abstract $object, $type, array $params = null)
   {
-    // We may want to check later if a request exists of the same type already
-    $row = $this->createRow();
-    $row->user_id = $user->getIdentity();
-    $row->subject_type = $subject->getType();
-    $row->subject_id = $subject->getIdentity();
-    $row->object_type = $object->getType();
-    $row->object_id = $object->getIdentity();
-    $row->type = $type;
-    $row->params = $params;
-    $row->date = date('Y-m-d H:i:s');
-    $row->save();
-
-    // Try to add row to caching
-    if( Zend_Registry::isRegistered('Zend_Cache') )
-    {
-      $cache = Zend_Registry::get('Zend_Cache');
-      $id = __CLASS__ . '_new_' . $user->getIdentity();
-      $cache->save(true, $id);
-    }
-
     // Try to send an email
     $notificationSettingsTable = Engine_Api::_()->getDbtable('notificationSettings', 'activity');
     if( $notificationSettingsTable->checkEnabledNotification($user, $type) && !empty($user->email) )
     {
+      
+      // We may want to check later if a request exists of the same type already
+      $row = $this->createRow();
+      $row->user_id = $user->getIdentity();
+      $row->subject_type = $subject->getType();
+      $row->subject_id = $subject->getIdentity();
+      $row->object_type = $object->getType();
+      $row->object_id = $object->getIdentity();
+      $row->type = $type;
+      $row->params = $params;
+      $row->date = date('Y-m-d H:i:s');
+      $row->save();
+  
+      // Try to add row to caching
+      if( Zend_Registry::isRegistered('Zend_Cache') )
+      {
+        $cache = Zend_Registry::get('Zend_Cache');
+        $id = __CLASS__ . '_new_' . $user->getIdentity();
+        $cache->save(true, $id);
+      }
+      
       $view = Zend_Registry::get('Zend_View');
       
       $sender_photo = $subject->getPhotoUrl('thumb.icon');

@@ -83,6 +83,47 @@ return array(
             ),
         ),
     ),
+		array(
+        'title' => 'Class Cover Photo and Information',
+        'description' => 'Displays the user cover photo with user profile photo and information. You can choose various options from the Edit Settings of this widget.',
+        'category' => 'User Cover Photo',
+        'type' => 'widget',
+        'name' => 'siteusercoverphoto.class-cover-photo',
+        'defaultParams' => array(
+            'title' => '',
+            'titleCount' => '',
+            'showContent' => $showContent_option
+        ),
+        'adminForm' => array(
+            'elements' => array(
+								array(
+                    'MultiCheckbox',
+                    'showContent',
+                    array(
+                        'label' => 'Select the information options that you want to be available in this block. (Note: This setting will only work if this block is placed on Member Profile page and Member Home Page.)',
+                        'multiOptions' => $showContent_timeline,
+                    ),
+                ), 
+                array(
+                    'Radio',
+                    'profile_like_button',
+                    array(
+                        'label' => 'Do you want to enable Like button in this block?',
+                        'multiOptions' => $show_like_button,
+                        'value' => $default_value,
+                    ),
+                ),
+                array(
+                    'Text',
+                    'columnHeight',
+                    array(
+                        'label' => 'Enter the cover photo height (in px). (Minimum 150 px required.)',
+                        'value' => '300',
+                    )
+                ),
+            ),
+        ),
+    ),
     array(
         'title' => 'User Profile Fields',
         'description' => 'Displays a user\'s profile field data on their profile.',

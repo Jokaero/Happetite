@@ -184,9 +184,11 @@ class Event_Form_Bank extends Engine_Form
           'label' => 'IBAN number',
           'allowEmpty' => false,
           'required' => true,
+          'placeholder' => Zend_Registry::get('Zend_Translate')->_('AT611904300234573201'),
           'validators' => array(
             array('NotEmpty', true),
             array('StringLength', false, array(1, 64)),
+            //new Zend_Validate_Iban(array('locale' => false))
           ),
           'filters' => array(
             'StripTags',

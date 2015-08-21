@@ -17,6 +17,12 @@
 	}
 </style>
 
+<?php
+   // get price
+    $sitePercent = Engine_Api::_()->getApi('settings', 'core')
+      ->getSetting('event_percent', 10);
+?>
+
 <?php if( count($this->paginator) > 0 ): ?>
 
   <div class='layout_middle'>
@@ -42,9 +48,11 @@
 				?>
 	  
         <li>
-          <div class="events_photo">
-            <?php echo $this->htmlLink($event->getHref(), $this->itemPhoto($event, 'thumb.main')) ?>
-          </div>
+			<?php $photo = Engine_Api::_()->getItem('storage_file', $event->photo_id); ?>
+			<a href="<?php echo $event->getHref() ?>">
+			  <div class="events-photo" style="background-image: url(<?php echo $photo->getHref() ?>); background-size: cover; background-position: 50% 50%;">
+			  </div>
+			</a>
           <?php /*<div class="events_options">
             <?php if( $this->viewer() && $event->isOwner($this->viewer()) or $event->status == 'open' ): ?>
 							<?php if ($event->status == 'open') : ?>	

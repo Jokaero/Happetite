@@ -1,8 +1,8 @@
 <?php defined('_ENGINE') or die('Access Denied'); return array (
   'maintenance' => 
   array (
-    'enabled' => true,
+    'enabled' => false,
     'code' => 'z7b9h',
   ),
-  'environment_mode' => 'development',
+  'environment_mode' => 'production',
 ); ?>

@@ -67,7 +67,7 @@
           </div>
           <div class="messages_list_photo">
             <?php if ($conversation->system == 1) : ?>
-              <img src="<?php echo $this->baseUrl(); ?>/application/modules/User/externals/images/nophoto_user_thumb_icon.png" alt="" />
+              <img src="<?php echo $this->baseUrl(); ?>/application/themes/happetite/images/system_logo.png" alt="" class="system_msg_logo" />
             <?php else : ?>
               <?php echo $this->htmlLink($sender->getHref(), $this->itemPhoto($sender, 'thumb.icon')) ?>
             <?php endif; ?>

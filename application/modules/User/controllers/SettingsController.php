@@ -238,8 +238,10 @@ class User_SettingsController extends Core_Controller_Action_User
   }
 
   public function privacyAction()
-  {    
+  {
     
+    return $this->_forward('notfound', 'error', 'core');
+  
     $user = Engine_Api::_()->core()->getSubject();
     $settings = Engine_Api::_()->getApi('settings', 'core');
     $auth = Engine_Api::_()->authorization()->context;

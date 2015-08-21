@@ -79,6 +79,11 @@
   padding-top:0px !important;
   padding-bottom:0px !important;
 }
+
+#global_page_event-profile-index .layout_top .layout_middle{  
+  height: 380px;
+}
+
 /* css for layout top end here */
 /* Common CSs */
 .txt_center              {text-align:center !important;}

@@ -31,23 +31,21 @@ $this->headLink()
         ->appendStylesheet($this->layout()->staticBaseUrl . 'application/modules/Seaocore/externals/styles/style_coverphoto.css');
 ?>
 
+<?php if ($this->subject() instanceof Event_Model_Event) : ?>
+  <?php $isEvent = true; ?>
+<?php else : ?>
+  <?php $isEvent = false; ?>
+<?php endif; ?>
+
 <?php if (is_array($this->showContent) && in_array('mainPhoto', $this->showContent)): ?>
   <div class="seaocore_profile_main_photo_wrapper">
-    <div class="seaocore_profile_main_photo b_dark">
+    <div class="seaocore_profile_main_photo b_dark <?php echo $isEvent ? 'event_profile_photo' : ''; ?>">
       <div class="item_photo <?php if ($strach_main_photo): ?> show_photo_box <?php endif; ?>">
         <?php if (empty($this->cover_photo_preview)): ?>
           <table class="siteuser_main_thumb_photo">
             <tr valign="middle">
-              <td>
-                <?php
-                $href = Engine_Api::_()->seaocore()->getUserPhotoHref($this->user);
-                ?>
-                <?php if (empty($this->can_edit) && $href) : ?>
-                  <a href="<?php echo $href; ?>" onclick='openSeaocoreLightBox("<?php echo $href; ?>");
-                            return false;'>
-                  <?php endif; ?>
-                  <?php echo $this->itemPhoto($this->user, 'thumb.profile', '', array('align' => 'left', 'id' => 'user_profile_photo')); ?>
-                  <?php if (empty($this->can_edit) && $href) : ?></a><?php endif; ?>
+              <?php $photo = Engine_Api::_()->getItem('storage_file', $this->subject()->photo_id); ?>
+              <td style="background-image: url(<?php echo $photo->getHref() ?>); background-size: cover; background-position: 50% 50%;">
               </td>
             </tr>
           </table>
@@ -78,14 +76,17 @@ $this->headLink()
               <li>
                 <a href='<?php echo $this->url(array('action' => 'upload-cover-photo', 'user_id' => $this->user->user_id, 'special' => 'profile'), 'siteusercoverphoto_profilepage', true); ?>'  class="seaocore_profile_cover_icon_photo_upload smoothbox"><?php echo $this->translate('Upload Photo'); ?></a>
               </li>
-              <li>
-                <?php echo $this->htmlLink($this->url(array('action' => 'get-albums-photos', 'user_id' => $this->user->user_id, 'recent' => 1, 'special' => 'profile'), 'siteusercoverphoto_profilepage', true), $this->translate('Choose from Album Photos'), array(' class' => 'seaocore_profile_cover_icon_photo_view smoothbox')); ?>
-              </li>
-              <li>
-                <?php $URL_webcam = $this->url(array('action' => 'web-cam-image'), 'siteusercoverphoto_profilepage', true);
-                ?>
-                <a href="javascript: void(0);" onclick="uploadWebCamImage('<?php echo $URL_webcam; ?>');" class="seaocore_profile_cover_icon_camera"> <?php echo $this->translate("Take Photo") ?></a>
-              </li>
+              <?php if (false) : ?>
+                <li>
+                  <?php echo $this->htmlLink($this->url(array('action' => 'get-albums-photos', 'user_id' => $this->user->user_id, 'recent' => 1, 'special' => 'profile'), 'siteusercoverphoto_profilepage', true), $this->translate('Choose from Album Photos'), array(' class' => 'seaocore_profile_cover_icon_photo_view smoothbox')); ?>
+                </li>
+              
+                <li>
+                  <?php $URL_webcam = $this->url(array('action' => 'web-cam-image'), 'siteusercoverphoto_profilepage', true);
+                  ?>
+                  <a href="javascript: void(0);" onclick="uploadWebCamImage('<?php echo $URL_webcam; ?>');" class="seaocore_profile_cover_icon_camera"> <?php echo $this->translate("Take Photo") ?></a>
+                </li>
+              <?php endif; ?>
               <?php if (!empty($this->user->photo_id)) : ?>
                 <li>
                   <?php echo $this->htmlLink(array('route' => 'siteusercoverphoto_profilepage', 'action' => 'remove-cover-photo', 'user_id' => $this->user->user_id, 'special' => 'profile'), $this->translate('Remove'), array(' class' => 'smoothbox seaocore_profile_cover_icon_photo_delete')); ?>
@@ -101,6 +102,7 @@ $this->headLink()
 
 <div class="seaocore_profile_cover_head_section_inner" id="seaocore_profile_cover_head_section_inner">
   <?php if (is_array($this->showContent) && (($this->profile_like_button == 1) || in_array('friendShipButton', $this->showContent) || in_array('composeMessageButton', $this->showContent) || in_array('updateInfoButton', $this->showContent) || in_array('settingsButton', $this->showContent) || in_array('optionsButton', $this->showContent))): ?>
+    <?php if (false) : ?>
     <div class="seaocore_profile_coverinfo_buttons">
       <?php if ($this->profile_like_button == 1) : ?>
         <div>
@@ -157,6 +159,7 @@ $this->headLink()
             </li>
           </ul>
         </div>
+      <?php endif; ?>
       <?php endif; ?>
 
     </div>

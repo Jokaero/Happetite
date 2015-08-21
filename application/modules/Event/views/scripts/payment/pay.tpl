@@ -1,7 +1,7 @@
 <?php echo $this->form->render($this); ?>
 
 <script type="text/javascript">
-  $('cvv').addEvents({
+  $('explanation_link').addEvents({
     'mouseover': function() {
       $('cvv_image').setStyle('display', 'block');
     },
@@ -10,7 +10,7 @@
     }
   });
   
-  $('cvv').addEvent('mouseout', function() {
+  $('explanation_link').addEvent('mouseout', function() {
     $('cvv_image').setStyle('display', 'none');
   });
 </script>

@@ -12,6 +12,7 @@
 ?>
 <div class="user-info-wrapper" id="user-info-wrapper">
   <?php if( $this->paginatorHosted->getTotalItemCount() <= 0 ) : ?>
+    <h3><?php echo $this->translate('MY CLASSES'); ?></h3>
     <div class="tip">
       <span>
         <?php echo $this->translate("There are no such classes yet.") ?>
@@ -22,9 +23,11 @@
     <h3><?php echo $this->translate('MY CLASSES'); ?></h3>
     <?php foreach( $this->paginatorHosted as $event ): ?>
       <div class="event-wrapper">
-        <div class="events_profile_tab_photo">
-          <?php echo $this->htmlLink($event, $this->itemPhoto($event, 'thumb.normal')) ?>
-        </div>
+		<?php $photo = Engine_Api::_()->getItem('storage_file', $event->photo_id); ?>
+		<a href="<?php echo $event->getHref() ?>">
+		  <div class="events_profile_tab_photo" style="background-image: url(<?php echo $photo->getHref() ?>); background-size: cover; background-position: 50% 50%;">
+		  </div>
+		</a>
         <div class="events_profile_tab_info">
           <div class="events_profile_tab_title">
             <?php echo $this->htmlLink($event->getHref(), $event->getTitle()) ?>

@@ -194,7 +194,10 @@ class Event_MemberController extends Core_Controller_Action_Standard
         
         // Send notification
         Engine_Api::_()->getDbtable('notifications', 'activity')->addNotification(
-          $subject->getOwner(), $viewer, $conversation, 'message_system_new'
+          $subject->getOwner(), $viewer, $subject, 'message_system_new_request', array(
+            'conversation' => $this->view->htmlLink($conversation->getHref(), $this->view->translate('message')),
+            'limit_date' => $this->view->locale()->toDateTime($limitDate)
+          )
         );
 
         $db->commit();
@@ -870,7 +873,10 @@ class Event_MemberController extends Core_Controller_Action_Standard
         
         // Send notification
         Engine_Api::_()->getDbtable('notifications', 'activity')->addNotification(
-          $user, $admin, $conversation, 'message_system_new'
+          $user, $admin, $subject, 'message_system_new_approve', array(
+            'conversation' => $this->view->htmlLink($conversation->getHref(), $this->view->translate('message')),
+            'limit_date' => $this->view->locale()->toDateTime($limitDate)
+          )
         );
 
         $db->commit();

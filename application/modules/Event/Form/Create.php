@@ -171,7 +171,7 @@ class Event_Form_Create extends Engine_Form
     ));
     
     // Start time
-    $start = new Engine_Form_Element_CalendarDateTime('starttime');
+    $start = new Event_Form_Element_CalendarDateTime('starttime');
     $start->setLabel("Start Time");
     $start->setRequired(true);
     $start->setAllowEmpty(false);
@@ -305,11 +305,12 @@ class Event_Form_Create extends Engine_Form
     ));
     
     // Max members
-    $this->addElement('Text', 'max_users', array(
+    $this->addElement('Select', 'max_users', array(
       'label' => '# of Participants',      
       'validators' => array(
         array('Int', true),
       ),
+      'multiOptions' => range(0, 100)
     ));
     
     // participants notice

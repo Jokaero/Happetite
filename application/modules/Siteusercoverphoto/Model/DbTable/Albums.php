@@ -105,16 +105,22 @@ if (Engine_Api::_()->hasModuleBootstrap('advalbum')) {
 
 		protected $_name = 'album_albums';
 		protected $_serializedColumns = array('cover_params');
-		public function getSpecialAlbumCover(User_Model_User $user, $type)
+		
+		public function getSpecialAlbumCover($item, $type)
 		{
+			// Whoops
+			if( !($item instanceof Core_Model_Item_Abstract)) {
+				throw new Zend_View_Exception("Item must be a valid item");
+			}
+			
 			if( !in_array($type, array('cover')) ) {
 				throw new Album_Model_Exception('Unknown special album type');
 			}
 
 			$tableAlbum = Engine_Api::_()->getDbtable('albums', 'album');
 			$select = $tableAlbum->select()
-					->where('owner_type = ?', $user->getType())
-					->where('owner_id = ?', $user->getIdentity())
+					->where('owner_type = ?', $item->getType())
+					->where('owner_id = ?', $item->getIdentity())
 					->where('type = ?', $type)
 					->order('album_id ASC')
 					->limit(1);
@@ -124,7 +130,7 @@ if (Engine_Api::_()->hasModuleBootstrap('advalbum')) {
 				$translate = Zend_Registry::get('Zend_Translate');
 				$album = $tableAlbum->createRow();
 				$album->owner_type = 'user';
-				$album->owner_id = $user->getIdentity();
+				$album->owner_id = $item->getIdentity();
 				$album->title = $translate->_(ucfirst($type) . ' Photos');
 				$album->type = $type;
 				$album->search = 1;

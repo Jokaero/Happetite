@@ -16,3 +16,28 @@
 <?php echo $this->form->render($this) ?>
 <div class="form-outer-notice"><?php echo $this->translate('Fields marked with an asterisk %s are mandatory', '<span>*</span>'); ?></div>
 
+<script>
+  var allowedNotification = [
+    'general-friendaccepted',
+    'general-friendrequest',
+    'general-messagesystemnewapprove',
+    'general-messagesystemnewrequest',
+  ];
+  
+  var notifications = $$('.global_form input');
+  
+  for (var name in notifications) {
+    if (isNaN(name)) continue;
+    if (notifications[name].id == '') continue;
+    if (allowedNotification.contains(notifications[name].id)) continue;
+    
+    var parent = notifications[name].getParent('li');
+    
+    if (parent.id == '' || parent.className == '') {
+      parent.hide();
+    }
+  }
+  
+  $('event-wrapper').hide();
+  $('review-wrapper').hide();
+</script>

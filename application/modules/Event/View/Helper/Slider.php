@@ -110,9 +110,18 @@ EOF;
       
       if ($canUseMethods) {
         // photo
-        $content .= '<div class="photo">'
-                 . $this->view->htmlLink($item->getHref(), $this->view->itemPhoto($item, 'thumb.main'), array('class' => 'thumb'))
-                 . '</div>';
+        
+        $photo = Engine_Api::_()->getItem('storage_file', $item->photo_id);
+        if (is_object($photo)) {
+          $content .= '<a href="' . $item->getHref()
+                   . '"><div class="photo" style="background-image: url('
+                   . $photo->getHref()
+                   .  '); background-size: cover; background-position: 50% 50%;"></div></a>';
+        } else {
+          $content .= '<div class="photo">'
+                   . $this->view->htmlLink($item->getHref(), $this->view->itemPhoto($item, 'thumb.main'), array('class' => 'thumb'))
+                   . '</div>';
+        }
         
         // title
         $content .= '<div class="title">' . $this->view->htmlLink($item->getHref(), $item->getTitle()) . '</div>';
@@ -246,7 +255,7 @@ EOF;
                 if ($viewer->isAdmin() or $event->isOwner($viewer)
                     or $viewer->getIdentity() == $user->getIdentity()) {
                   
-                  if ($item->rsvp == 0) {
+                  if ($item->rsvp == 0 and $viewer->getIdentity() != $user->getIdentity()) {
                     
                     $content .= '<div class="timer-wrapper">';
                       $content .= '<div class="timer-content">';

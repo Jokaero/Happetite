@@ -25,7 +25,7 @@
         .innerHTML
         .replace('<?php echo /*$this->translate(*/'yourname'/*)*/?>',
           '<span id="profile_address_text"><?php echo $this->translate('yourname') ?></span>');
-
+  
       $('username').addEvent('keyup', function() {
         var text = '<?php echo $this->translate('yourname') ?>';
         if( this.value != '' ) {
@@ -34,7 +34,7 @@
         
         $('profile_address_text').innerHTML = text.replace(/[^a-z0-9]/gi,'');
       });
-      // trigger on page-load
+       //trigger on page-load
       if( $('username').value.length ) {
           $('username').fireEvent('keyup');
       }

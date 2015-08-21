@@ -18,16 +18,51 @@
  */
 class Event_Form_Payment extends Engine_Form
 {
+  protected $_event;
+  
+  public function setEvent($event)
+  {
+    $this->_event = $event;
+  }
+  
+  public function getEvent()
+  {
+    return $this->_event;
+  }
+  
   public function init()
   {
     $this
-      ->setTitle('Payment')
-      //->setDescription('Are you sure you want to cancel this class?')
-      ->setAttrib('class', 'global_form_popup')
+    //->setDescription('Are you sure you want to cancel this class?')
+      ->setAttrib('class', 'global_form_popup payment_form')
       ->setMethod('POST')
       ->setAction($_SERVER['REQUEST_URI'])
       ;
-
+    
+    $this->addElement('Dummy', 'pay_logo', array(
+      'description' => '<div class="dummy_pay_logo"></div>',
+      'decorators' => array(
+        'ViewHelper', array(
+          'description', array('placement' => 'APPEND', 'escape' => false)
+      )),
+    ));
+    
+    $this->addElement('Radio', 'card_type', array(
+      'label' => 'Card Type',
+      'required' => true,
+      'allowEmpty' => false,
+      'multiOptions' => array(
+        0 => '',
+        1 => '',
+      ),
+      'value' => 0,
+      'decorators' => array(
+          'ViewHelper',
+          array('Label', array('tag' => null, 'placement' => 'PREPEND')),
+          array('HtmlTag', array('tag' => 'div', 'class' => 'radiobutton_card_type')),
+        ),
+    ));
+    
     $this->addElement('Text', 'card_number', array(
       'label' => 'Card Number',
       'allowEmpty' => false,
@@ -36,10 +71,30 @@ class Event_Form_Payment extends Engine_Form
         array('NotEmpty', true),
         array('StringLength', false, array(16, 16)),
       ),
+       'decorators' => array(
+          'ViewHelper',
+          array('Label', array('tag' => null, 'placement' => 'PREPEND')),
+          array('HtmlTag', array('tag' => 'div', 'class' => 'card_number')),
+        ),
+    ));
+    
+    $this->addElement('Text', 'cardholder_name', array(
+      'label' => 'Full Name',
+      'allowEmpty' => false,
+      'required' => true,
+      'validators' => array(
+        array('NotEmpty', true),
+        array('StringLength', false, array(3, 255)),
+      ),
+      'decorators' => array(
+          'ViewHelper',
+          array('Label', array('tag' => null, 'placement' => 'PREPEND')),
+          array('HtmlTag', array('tag' => 'div', 'class' => 'cardholder_name')),
+        ),
     ));
     
     $this->addElement('Select', 'card_expiration_month', array(
-      'label' => 'Expires',
+      'label' => 'Expiration',
       'allowEmpty' => false,
       'required' => true,
       'validators' => array(
@@ -63,6 +118,7 @@ class Event_Form_Payment extends Engine_Form
       'decorators' => array(
         'ViewHelper',
         array('Label', array('tag' => null, 'placement' => 'PREPEND')),
+        array('HtmlTag', array('tag' => 'span', 'class' => 'card_expiration_month')),
       ),
     ));
     
@@ -94,15 +150,7 @@ class Event_Form_Payment extends Engine_Form
       'card_expiration_year'
     ), 'expires');
     
-    $this->addElement('Text', 'cardholder_name', array(
-      'label' => 'Name On Card',
-      'allowEmpty' => false,
-      'required' => true,
-      'validators' => array(
-        array('NotEmpty', true),
-        array('StringLength', false, array(3, 255)),
-      ),
-    ));
+    
     
     $this->addElement('Image', 'cvv_image', array(
       'src' => 'application/modules/Event/externals/images/CVV2_back.gif',
@@ -120,17 +168,34 @@ class Event_Form_Payment extends Engine_Form
         array('NotEmpty', true),
         array('StringLength', false, array(3, 255)),
       ),
+      'decorators' => array(
+          'ViewHelper',
+          array('Label', array('tag' => null, 'placement' => 'PREPEND')),
+          array('HtmlTag', array('tag' => 'div', 'class' => 'cvv_number')),
+        ),
     ));
     
-    $this->addElement('Button', 'submit', array(
-      'label' => 'Pay Now',
-      'ignore' => true,
-      'decorators' => array('ViewHelper'),
-      'type' => 'submit'
+    $this->addElement('Dummy', 'explanation', array(
+      'description' => '<a class="explanation_link" id="explanation_link">Explanation</div>',
+      'decorators' => array(
+        'ViewHelper', array(
+          'description', array('placement' => 'APPEND', 'escape' => false)
+      )),
     ));
-
-    $this->addElement('Cancel', 'cancel', array(
-      'prependText' => ' or ',
+    
+     $this->addDisplayGroup(array(
+      'cvv',
+      'explanation'
+    ), 'cvv_explanation');
+     
+     
+     $this->addElement('Dummy', 'amount', array(
+      'label' => 'Amount:',
+      'content' => $this->getEvent()
+    ));
+     
+    
+     $this->addElement('Cancel', 'cancel', array(
       'label' => 'cancel',
       'link' => true,
       'href' => '',
@@ -139,10 +204,18 @@ class Event_Form_Payment extends Engine_Form
         'ViewHelper'
       ),
     ));
+    
+    $this->addElement('Button', 'submit', array(
+      'ignore' => true,
+      'decorators' => array('ViewHelper'),
+      'type' => 'submit'
+    ));
+
+   
 
     $this->addDisplayGroup(array(
-      'submit',
-      'cancel'
+      'cancel',
+      'submit'      
     ), 'buttons');
   }
   

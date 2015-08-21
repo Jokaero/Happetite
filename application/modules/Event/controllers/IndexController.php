@@ -333,7 +333,20 @@ class Event_IndexController extends Core_Controller_Action_Standard
     if( !$form->isValid($this->getRequest()->getPost()) ) {
       return;
     }
+    
     $bankValue = $form->getValues();
+    
+    // Check IBAN number
+    $IBAN_number = !empty($bankValue['bank_iban']) ? $bankValue['bank_iban'] : '';
+    
+    if ($IBAN_number) {
+      $IBAN_number = str_replace(' ', '', $IBAN_number);
+      
+      if (!preg_match('/[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}/', $IBAN_number)) {
+        return $form->addError(Zend_Registry::get('Zend_Translate')->_("IBAN number you have entered is incorrect, please enter a correct IBAN number and try again!"));
+      }
+    }
+    
     $values = array_merge($bankValue, $values);
  
     $db = Engine_Api::_()->getDbtable('events', 'event')->getAdapter();

@@ -40,9 +40,11 @@
         
       ?>
       <li>
-        <div class="events-photo">
-          <?php echo $this->htmlLink($event->getHref(), $this->itemPhoto($event, 'thumb.main')); ?>
-        </div>
+        <?php $photo = Engine_Api::_()->getItem('storage_file', $event->photo_id); ?>
+        <a href="<?php echo $event->getHref() ?>">
+          <div class="events-photo" style="background-image: url(<?php echo $photo->getHref() ?>); background-size: cover; background-position: 50% 50%;">
+          </div>
+        </a>
         <div class="events-title">
           <?php echo $this->htmlLink($event->getHref(), $event->getTitle()); ?>
         </div>

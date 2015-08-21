@@ -522,23 +522,25 @@ window.addEvent('domready', function()
 	if (Browser.Platform.ios || Browser.Platform.android || Browser.Platform.webos) {
 		console.log('touch-device');
 		
-		$$('.ynadvmenu_downservices a.menu_core_mini')[0].addEvent('click', function(){
-			var span = this.getParent('span');
-
-			if ( this.hasClass('open-pulldown-wrapper') ) {
-
-				window.open( this.get('href'), '_self');
-
-		    	return false;
-			} else {
-				this.addClass('open-pulldown-wrapper');
-				span.addClass('updates_pulldown_active').removeClass('updates_pulldown');	
-
+		if ($$('.ynadvmenu_downservices a.menu_core_mini').lenght > 0) {
+			$$('.ynadvmenu_downservices a.menu_core_mini')[0].addEvent('click', function(){
+				var span = this.getParent('span');
+			
+				if ( this.hasClass('open-pulldown-wrapper') ) {
+			
+					window.open( this.get('href'), '_self');
+			
+					return false;
+				} else {
+					this.addClass('open-pulldown-wrapper');
+					span.addClass('updates_pulldown_active').removeClass('updates_pulldown');	
+			
+					return false;
+				}
+			
 				return false;
-			}
-
-			return false;
-		});	
+			});
+		}
 	}	
 });
 

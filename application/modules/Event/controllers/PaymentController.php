@@ -41,8 +41,12 @@ class Event_PaymentController extends Core_Controller_Action_Standard
           'messages' => array(Zend_Registry::get('Zend_Translate')->_('You can\'t pay for this class as you\'re not accepted for it anymore'))
       ));
     }
-    
-    $this->view->form = $form = new Event_Form_Payment();
+     
+    $sitePercent = Engine_Api::_()->getApi('settings', 'core')
+      ->getSetting('event_percent', 10);
+    $form_price = ceil($event->price * (1 + $sitePercent / 100));
+
+    $this->view->form = $form = new Event_Form_Payment(array('event' => $form_price . ' ' . $event->currency));
     
     if( !$this->getRequest()->isPost() ) {
         return;
@@ -57,6 +61,28 @@ class Event_PaymentController extends Core_Controller_Action_Standard
       'user' => $viewer,
       'event' => $event
     );
+    
+    if ($values['card']['card_type'] == 1) {
+      $valid_card = new Zend_Validate_CreditCard(
+        Zend_Validate_CreditCard::MASTERCARD
+      );
+      
+      if (!$valid_card->isValid($values['card']['card_number'])) {
+        $message = Zend_Registry::get('Zend_Translate')->_('Credit card number you have entered does not match card type you selected.');
+        $form->addError($message);
+        return;
+      }
+    } else {
+      $valid_card = new Zend_Validate_CreditCard(
+          Zend_Validate_CreditCard::VISA
+      );
+      
+      if (!$valid_card->isValid($values['card']['card_number'])) {
+        $message = Zend_Registry::get('Zend_Translate')->_('Credit card number you have entered does not match card type you selected.');
+        $form->addError($message);
+        return;
+      }
+    }
     
     $transactionTable = Engine_Api::_()->getItemTable('event_transaction');
     $db = $transactionTable->getAdapter();

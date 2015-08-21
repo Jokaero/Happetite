@@ -69,6 +69,10 @@ return array(
       'event' => 'onRenderLayoutDefault',
       'resource' => 'Event_Plugin_Core',
     ),
+    array(
+      'event' => 'onUserCreateAfter',
+      'resource' => 'Event_Plugin_Core',
+    ),
   ),
   // Items ---------------------------------------------------------------------
   'items' => array(

@@ -17,9 +17,29 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
         $user_id = $this->_getParam("user_id");
         $special = $this->_getParam("special", "cover");
         $this->view->user = $user = Engine_Api::_()->getItem('user', $user_id);
+        
+        // Class (Event) Cover Photo Modification
+        if (Engine_Api::_()->core()->hasSubject()) {
+            $subject = Engine_Api::_()->core()->getSubject();
+        }
+        
+        $subjectAjax = explode('_', $this->_getParam('subject'));
+        
+        if ($subjectAjax[0] == 'event') {
+            $this->view->event = $event = Engine_Api::_()->getItem('event', $subjectAjax[1]);
+        }
+        
         $can_edit = $user->authorization()->isAllowed($viewer, 'edit');
         if ($can_edit && Engine_Api::_()->authorization()->isAllowed('siteusercoverphoto', $user, 'upload')) {
-            $this->view->can_edit = $can_edit = 1;
+            if ($event) {
+                if ($event->user_id !== $viewer->getIdentity()) {
+                    $this->view->can_edit = $can_edit = 0;
+                } else {
+                    $this->view->can_edit = $can_edit = 1;
+                }
+            } else {
+                $this->view->can_edit = $can_edit = 1;
+            }
         } else {
             $this->view->can_edit = $can_edit = 0;
         }
@@ -28,11 +48,15 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
         $this->view->siteusercoverphotoChangeTabPosition = Engine_Api::_()->getApi('settings', 'core')->getSetting('siteusercoverphoto.change.tab.position', 1);
         $onlyUserWithPhoto = $this->_getParam("onlyUserWithPhoto", 1);
         $tableAlbum = Engine_Api::_()->getDbtable('albums', 'siteusercoverphoto');
-        if (Engine_Api::_()->hasModuleBootstrap('advalbum')) {
+        
+        if ($event and $subject instanceof Event_Model_Event) {
+            $this->view->photo = $photo = Engine_Api::_()->getItem('album_photo', $event->user_cover);
+        } elseif (Engine_Api::_()->hasModuleBootstrap('advalbum')) {
             $this->view->photo = $photo = Engine_Api::_()->getItem('advalbum_photo', $user->user_cover);
         } else {
             $this->view->photo = $photo = Engine_Api::_()->getItem('album_photo', $user->user_cover);
         }
+        
         $this->view->coverTop = 0;
         $this->view->coverLeft = 0;
         $this->view->cover_params = array('top' => 0, 'left' => 0, 'fontcolor' => '#FFFFFF');
@@ -70,7 +94,13 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
     }
 
     public function getMainPhotoAction() {
-
+        
+        $subjectAjax = explode('_', $this->_getParam('subject'));
+        
+        if ($subjectAjax[0] = 'event') {
+            $event = Engine_Api::_()->getItem('event', $subjectAjax[1]);
+        }
+        
         $viewer = Engine_Api::_()->user()->getViewer();
         $user_id = $this->_getParam("user_id");
         $this->view->user = $user = Engine_Api::_()->getItem('user', $user_id);
@@ -87,9 +117,24 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
         $this->view->addHelperPath(APPLICATION_PATH . '/application/modules/Siteusercoverphoto/View/Helper', 'Siteusercoverphoto_View_Helper');
         $this->view->can_edit = $can_edit = $user->authorization()->isAllowed($viewer, 'edit');
         $this->view->photo = $photo = '';
-        if (Engine_Api::_()->getItem("album_photo", $user->user_cover))
-            $this->view->photo = $photo = Engine_Api::_()->getItem("album_photo", $user->user_cover);
-        $this->view->level_id = $level_id = $this->_getParam("level_id", $user->getOwner()->level_id);
+        
+        
+        if ($event) {
+            if (Engine_Api::_()->getItem("album_photo", $event->user_cover)) {
+                $this->view->photo = $photo = Engine_Api::_()->getItem("album_photo", $event->user_cover);
+            }
+        } else {
+            if (Engine_Api::_()->getItem("album_photo", $user->user_cover)) {
+                $this->view->photo = $photo = Engine_Api::_()->getItem("album_photo", $user->user_cover);
+            }
+        }
+        
+        if ($event) {
+            $this->view->level_id = $level_id = $this->_getParam("level_id", $event->getOwner()->level_id);
+        } else {
+            $this->view->level_id = $level_id = $this->_getParam("level_id", $user->getOwner()->level_id);
+        }
+        
         $this->view->fontcolor = '';
         $this->view->siteusercoverphotoChangeTabPosition = $siteusercoverphotoChangeTabPosition = Engine_Api::_()->getApi('settings', 'core')->getSetting('siteusercoverphoto.change.tab.position', 1);
         if ($siteusercoverphotoChangeTabPosition) {
@@ -119,7 +164,13 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
         //CHECK USER VALIDATION
         if (!$this->_helper->requireUser()->isValid())
             return;
-
+        
+        $subject = $this->_getParam('subject_type', $this->_getParam('subject'));
+        
+        if ($subject == 'event' or $subject == 'Event_Model_Event') {
+            $event = Engine_Api::_()->getItem('event', $this->_getParam('subject_id'));
+        }
+        
         $viewer = Engine_Api::_()->user()->getViewer();
         $user_id = $this->_getParam("user_id");
         $this->view->user = $user = Engine_Api::_()->getItem('user', $user_id);
@@ -145,11 +196,22 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
 // 			$album->save();
 
             $tableAlbum = Engine_Api::_()->getDbtable('albums', 'siteusercoverphoto');
-            if (Engine_Api::_()->hasModuleBootstrap('advalbum')) {
-                $this->view->photo = $photo = Engine_Api::_()->getItem('advalbum_photo', $user->user_cover);
+            $isAdvalbumEnabled = Engine_Api::_()->hasModuleBootstrap('advalbum');
+            
+            if ($event) {
+                if ($isAdvalbumEnabled) {
+                    $this->view->photo = $photo = Engine_Api::_()->getItem('advalbum_photo', $event->user_cover);
+                } else {
+                    $this->view->photo = $photo = Engine_Api::_()->getItem('album_photo', $event->user_cover);
+                }
             } else {
-                $this->view->photo = $photo = Engine_Api::_()->getItem('album_photo', $user->user_cover);
+                if ($isAdvalbumEnabled) {
+                    $this->view->photo = $photo = Engine_Api::_()->getItem('advalbum_photo', $user->user_cover);
+                } else {
+                    $this->view->photo = $photo = Engine_Api::_()->getItem('album_photo', $user->user_cover);
+                }
             }
+            
             if ($photo && empty($cover_photo_preview)) {
                 $album_id = $photo->album_id;
 
@@ -256,7 +318,14 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
             $this->view->error = Zend_Registry::get('Zend_Translate')->_('Max file size limit exceeded (probably).');
             return;
         }
-
+        
+        $subjectClass = $this->_getParam('subject');
+        $subjectId = $this->_getParam('subject_id');
+        
+        if ($subjectClass == 'Event_Model_Event') {
+            $event = Engine_Api::_()->getItem('event', $subjectId);
+        }
+        
         $viewer = Engine_Api::_()->user()->getViewer();
         $this->view->cover_photo_preview = $cover_photo_preview = 0;
         $user_id = $this->_getParam('user_id');
@@ -307,8 +376,9 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
                 if ($album && ($album->type == 'cover' || $album->type == 'profile')) {
                     $notNeedToCreate = true;
                 }
-                if ($photo->file_id && !$notNeedToCreate)
+                if ($photo->file_id && !$notNeedToCreate) {
                     $file = Engine_Api::_()->getItemTable('storage_file')->getFile($photo->file_id);
+                }
             }
 
             if (empty($photo_id) || empty($photo)) {
@@ -335,13 +405,25 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
                     } else {
                         $tablePhoto = Engine_Api::_()->getDbtable('photos', 'album');
                     }
+                    
+                    
                     if (!$notNeedToCreate) {
                         $photo = $tablePhoto->createRow();
-                        $photo->setFromArray(array(
-                            'owner_id' => Engine_Api::_()->user()->getViewer()->getIdentity(),
-                            'owner_type' => 'user'
-                        ));
+                        
+                        if ($event) {
+                            $photo->setFromArray(array(
+                                'owner_id' => $event->getIdentity(),
+                                'owner_type' => 'event'
+                            ));
+                        } else {
+                            $photo->setFromArray(array(
+                                'owner_id' => Engine_Api::_()->user()->getViewer()->getIdentity(),
+                                'owner_type' => 'user'
+                            ));
+                        }
+                        
                         $photo->save();
+                        
                         if ($file) {
                             if ($special == 'cover') {
                                 $this->setCoverPhoto($file, $photo, $cover_photo_preview);
@@ -358,14 +440,24 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
 
                         if ($special == 'cover') {
                             $tableAlbum = Engine_Api::_()->getDbtable('albums', 'siteusercoverphoto');
-                            $album = $tableAlbum->getSpecialAlbumCover($user, $special);
+                            
+                            if ($event) {
+                                $album = $tableAlbum->getSpecialAlbumCover($event, $special);
+                            } else {
+                                $album = $tableAlbum->getSpecialAlbumCover($user, $special);
+                            }
                         } else {
                             if (Engine_Api::_()->hasModuleBootstrap('advalbum')) {
                                 $tableAlbum = Engine_Api::_()->getDbtable('albums', 'advalbum');
                             } else {
                                 $tableAlbum = Engine_Api::_()->getDbtable('albums', 'album');
                             }
-                            $album = $tableAlbum->getSpecialAlbum($user, 'profile');
+                            
+                            if ($event) {
+                                $album = $tableAlbum->getSpecialAlbum($event, 'profile');
+                            } else {
+                                $album = $tableAlbum->getSpecialAlbum($user, 'profile');
+                            }
                         }
                         $photo->album_id = $album->album_id;
                         $photo->save();
@@ -373,37 +465,47 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
 
                     $album->cover_params = Zend_Json_Encoder::encode($this->_getParam('position', array('top' => '0', 'left' => 0)));
                     $album->save();
+                    
                     if (!$album->photo_id) {
                         $album->photo_id = $photo->photo_id;
                         $album->save();
                     }
-                    if ($special == 'cover') {
+                    
+                    if ($special == 'cover' and !$event) {
                         $user->user_cover = $photo->photo_id;
+                    } elseif ($special == 'cover' and $event) {
+                        $event->user_cover = $photo->photo_id;
                     } else {
                         $user->photo_id = $photo->file_id;
                     }
-
-                    $user->save();
-
-                    //ADD ACTIVITY
-                    $viewer = Engine_Api::_()->user()->getViewer();
-                    $activityApi = Engine_Api::_()->getDbtable('actions', 'activity');
-                    if ($special == 'cover') {
-                        $action = $activityApi->addActivity($viewer, $photo, 'user_cover_update');
-                        if ($action) {
-                            if ($photo)
-                                Engine_Api::_()->getDbtable('actions', 'activity')->attachActivity($action, $photo);
-                        }
+                    
+                    if ($event) {
+                        $event->save();
+                    } else {
+                        $user->save();
                     }
-                    else {
-                        $iMain = Engine_Api::_()->getItem('storage_file', $user->photo_id);
-
-                        //INSERT ACTIVITY
-                        $action = Engine_Api::_()->getDbtable('actions', 'activity')->addActivity($user, $user, 'profile_photo_update', '{item:$subject} added a new profile photo.');
-
-                        //HOOKS TO ENABLE ALBUMS TO WORK
-                        if ($action) {
-                            Engine_Api::_()->getDbtable('actions', 'activity')->attachActivity($action, $photo);
+                    
+                    if (!$event) {
+                        //ADD ACTIVITY
+                        $viewer = Engine_Api::_()->user()->getViewer();
+                        $activityApi = Engine_Api::_()->getDbtable('actions', 'activity');
+                        if ($special == 'cover') {
+                            $action = $activityApi->addActivity($viewer, $photo, 'user_cover_update');
+                            if ($action) {
+                                if ($photo)
+                                    Engine_Api::_()->getDbtable('actions', 'activity')->attachActivity($action, $photo);
+                            }
+                        }
+                        else {
+                            $iMain = Engine_Api::_()->getItem('storage_file', $user->photo_id);
+    
+                            //INSERT ACTIVITY
+                            $action = Engine_Api::_()->getDbtable('actions', 'activity')->addActivity($user, $user, 'profile_photo_update', '{item:$subject} added a new profile photo.');
+    
+                            //HOOKS TO ENABLE ALBUMS TO WORK
+                            if ($action) {
+                                Engine_Api::_()->getDbtable('actions', 'activity')->attachActivity($action, $photo);
+                            }
                         }
                     }
 
@@ -424,7 +526,14 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
             if ($form->Filedata->getValue() !== null) {
                 $values = $form->getValues();
                 $siteusercoverphoto_setdefaultcoverphoto = $values['siteusercoverphoto_setdefaultcoverphoto'];
-                $this->setCoverPhoto($form->Filedata, null, $cover_photo_preview, $level_id, $siteusercoverphoto_setdefaultcoverphoto);
+                
+                $options = array();
+                
+                if ($event) {
+                    $options['event'] = $event;
+                }
+                
+                $this->setCoverPhoto($form->Filedata, null, $cover_photo_preview, $level_id, $siteusercoverphoto_setdefaultcoverphoto, $options);
                 $this->view->status = true;
                 $this->view->siteusercoverphoto_setdefaultcoverphoto = $siteusercoverphoto_setdefaultcoverphoto;
             }
@@ -446,6 +555,13 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
         if ($viewer->getIdentity() && $viewer->level_id == 1 && $user->getOwner()->isSelf($viewer)) {
             $this->view->cover_photo_preview = $cover_photo_preview = $this->_getParam("cover_photo_preview", 0);
             $this->view->level_id = $level_id = $this->_getParam("level_id", 0);
+        }
+        
+        $subjectClass = $this->_getParam('subject');
+        $subjectId = $this->_getParam('subject_id');
+        
+        if ($subjectClass == 'Event_Model_Event') {
+            $event = Engine_Api::_()->getItem('event', $subjectId);
         }
 
         if ($special == 'cover' && empty($cover_photo_preview)) {
@@ -477,9 +593,16 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
         if ($this->getRequest()->isPost()) {
             if ($special == 'cover') {
                 if (empty($cover_photo_preview)) {
-                    $user->user_cover = 0;
                     $tableAlbum = Engine_Api::_()->getDbtable('albums', 'siteusercoverphoto');
-                    $album = $tableAlbum->getSpecialAlbumCover($user, $special);
+                    
+                    if ($event) {
+                        $event->user_cover = 0;
+                        $album = $tableAlbum->getSpecialAlbumCover($event, $special);
+                    } else {
+                        $user->user_cover = 0;
+                        $album = $tableAlbum->getSpecialAlbumCover($user, $special);
+                    }
+                    
                     $album->cover_params = Zend_Json_Encoder::encode(array('top' => '0', 'left' => 0));
                     $album->save();
                 } else {
@@ -515,7 +638,12 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
             } else {
                 $user->photo_id = 0;
             }
-            $user->save();
+            
+            if ($event) {
+                $event->save();
+            } else {
+                $user->save();
+            }
 
             $this->_forward('success', 'utility', 'core', array(
                 'smoothboxClose' => 10,
@@ -592,8 +720,7 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
      * @param array photo
      * @return photo object
      */
-    public function setCoverPhoto($photo, $photoObject, $cover_photo_preview, $level_id = null, $siteusercoverphoto_setdefault = 0) {
-
+    public function setCoverPhoto($photo, $photoObject, $cover_photo_preview, $level_id = null, $siteusercoverphoto_setdefault = 0, $options = array()) {
 
         if ($photo instanceof Zend_Form_Element_File) {
             $file = $photo->getFileName();
@@ -627,7 +754,6 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
         $isCoverAttempt = Engine_Api::_()->getApi('settings', 'core')->getSetting('siteusercoverphoto.isattempt', false);
         $getCoverType = Engine_Api::_()->getApi('settings', 'core')->getSetting('siteusercoverphoto.get.type', false);
         $coverphotoAttemptLtype = Engine_Api::_()->getApi('settings', 'core')->getSetting('siteusercoverphoto.attempt.ltype', false);
-
 
         $filesTable = Engine_Api::_()->getDbtable('files', 'storage');
             $coreSettings = Engine_Api::_()->getApi('settings', 'core');
@@ -678,6 +804,15 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
                 'user_id' => $photoObject->owner_id,
                 'name' => basename($fileName),
             );
+            
+            $photoObjectOwner = $photoObject->getOwner();
+            if ($photoObjectOwner instanceof Event_Model_Event) {
+              $photoObjectOwnerUser = $photoObjectOwner->getOwner();
+              
+              if ($photoObjectOwnerUser instanceof User_Model_User) {
+                $params['user_id'] = $photoObjectOwnerUser->getIdentity();
+              }
+            }
 
             try {
                 $iMain = $filesTable->createFile($mainPath, $params);
@@ -695,6 +830,7 @@ class Siteusercoverphoto_ProfileController extends Core_Controller_Action_Standa
 // 					throw $e;
 // 				}
             }
+            
             @unlink($mainPath);
             @unlink($normalPath);
             @unlink($coverPath);

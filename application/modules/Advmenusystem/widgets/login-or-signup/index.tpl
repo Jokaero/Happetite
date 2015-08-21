@@ -12,11 +12,15 @@ endif;
 ?>
   <?php echo $this->form->render($this) ?>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 function advancedMenuUserLoginFormAction()
 {
+	if (typeof jQuery != 'undefined') { 
+		jQuery.noConflict();
+	}
   // INJECT FORGOT PASSWORD LINK
-  var wrapperDiv = document.createElement("div");
+  var wrapperDiv = new Element('div');//document.createElement("div");
   wrapperDiv.id = "forgot_password";
   wrapperDiv.innerHTML = "<span class='fright'><a href='"+en4.core.baseUrl+"user/auth/forgot'>"+en4.core.language.translate('Forgot Password?')+"</a></span>";
   wrapperDiv.inject($('password-wrapper'), 'after');
