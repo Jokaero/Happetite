@@ -13,11 +13,18 @@
 
 <?php
   
+    //$this->headScript()
+    //  ->appendFile($this->layout()->staticBaseUrl . 'application/modules/Event/externals/scripts/slideGallery.js');
+    //$this->headLink()
+    //  ->appendStylesheet($this->layout()->staticBaseUrl . 'application/modules/Event/externals/styles/slider.css');
+  
   $params = array(
     'id' => 'recent_signups_slider',
     'steps' => 1,
     'autoplay' => 'false',
   );
+  
+  //echo '<pre>'; print_r($this->slider($this->paginator, $params)); echo '</pre>'; exit;
   
   echo $this->slider($this->paginator, $params);
 ?>

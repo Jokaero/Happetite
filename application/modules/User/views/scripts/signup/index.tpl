@@ -21,6 +21,7 @@
     $('SignupForm').submit();
   }
   function finishForm() {
+   
     document.getElementById("nextStep").value = "finish";
   }
 </script>

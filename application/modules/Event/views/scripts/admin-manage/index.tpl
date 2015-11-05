@@ -81,7 +81,7 @@ if( $settings->getSetting('user.support.links', 0) == 1 ) {
   
   <br />
   
-  <form id='multidelete_form' method="post" action="<?php echo $this->url();?>" onSubmit="return multiDelete()">
+  <form id='multidelete_form' method="post" action="<?php echo $this->url();?>" onSubmit="return multiDelete()" style="overflow: auto;">
     <table class='admin_table'>
       <thead>
         <tr>

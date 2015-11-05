@@ -70,7 +70,10 @@ var slideGallery = new Class({
 		Fx.implement({
 			cancel: function() {
 				if(!this.callChain()) this.fireEvent('chainComplete', this.subject);
-				if(this.stopTimer()) this.onCancel();
+				try {
+					if(this.stopTimer()) this.onCancel();
+				} catch(e) {}
+				
 				return this;
 			}
 		});

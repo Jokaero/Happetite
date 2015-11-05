@@ -1,4 +1,4 @@
-<?php $this->headScript()->appendFile('http://w.sharethis.com/button/buttons.js'); ?>
+<?php $this->headScript()->appendFile('application/modules/Event/externals/scripts/buttons.js'); ?>
 
 <div class="classes-steps-guest-share-content" id="classes-steps-guest-share-content">
   <h3 class="title">

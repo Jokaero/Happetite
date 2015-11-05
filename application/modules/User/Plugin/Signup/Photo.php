@@ -211,6 +211,7 @@ class User_Plugin_Signup_Photo extends Core_Plugin_FormSequence_Abstract
 
   protected function _resizeImages($file)
   {
+   
     $name = basename($file);
     $path = dirname($file);
 

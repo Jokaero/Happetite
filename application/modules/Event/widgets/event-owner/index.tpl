@@ -2,7 +2,11 @@
   
   <?php if ($this->showPhoto) : ?>
     <div class="owner-photo">
-      <?php echo $this->htmlLink($this->user->getHref(), $this->itemPhoto($this->user, 'thumb.profile')); ?>
+      <a  href="<?php echo $this->user->getHref()?>">
+        <?php $photo = Engine_Api::_()->getItem('storage_file', $this->user->photo_id); ?>
+        <div class="owner-photo" style="background-image: url(<?php echo $photo->getHref(); ?>); background-size: cover; background-position: 50% 50%"></div>
+      </a>
+      <?php // echo $this->htmlLink($this->user->getHref(), $this->itemPhoto($this->user, 'thumb.profile')); ?>
     </div>
   <?php endif; ?>
   

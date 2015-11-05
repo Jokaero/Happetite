@@ -1,3 +1,8 @@
+<style type="text/css">
+  #global_content{
+	width: 970px;
+  }
+</style>
 <h2><?php echo $this->translate("Events Plugin") ?></h2>
 
 <?php if( count($this->navigation) ): ?>

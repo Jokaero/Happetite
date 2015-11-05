@@ -98,8 +98,8 @@ class Siteusercoverphoto_Widget_UserCoverPhotoController extends Engine_Content_
       $this->view->noProfilePhoto = 1;
     }
     
-    if( empty($siteuserCoverPhotoInfo) )
-      return $this->setNoRender();
+    //if( empty($siteuserCoverPhotoInfo) )
+    //  return $this->setNoRender();
   }
 
 }

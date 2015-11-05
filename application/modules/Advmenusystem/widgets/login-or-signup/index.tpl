@@ -21,8 +21,8 @@ function advancedMenuUserLoginFormAction()
   var wrapperDiv = document.createElement("div");
   wrapperDiv.id = "forgot_password";
   wrapperDiv.innerHTML = "<span class='fright'><a href='"+en4.core.baseUrl+"user/auth/forgot'>"+en4.core.language.translate('Forgot Password?')+"</a></span>";
-  wrapperDiv.inject(jQuery('password-wrapper'), 'after');
-  jQuery("remember-wrapper").inject(jQuery("forgot_password"), 'before');
+  //wrapperDiv.inject(jQuery('password-wrapper'), 'after');
+  //jQuery("remember-wrapper").inject(jQuery("forgot_password"), 'before');
   
 }
 advancedMenuUserLoginFormAction();

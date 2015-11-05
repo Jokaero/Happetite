@@ -31,7 +31,7 @@ var Lasso = new Class({
 		
 		this.overlay = new Element('div',{
                         'class' : 'lasso-overlay',
-			'styles' : { 'position' : 'relative', 'background' : 'url('+this.options.bgimage+')', 'height' : '100%', 'width' : '100%',   'z-index' : this.options.zindex+1 }
+			'styles' : { 'position' : 'relative', 'height' : '100%', 'width' : '100%',   'z-index' : this.options.zindex+1 }
 		}).inject(this.box);
 
 		this.mask = new Element('div',{

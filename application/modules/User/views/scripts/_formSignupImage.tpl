@@ -61,10 +61,10 @@
     var lassoSetCoords = function(coords)
     {
       var delta = (coords.w - 48) / coords.w;
-
+  
       $('coordinates').value =
         coords.x + ':' + coords.y + ':' + coords.w + ':' + coords.h;
-
+  
       $('previewimage').setStyles({
         top : -( coords.y - (coords.y * delta) ),
         left : -( coords.x - (coords.x * delta) ),
@@ -77,24 +77,24 @@
     {
       if( !orginalThumbSrc ) orginalThumbSrc = $('previewimage').src;
       originalSize = $("lassoImg").getSize();
-
+  
       //this.style.display = 'none';
       myLasso = new Lasso.Crop('lassoImg',{
-  ratio : [1, 1],
-  preset : [10,10,58,58],
-  min : [48,48],
-  handleSize : 8,
-  opacity : .6,
-  color : '#7389AE',
-  border : '<?php echo $this->layout()->staticBaseUrl . '/externals/moolasso/crop.gif' ?>',
-  onResize : lassoSetCoords
+        ratio : [1, 1],
+        preset : [10,10,58,58],
+        min : [48,48],
+        handleSize : 8,
+        opacity : .6,
+        color : '#7389AE',
+        border : '<?php echo $this->layout()->staticBaseUrl . 'externals/moolasso/crop.gif' ?>',
+        onResize : lassoSetCoords
       });
-
-
+  
+  
       var sourceImg = $('lassoImg').src;
       $('previewimage').src = $('lassoImg').src;
       $('coordinates').value = 10 + ':' + 10 + ':' + 58+ ':' + 58;
-
+  
       //$('preview-thumbnail').innerHTML = '<img id="previewimage" alt="cropping test" src="'+sourceImg+'"/>';
       $('thumbnail-controller').innerHTML = '<a href="javascript:void(0);" onclick="lassoEnd();"><?php echo $this->translate('Apply Changes');?></a>';
     }

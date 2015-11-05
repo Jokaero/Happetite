@@ -9,15 +9,17 @@ return array (
       'automatic_serialization' => true,
       'cache_id_prefix' => 'Engine4_',
       'lifetime' => '300',
-      'caching' => true,
-      'gzip' => true,
+      'caching' => false,
+      'gzip' => false,
     ),
   ),
   'backend' => 
   array (
-    'Apc' => 
+    'File' => 
     array (
+      'file_locking' => true,
+      'cache_dir' => '/home/happetite/public_html/beta/temporary/cache',
     ),
   ),
-  'default_file_path' => '/var/www/taurussoft/data/www/happetite.newrosoftdev.com/temporary/cache',
+  'default_file_path' => '/home/happetite/public_html/beta/temporary/cache',
 ); ?>

@@ -196,9 +196,9 @@ EOF;
         // user photo
         if ($item->user_id) {
           $user = Engine_Api::_()->getItem('user', $item->user_id);
-          
-          $content .= '<div class="photo">'
-                   . $this->view->htmlLink($user->getHref(), $this->view->itemPhoto($user, 'thumb.main'), array('class' => 'thumb'))
+          $photo = Engine_Api::_()->getItem('storage_file', $user->photo_id);
+          $content .= '<div class="photo1">'                   
+                   . '<a href="' . $user->getHref() . '"' . ' ><div class="photo" style="background-image: url('. $photo->getHref() .'); background-size: cover; background-position: 50% 50%"></div></a>' 
                    . '</div>';
         } else {
           return '<pre>Something going wrong!</pre>';

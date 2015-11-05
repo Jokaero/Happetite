@@ -70,7 +70,7 @@
   .layout_how_to_work > h3 > .how_to_right
   {
     position: absolute;
-    z-index: 9999;
+    z-index: 99;
     width: 30%;
   }
   .layout_how_to_work > h3 > .how_to_left {
