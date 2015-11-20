@@ -125,6 +125,7 @@ if( $settings->getSetting('user.support.links', 0) == 1 ) {
 				<?php echo $this->translate('NO'); ?>
 			  <?php endif; ?>
 			</td>
+
             <td>
               <a href="<?php echo $this->url(array('action' => 'edit', 'event_id' => $item->event_id), 'event_specific') ?>" target="_blank">
                 <?php echo $this->translate("edit") ?>
@@ -148,6 +149,12 @@ if( $settings->getSetting('user.support.links', 0) == 1 ) {
 				array('route' => 'admin_default', 'module' => 'event', 'controller' => 'manage', 'action' => 'transactions', 'event_id' => $item->event_id),
 				$this->translate('transactions'),
 				array('target' => '_blank')); ?>
+               <br />
+                <?php echo $this->htmlLink(
+                array('route' => 'default', 'module' => 'event', 'controller' => 'admin-manage', 'action' => 'bank', 'id' => $item->event_id),
+                $this->translate('bank detail'),
+                array('class' => 'smoothbox',
+                )) ?>
             </td>
           </tr>
         <?php endforeach; ?>

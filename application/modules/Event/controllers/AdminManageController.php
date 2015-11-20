@@ -621,4 +621,13 @@ class Event_AdminManageController extends Core_Controller_Action_Admin
     ));
     
   }
+
+  public function bankAction(){
+      $id = $this->_getParam('id');
+      $this->view->event_id=$id;
+
+      $event = Engine_Api::_()->getItem('event', $id);
+      $this->view->event = $event;
+      $this->renderScript('admin-manage/bank-detail.tpl');
+  }
 }
