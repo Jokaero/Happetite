@@ -125,9 +125,9 @@ class Event_Api_Core extends Core_Api_Abstract
   public function getCurrencies()
   {
     return array(
+        'USD' => 'USD',
         'CHF' => 'CHF',
         'EUR' => 'EUR',
-        'USD' => 'USD',
         'GBP' => 'GBP',
     );
   }

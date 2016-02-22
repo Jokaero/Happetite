@@ -34,10 +34,15 @@ $this->headLink()
   window.addEvent('domready', function() {
     var site_percent = <?php echo Engine_Api::_()->getApi('settings', 'core')->getSetting('event_percent', 10) ?>;
     var site_percent_price = 0;
-    
+
+
     price_percent_calculate = function() {
       var site_price = parseFloat($('price').value);
       site_percent_price = site_price * (site_percent / 100);
+      var currency = $('currency').value;
+      if (currency == undefined || currency.length == 0){
+          currency = 'USD';
+      }
       
       if (isNaN(site_percent_price)) {
         $('service_free').set('html', '');
@@ -53,7 +58,8 @@ $this->headLink()
         + Math.ceil(site_percent_price)
         + ' service fee'
         + ' = '
-        + '<span class="total_price">'
+        + '<span class="total_price"><span class="currency_price">'
+        + currency + '</span> '
         + Math.ceil(parseFloat(site_price) + parseFloat(site_percent_price))
         + '</span>';
         

@@ -136,7 +136,7 @@ class Event_EventController extends Core_Controller_Action_Standard
       $start = strtotime($values['starttime']);
       $end = strtotime($values['endtime']);
       date_default_timezone_set($oldTz);
-      $values['currency'] =  'CHF';
+      //$values['currency'] =  'CHF';
       $values['starttime'] = date('Y-m-d H:i:s', $start);
       $values['endtime'] = date('Y-m-d H:i:s', $end);
     }

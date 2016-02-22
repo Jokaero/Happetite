@@ -319,27 +319,33 @@ class Event_Form_Edit extends Engine_Form
       ),
       'required' => false,
     ));
-    
-    // Currency
-    //$currenciesOptions = array_merge(
-    //  array('' => 'Select Currency'),
-    //  Engine_Api::_()->event()->getCurrencies()
-    //);
-    //
-    //$this->addElement('Select', 'currency', array(
-    //  'label' => 'Currency',
-    //  'multiOptions' => $currenciesOptions,
-    //  'allowEmpty' => false,
-    //  'required' => true,
-    //  'validators' => array(
-    //    array('NotEmpty', true),
-    //  ),
-    //));
-  
-    $this->addElement('Dummy', 'price_chf', array(
+
+      // Currency
+      $currenciesOptions = array_merge(
+          Engine_Api::_()->event()->getCurrencies()
+      );
+
+      $this->addElement('Select', 'currency', array(
+          'label' => 'Currency',
+          'multiOptions' => $currenciesOptions,
+          'allowEmpty' => false,
+          'required' => true,
+          'validators' => array(
+              array('NotEmpty', true),
+          ),
+          'attribs' => array('disabled' => 'true')
+      ));
+
+      $this->addElement('Dummy', 'class_details', array(
+          'content' => '<h2>' . Zend_Registry::get('Zend_Translate')->_('Class Details') . '</h2>'
+      ));
+
+    /*
+      $this->addElement('Dummy', 'price_chf', array(
       'label' => 'CHF',
       //'content' => $content
     ));
+    */
     
    
     // Price

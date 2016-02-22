@@ -323,28 +323,26 @@ class Event_Form_Create extends Engine_Form
     ));
     
     // Currency
-    //$currenciesOptions = array_merge(
-    //  array('' => 'Select Currency'),
-    //  Engine_Api::_()->event()->getCurrencies()
-    //);
-    //
-    //$this->addElement('Select', 'currency', array(
-    //  'label' => 'Currency',
-    //  'multiOptions' => $currenciesOptions,
-    //  'allowEmpty' => false,
-    //  'required' => true,
-    //  'validators' => array(
-    //    array('NotEmpty', true),
-    //  ),
-    //));
+    $currenciesOptions = array_merge(
+      Engine_Api::_()->event()->getCurrencies()
+    );
+
+    $this->addElement('Select', 'currency', array(
+      'label' => 'Currency',
+      'multiOptions' => $currenciesOptions,
+      'allowEmpty' => false,
+      'required' => true,
+      'validators' => array(
+        array('NotEmpty', true),
+      ),
+    ));
     
-    //@todo currency set in Controller
-    
+    /*
     $this->addElement('Dummy', 'price_chf', array(
       'label' => 'CHF',
       //'content' => $content
     ));
-    
+    */
    
     // Price
     $this->addElement('Text', 'price', array(

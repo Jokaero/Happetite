@@ -3792,7 +3792,7 @@ a#cancel,.global_form a#skiplink {
 }
 
 #total_price_percent span.total_price:before {
-    content: 'CHF ';
+    /* content: 'CHF '; */
 }
 
 #global_page_user-profile-index ul.events_profile_tab .events_profile_tab_title > a,#global_page_user-profile-index .events_members,.events_title + .events_members {
@@ -5278,4 +5278,10 @@ body .seaocore_profile_cover_has_tabs .seaocore_profile_coverinfo_buttons {
 }
 #layout_how_to_work_slider{
    
+}
+
+/* Changes for currency */
+select#currency:disabled{
+    font-weight: bold;
+    opacity: 0.5;
 }

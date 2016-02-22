@@ -286,7 +286,7 @@ class Event_IndexController extends Core_Controller_Action_Standard
     $values['user_id'] = $viewer->getIdentity();
     $values['parent_type'] = $parent_type;
     $values['parent_id'] =  $parent_id;
-    $values['currency'] =  'CHF';
+    //$values['currency'] =  'CHF';
     $values['search'] = 1;
     $values['approval'] = 0;
     $values['auth_invite'] = 1;
