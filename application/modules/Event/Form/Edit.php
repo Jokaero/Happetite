@@ -332,8 +332,8 @@ class Event_Form_Edit extends Engine_Form
           'required' => true,
           'validators' => array(
               array('NotEmpty', true),
-          ),
-          'attribs' => array('disabled' => 'true')
+          )
+//          'attribs' => array('disabled' => 'true')
       ));
 
       $this->addElement('Dummy', 'class_details', array(
