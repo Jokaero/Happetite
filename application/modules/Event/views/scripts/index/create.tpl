@@ -65,6 +65,10 @@
     $('price').addEvent('keyup', function() {
       price_percent_calculate();
     });
+
+      $('currency').addEvent('change', function() {
+      price_percent_calculate();
+    });
   });
 </script>
 
