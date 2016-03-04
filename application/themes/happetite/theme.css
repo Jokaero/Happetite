@@ -207,6 +207,10 @@ html[dir="rtl"] .layout_left {
     width: 555px;
 }
 
+#global_content .generic_layout_container.layout_middle .event_stats.class_menu.takeaways-wrapper {
+    width: 550px;
+}
+
 #global_content .generic_layout_container.layout_middle .event_stats.class_menu.description-wrapper {
     width: 550px;
 }
